@@ -1,6 +1,5 @@
 import Link from "next/link";
 import {
-  AlertTriangle,
   ArrowRight,
   Building2,
   CarFront,
@@ -209,18 +208,6 @@ export default function TermsPage() {
                     ))}
                   </div>
 
-                  <div className="mt-4 flex items-start gap-3 rounded-2xl border border-[#96ed08]/18 bg-[#96ed08]/[0.05] p-4">
-                    <AlertTriangle
-                      className="mt-0.5 shrink-0 text-[#96ed08]"
-                      size={19}
-                    />
-                    <p className="text-sm leading-6 text-white/55">
-                      This draft should be reviewed by qualified legal counsel
-                      before launch, especially for state-specific
-                      transportation, delivery, insurance, employment, privacy,
-                      and dispute-resolution requirements.
-                    </p>
-                  </div>
                 </div>
               </div>
             </div>

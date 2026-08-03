@@ -1,6 +1,5 @@
 import Link from "next/link";
 import {
-  AlertTriangle,
   ArrowRight,
   Building2,
   CarFront,
@@ -207,18 +206,6 @@ export default function PrivacyPage() {
                     ))}
                   </div>
 
-                  <div className="mt-4 flex items-start gap-3 rounded-2xl border border-[#96ed08]/18 bg-[#96ed08]/[0.05] p-4">
-                    <AlertTriangle
-                      className="mt-0.5 shrink-0 text-[#96ed08]"
-                      size={19}
-                    />
-                    <p className="text-sm leading-6 text-white/55">
-                      This draft must be reviewed against AkiGO’s final data
-                      flows, analytics tools, advertising practices, vendors,
-                      retention schedules, launch states, and mobile-platform
-                      disclosures before publication.
-                    </p>
-                  </div>
                 </div>
               </div>
             </div>
