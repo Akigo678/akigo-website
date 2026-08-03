@@ -10,7 +10,6 @@ import {
   Lightbulb,
   MapPinned,
   PackageCheck,
-  Quote,
   Route,
   ShieldCheck,
   Sparkles,
@@ -359,22 +358,29 @@ export default function AboutPage() {
 
         {/* FOUNDER LETTER */}
         <section className="border-t border-white/[0.06] py-20 sm:py-24">
-          <div className="site-container">
-            <div className="grid items-center gap-12 lg:grid-cols-[0.95fr_1.05fr]">
-              <div>
-                <div className="inline-flex size-14 items-center justify-center rounded-2xl border border-[#96ed08]/20 bg-[#96ed08]/10 text-[#96ed08]">
-                  <Quote size={28} />
-                </div>
+          <div className="relative min-h-[560px] overflow-hidden bg-[#080808] sm:min-h-[620px] lg:min-h-[680px]">
+            <img
+              src="/images/founder/sunday-akinnusi-founder-wide.png"
+              alt="Sunday Akinnusi, Founder of AkiGO Technologies"
+              className="absolute inset-0 h-full w-full object-cover object-[68%_center] sm:object-[64%_center] lg:object-center"
+            />
 
-                <p className="mt-8 text-xs font-extrabold uppercase tracking-[0.18em] text-[#96ed08]">
+            <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.97)_0%,rgba(0,0,0,0.92)_30%,rgba(0,0,0,0.58)_52%,rgba(0,0,0,0.08)_78%,transparent_100%)]" />
+            <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.08)_0%,rgba(0,0,0,0.02)_58%,rgba(0,0,0,0.48)_100%)]" />
+
+            <div className="site-container relative z-10 flex min-h-[560px] items-center py-16 sm:min-h-[620px] sm:py-20 lg:min-h-[680px]">
+              <div className="max-w-[650px]">
+                <p className="text-xs font-extrabold uppercase tracking-[0.22em] text-[#96ed08]">
                   From the Founder
                 </p>
 
-                <h2 className="font-display mt-4 max-w-2xl text-4xl font-extrabold tracking-[-0.05em] sm:text-5xl">
-                  A Letter from our Founder
+                <h2 className="font-display mt-5 text-5xl font-extrabold leading-[0.94] tracking-[-0.055em] text-white sm:text-6xl lg:text-[5rem]">
+                  A Letter from
+                  <br />
+                  our <span className="text-[#96ed08]">Founder</span>
                 </h2>
 
-                <p className="mt-6 max-w-xl text-lg leading-8 text-white/60">
+                <p className="mt-7 max-w-[590px] text-base leading-7 text-white/68 sm:text-lg sm:leading-8">
                   Learn why AkiGO was created, the vision behind the company,
                   and our commitment to building one connected platform for
                   transportation, delivery, businesses, drivers, and communities.
@@ -382,20 +388,11 @@ export default function AboutPage() {
 
                 <Link
                   href="/about/founder-letter"
-                  className={`${primaryButton} mt-10 inline-flex`}
+                  className={`${primaryButton} mt-9 inline-flex`}
                 >
                   Read Founder&apos;s Letter
                   <ArrowRight size={18} />
                 </Link>
-              </div>
-
-              <div className="relative overflow-hidden rounded-[2rem] border border-[#96ed08]/45 bg-[#0b0b0b] ring-1 ring-[#96ed08]/20 shadow-[0_0_35px_rgba(150,237,8,0.12),0_30px_100px_rgba(0,0,0,.45)] transition-all duration-300 hover:border-[#96ed08]/70 hover:ring-[#96ed08]/35 hover:shadow-[0_0_55px_rgba(150,237,8,0.22),0_35px_120px_rgba(0,0,0,.55)]">
-                <div className="pointer-events-none absolute inset-0 rounded-[2rem] bg-[radial-gradient(circle_at_70%_20%,rgba(150,237,8,0.12),transparent_35%)]" />
-                <img
-                  src="/images/founder/sunday-akinnusi-founder.png"
-                  alt="Founder of AkiGO Technologies"
-                  className="relative aspect-[4/5] w-full object-cover object-top"
-                />
               </div>
             </div>
           </div>
