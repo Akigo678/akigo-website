@@ -50,64 +50,51 @@ export default function FounderLetterPage() {
       <main className="bg-[#050505] text-white">
         {/* HERO */}
         <section className="relative overflow-hidden pt-[88px]">
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_76%_22%,rgba(150,237,8,0.11),transparent_34%)]" />
-          <div className="pointer-events-none absolute left-[-14rem] top-20 size-[34rem] rounded-full bg-[#96ed08]/[0.04] blur-[145px]" />
+          <div className="relative min-h-[620px] overflow-hidden bg-[#080808] sm:min-h-[700px] lg:min-h-[780px]">
+            <img
+              src="/images/founder/sunday-akinnusi-founder-wide.png"
+              alt="Sunday A., Founder and CEO of AkiGO Technologies"
+              className="absolute inset-0 h-full w-full object-cover object-[72%_center] sm:object-[70%_center] lg:object-center"
+            />
 
-          <div className="site-container relative z-10 py-14 sm:py-20">
-            <Link
-              href="/about"
-              className="inline-flex items-center gap-2 text-sm font-bold text-white/50 transition hover:text-[#96ed08]"
-            >
-              <ArrowLeft size={17} />
-              Back to About AkiGO
-            </Link>
+            <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.94)_0%,rgba(0,0,0,0.84)_28%,rgba(0,0,0,0.48)_52%,rgba(0,0,0,0.12)_74%,transparent_100%)]" />
+            <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.16)_0%,rgba(0,0,0,0.02)_58%,rgba(0,0,0,0.58)_100%)]" />
 
-            <div className="mt-10 grid items-center gap-14 lg:grid-cols-[1.03fr_0.97fr]">
-              <div>
-                <div className="inline-flex items-center gap-2 rounded-full border border-[#96ed08]/20 bg-[#96ed08]/[0.06] px-4 py-2 text-xs font-extrabold uppercase tracking-[0.14em] text-[#96ed08]">
-                  <Quote size={14} />
-                  Founder Letter
-                </div>
+            <div className="site-container relative z-10 flex min-h-[620px] flex-col py-8 sm:min-h-[700px] sm:py-10 lg:min-h-[780px]">
+              <Link
+                href="/about"
+                className="inline-flex w-fit items-center gap-2 rounded-full border border-white/[0.12] bg-black/25 px-4 py-2 text-sm font-bold text-white/65 backdrop-blur-md transition hover:border-[#96ed08]/35 hover:text-[#96ed08]"
+              >
+                <ArrowLeft size={17} />
+                Back to About AkiGO
+              </Link>
 
-                <h1 className="font-display mt-7 max-w-[820px] text-5xl font-extrabold leading-[0.96] tracking-[-0.06em] sm:text-6xl lg:text-[5rem]">
-                  A letter from the Founder of{" "}
-                  <span className="text-[#96ed08]">AkiGO.</span>
-                </h1>
+              <div className="flex flex-1 items-center py-12 sm:py-16 lg:py-20">
+                <div className="max-w-[720px]">
+                  <div className="inline-flex items-center gap-2 rounded-full border border-[#96ed08]/25 bg-[#96ed08]/[0.08] px-4 py-2 text-xs font-extrabold uppercase tracking-[0.16em] text-[#96ed08] backdrop-blur-md">
+                    <Quote size={14} />
+                    Founder Letter
+                  </div>
 
-                <p className="mt-6 max-w-2xl text-lg leading-8 text-white/58">
-                  Why AkiGO was created, what we are building, and the
-                  responsibility we carry as we prepare a connected platform for
-                  riders, drivers, businesses, delivery customers, and communities.
-                </p>
+                  <h1 className="font-display mt-7 max-w-[780px] text-5xl font-extrabold leading-[0.94] tracking-[-0.06em] text-white sm:text-6xl lg:text-[5.8rem]">
+                    A letter from the
+                    <br />
+                    Founder of <span className="text-[#96ed08]">AkiGO.</span>
+                  </h1>
 
-                <div className="mt-8 flex flex-wrap items-center gap-4 text-sm text-white/38">
-                  <span>Sunday A.</span>
-                  <span className="size-1 rounded-full bg-white/20" />
-                  <span>Founder and CEO</span>
-                  <span className="size-1 rounded-full bg-white/20" />
-                  <span>August 2026</span>
-                </div>
-              </div>
-
-              <div className="relative mx-auto w-full max-w-[560px]">
-                <div className="pointer-events-none absolute inset-8 rounded-full bg-[#96ed08]/10 blur-[110px]" />
-
-                <div className="relative overflow-hidden rounded-[2rem] border border-[#96ed08]/45 bg-[#0b0b0b] ring-1 ring-[#96ed08]/20 shadow-[0_0_35px_rgba(150,237,8,0.12),0_30px_100px_rgba(0,0,0,.45)]">
-                  <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_72%_18%,rgba(150,237,8,0.13),transparent_34%)]" />
-                  <img
-                    src="/images/founder/sunday-akinnusi-founder.png"
-                    alt="Founder of AkiGO Technologies"
-                    className="relative aspect-[4/5] w-full object-cover object-top"
-                  />
-                </div>
-
-                <div className="mt-5 rounded-2xl border border-white/[0.08] bg-white/[0.025] px-5 py-4">
-                  <p className="font-display text-xl font-bold">
-                    Sunday A.
+                  <p className="mt-8 max-w-[640px] text-base leading-8 text-white/72 sm:text-lg sm:leading-9">
+                    Why AkiGO was created, what we are building, and the
+                    responsibility we carry as we prepare a connected platform for
+                    riders, drivers, businesses, delivery customers, and communities.
                   </p>
-                  <p className="mt-1 text-sm font-semibold text-[#96ed08]">
-                    Founder and CEO, AkiGO Technologies
-                  </p>
+
+                  <div className="mt-8 flex flex-wrap items-center gap-4 text-sm font-semibold text-white/52">
+                    <span>Sunday A.</span>
+                    <span className="size-1 rounded-full bg-white/25" />
+                    <span>Founder and CEO</span>
+                    <span className="size-1 rounded-full bg-white/25" />
+                    <span>August 2026</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -117,39 +104,61 @@ export default function FounderLetterPage() {
         {/* LETTER */}
         <section className="border-t border-white/[0.06] py-20 sm:py-24">
           <div className="site-container">
-            <div className="mx-auto grid max-w-[1180px] gap-12 lg:grid-cols-[260px_minmax(0,1fr)]">
-              <aside className="lg:sticky lg:top-[120px] lg:self-start">
-                <div className="rounded-[1.6rem] border border-white/[0.09] bg-[#0b0b0b] p-6">
-                  <div className="grid size-12 place-items-center rounded-2xl bg-[#96ed08]/10 text-[#96ed08]">
-                    <Sparkles size={23} />
+            <div className="mx-auto grid max-w-[1220px] gap-12 lg:grid-cols-[250px_minmax(0,1fr)]">
+              <aside className="lg:sticky lg:top-[118px] lg:self-start">
+                <div className="space-y-5">
+                  <div className="rounded-[1.5rem] border border-white/[0.09] bg-[#0b0b0b] p-6">
+                    <div className="grid size-12 place-items-center rounded-2xl border border-[#96ed08]/15 bg-[#96ed08]/10 text-[#96ed08]">
+                      <Sparkles size={23} />
+                    </div>
+
+                    <p className="mt-6 text-xs font-extrabold uppercase tracking-[0.16em] text-[#96ed08]">
+                      The purpose
+                    </p>
+
+                    <p className="mt-3 text-sm leading-7 text-white/52">
+                      AkiGO is being built to make local transportation, delivery,
+                      driver opportunities, and business logistics feel more
+                      connected, clear, and responsible.
+                    </p>
                   </div>
 
-                  <p className="mt-6 text-xs font-extrabold uppercase tracking-[0.16em] text-[#96ed08]">
-                    The purpose
-                  </p>
+                  <div className="rounded-[1.5rem] border border-white/[0.09] bg-white/[0.025] p-6">
+                    <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-white/38">
+                      In this letter
+                    </p>
 
-                  <p className="mt-3 text-sm leading-7 text-white/50">
-                    AkiGO is being built to make local transportation, delivery,
-                    driver opportunities, and business logistics feel more
-                    connected, clear, and responsible.
-                  </p>
+                    <nav className="mt-5 space-y-3 text-sm font-semibold">
+                      <a href="#why-i-started-akigo" className="block text-white/55 transition hover:text-[#96ed08]">
+                        Why I Started AkiGO
+                      </a>
+                      <a href="#our-responsibility" className="block text-white/55 transition hover:text-[#96ed08]">
+                        Our Responsibility
+                      </a>
+                      <a href="#what-comes-next" className="block text-white/55 transition hover:text-[#96ed08]">
+                        What Comes Next
+                      </a>
+                    </nav>
+                  </div>
                 </div>
               </aside>
 
-              <article className="rounded-[2rem] border border-white/[0.09] bg-[linear-gradient(145deg,#0d0f0c_0%,#080808_72%)] p-7 sm:p-10 lg:p-14">
-                <div className="max-w-3xl">
-                  <p className="text-lg leading-9 text-white/68">
+              <article className="relative overflow-hidden rounded-[2rem] border border-white/[0.09] bg-[linear-gradient(145deg,#0d0f0c_0%,#080808_72%)] px-7 py-10 shadow-[0_30px_100px_rgba(0,0,0,.34)] sm:px-10 sm:py-12 lg:px-16 lg:py-16">
+                <div className="pointer-events-none absolute right-[-8rem] top-[-8rem] size-80 rounded-full bg-[#96ed08]/[0.06] blur-[120px]" />
+
+                <div className="relative mx-auto max-w-[820px]">
+                  <p className="font-display text-2xl font-bold leading-10 text-white sm:text-3xl">
                     To our future riders, drivers, couriers, business partners,
                     employees, and communities,
                   </p>
 
-                  <p className="mt-8 text-lg leading-9 text-white/68">
+                  <p className="mt-10 text-lg leading-9 text-white/70">
                     AkiGO started with a simple belief: local movement should be
                     easier to understand, more connected, and more useful for the
                     people who depend on it every day.
                   </p>
 
-                  <p className="mt-8 text-lg leading-9 text-white/68">
+                  <p className="mt-8 text-lg leading-9 text-white/70">
                     Transportation and delivery are often treated as separate
                     experiences. Riders use one system, drivers use another,
                     businesses manage logistics somewhere else, and support is
@@ -157,11 +166,16 @@ export default function FounderLetterPage() {
                     those needs together through one coordinated platform.
                   </p>
 
-                  <h2 className="font-display mt-14 text-3xl font-extrabold tracking-[-0.04em] sm:text-4xl">
+                  <div className="my-14 h-px bg-gradient-to-r from-[#96ed08]/70 via-white/15 to-transparent" />
+
+                  <h2
+                    id="why-i-started-akigo"
+                    className="scroll-mt-32 font-display text-3xl font-extrabold tracking-[-0.04em] text-white sm:text-4xl"
+                  >
                     Why I Started AkiGO
                   </h2>
 
-                  <p className="mt-6 text-lg leading-9 text-white/68">
+                  <p className="mt-7 text-lg leading-9 text-white/70">
                     AkiGO began with a simple belief: transportation and delivery
                     can work better for everyone. As I spent time learning about
                     the industry, I saw an opportunity to build something
@@ -169,7 +183,7 @@ export default function FounderLetterPage() {
                     transactions. That vision became the foundation of AkiGO.
                   </p>
 
-                  <p className="mt-8 text-lg leading-9 text-white/68">
+                  <p className="mt-8 text-lg leading-9 text-white/70">
                     Drivers are the backbone of every ride and delivery. They
                     dedicate long hours, maintain their vehicles, and help people
                     reach their destinations safely every day. My goal is to build
@@ -180,7 +194,7 @@ export default function FounderLetterPage() {
                     even better experience for the people they serve.
                   </p>
 
-                  <p className="mt-8 text-lg leading-9 text-white/68">
+                  <p className="mt-8 text-lg leading-9 text-white/70">
                     Riders deserve more than simply getting from one place to
                     another. They deserve a ride that is reliable, affordable,
                     safe, and enjoyable from the moment they request it until they
@@ -190,7 +204,7 @@ export default function FounderLetterPage() {
                     experience for every rider.
                   </p>
 
-                  <p className="mt-8 text-lg leading-9 text-white/68">
+                  <p className="mt-8 text-lg leading-9 text-white/70">
                     I believe these goals go hand in hand. When drivers have
                     better opportunities and better tools, riders receive better
                     service. Businesses gain dependable transportation and
@@ -199,11 +213,16 @@ export default function FounderLetterPage() {
                     short-term success.
                   </p>
 
-                  <h2 className="font-display mt-14 text-3xl font-extrabold tracking-[-0.04em] sm:text-4xl">
+                  <div className="my-14 h-px bg-gradient-to-r from-[#96ed08]/70 via-white/15 to-transparent" />
+
+                  <h2
+                    id="our-responsibility"
+                    className="scroll-mt-32 font-display text-3xl font-extrabold tracking-[-0.04em] text-white sm:text-4xl"
+                  >
                     Our Responsibility
                   </h2>
 
-                  <p className="mt-6 text-lg leading-9 text-white/68">
+                  <p className="mt-7 text-lg leading-9 text-white/70">
                     Building a mobility and delivery platform comes with real
                     responsibility. People trust us with their time, their work,
                     their money, and their safety. That trust must be earned
@@ -211,7 +230,7 @@ export default function FounderLetterPage() {
                     operations, and a commitment to continuous improvement.
                   </p>
 
-                  <p className="mt-8 text-lg leading-9 text-white/68">
+                  <p className="mt-8 text-lg leading-9 text-white/70">
                     We will not measure success only by growth or the number of
                     trips completed. We will measure it by whether drivers feel
                     respected, whether riders enjoy a consistently excellent
@@ -220,11 +239,16 @@ export default function FounderLetterPage() {
                     there.
                   </p>
 
-                  <h2 className="font-display mt-14 text-3xl font-extrabold tracking-[-0.04em] sm:text-4xl">
-                    What comes next
+                  <div className="my-14 h-px bg-gradient-to-r from-[#96ed08]/70 via-white/15 to-transparent" />
+
+                  <h2
+                    id="what-comes-next"
+                    className="scroll-mt-32 font-display text-3xl font-extrabold tracking-[-0.04em] text-white sm:text-4xl"
+                  >
+                    What Comes Next
                   </h2>
 
-                  <p className="mt-6 text-lg leading-9 text-white/68">
+                  <p className="mt-7 text-lg leading-9 text-white/70">
                     Our next chapter is focused on production readiness,
                     controlled testing, market preparation, and the operational
                     systems required to launch carefully. We are continuing to
@@ -233,32 +257,41 @@ export default function FounderLetterPage() {
                     platform.
                   </p>
 
-                  <p className="mt-8 text-lg leading-9 text-white/68">
+                  <p className="mt-8 text-lg leading-9 text-white/70">
                     Over time, our ambition is to create one trusted ecosystem for
                     everyday local mobility: a place where people can request a
                     ride, send an item, support a local business, earn as a driver,
                     or manage business transportation through connected tools.
                   </p>
 
-                  <p className="mt-8 text-lg leading-9 text-white/68">
+                  <p className="mt-8 text-lg leading-9 text-white/70">
                     We are grateful to everyone who believes in the vision, shares
                     feedback, tests the product, and helps us build AkiGO the right
                     way. We are still at the beginning, but the direction is clear.
                   </p>
 
-                  <p className="mt-8 text-lg leading-9 text-white/68">
+                  <p className="mt-8 font-display text-2xl font-bold leading-9 text-white">
                     We are building for the long term.
                   </p>
 
-                  <div className="mt-14 border-t border-white/[0.08] pt-9">
-                    <p className="font-display text-2xl font-bold">
-                      Sunday A.
-                    </p>
-                    <p className="mt-2 text-sm font-semibold text-[#96ed08]">
-                      Founder and CEO
-                    </p>
-                    <p className="mt-1 text-sm text-white/35">
-                      AkiGO Technologies
+                  <div className="mt-16 flex flex-col gap-6 border-t border-white/[0.09] pt-10 sm:flex-row sm:items-end sm:justify-between">
+                    <div>
+                      <p className="font-display text-3xl font-bold text-white">
+                        Sunday Akinnusi
+                      </p>
+
+                      <p className="mt-2 text-sm font-semibold text-[#96ed08]">
+                        Founder and CEO
+                      </p>
+
+                      <p className="mt-1 text-sm text-white/38">
+                        AkiGO Technologies
+                      </p>
+                    </div>
+
+                    <p className="max-w-[280px] text-sm leading-6 text-white/35 sm:text-right">
+                      Building one connected platform for local mobility,
+                      delivery, business logistics, and opportunity.
                     </p>
                   </div>
                 </div>
