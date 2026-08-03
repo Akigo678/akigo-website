@@ -103,7 +103,7 @@ export default function FounderLetterPage() {
 
                 <div className="mt-5 rounded-2xl border border-white/[0.08] bg-white/[0.025] px-5 py-4">
                   <p className="font-display text-xl font-bold">
-                    Sunday Akinnusi
+                    Sunday A.
                   </p>
                   <p className="mt-1 text-sm font-semibold text-[#96ed08]">
                     Founder and CEO, AkiGO Technologies
