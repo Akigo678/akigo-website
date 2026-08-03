@@ -524,3 +524,8 @@ export function PartnerInterestForm() {
     </form>
   );
 }
+
+
+export default function PartnersPage() {
+  return <PartnerInterestForm />;
+}
