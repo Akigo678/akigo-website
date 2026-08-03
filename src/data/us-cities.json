@@ -1,0 +1,74 @@
+[
+  {
+    "city": "Winter Garden",
+    "state": "Florida",
+    "stateCode": "FL",
+    "country": "US",
+    "latitude": 28.5653,
+    "longitude": -81.5862,
+    "zipCodes": ["34777", "34778", "34787"]
+  },
+  {
+    "city": "Orlando",
+    "state": "Florida",
+    "stateCode": "FL",
+    "country": "US",
+    "latitude": 28.5383,
+    "longitude": -81.3792,
+    "zipCodes": ["32801", "32803", "32804", "32805"]
+  },
+  {
+    "city": "Kissimmee",
+    "state": "Florida",
+    "stateCode": "FL",
+    "country": "US",
+    "latitude": 28.292,
+    "longitude": -81.4076,
+    "zipCodes": ["34741", "34743", "34744", "34746"]
+  },
+  {
+    "city": "Tampa",
+    "state": "Florida",
+    "stateCode": "FL",
+    "country": "US",
+    "latitude": 27.9506,
+    "longitude": -82.4572,
+    "zipCodes": ["33602", "33603", "33604", "33605"]
+  },
+  {
+    "city": "Miami",
+    "state": "Florida",
+    "stateCode": "FL",
+    "country": "US",
+    "latitude": 25.7617,
+    "longitude": -80.1918,
+    "zipCodes": ["33101", "33125", "33126", "33127"]
+  },
+  {
+    "city": "New York",
+    "state": "New York",
+    "stateCode": "NY",
+    "country": "US",
+    "latitude": 40.7128,
+    "longitude": -74.006,
+    "zipCodes": ["10001", "10002", "10003"]
+  },
+  {
+    "city": "Los Angeles",
+    "state": "California",
+    "stateCode": "CA",
+    "country": "US",
+    "latitude": 34.0522,
+    "longitude": -118.2437,
+    "zipCodes": ["90001", "90002", "90003"]
+  },
+  {
+    "city": "Chicago",
+    "state": "Illinois",
+    "stateCode": "IL",
+    "country": "US",
+    "latitude": 41.8781,
+    "longitude": -87.6298,
+    "zipCodes": ["60601", "60602", "60603"]
+  }
+]
