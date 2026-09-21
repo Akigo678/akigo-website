@@ -3,6 +3,14 @@ import { ArrowRight } from "lucide-react";
 
 import { FooterLocaleControls } from "./FooterLocaleControls";
 
+const RIDER_IOS_URL =
+  process.env.NEXT_PUBLIC_RIDER_IOS_URL?.trim() ||
+  "https://apps.apple.com/us/app/akigo/id6802560351";
+
+const RIDER_ANDROID_URL =
+  process.env.NEXT_PUBLIC_RIDER_ANDROID_URL?.trim() || "";
+
+
 const footerColumns = [
   {
     title: "Company",
@@ -40,6 +48,7 @@ const footerColumns = [
     links: [
       { label: "Terms of Service", href: "/terms" },
       { label: "Privacy Policy", href: "/privacy" },
+      { label: "Delete Account", href: "/delete-account" },
       { label: "Cookie Policy", href: "/cookies" },
       { label: "Accessibility", href: "/accessibility" },
     ],
@@ -166,9 +175,11 @@ export function SiteFooter() {
             </h2>
 
             <div className="mt-5 space-y-3">
-              <Link
-                href="/download#rider"
-                aria-label="View AkiGO Rider App Store availability"
+              <a
+                href={RIDER_IOS_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Download AkiGO Rider on the App Store"
                 className="flex min-h-14 items-center gap-3 rounded-xl border border-white/[0.12] bg-white/[0.025] px-4 transition hover:border-[#96ed08]/35 hover:bg-white/[0.05] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#96ed08]"
               >
                 <div
@@ -180,37 +191,64 @@ export function SiteFooter() {
 
                 <span>
                   <span className="block text-[10px] uppercase tracking-[0.08em] text-white/45">
-                    Coming soon on the
+                    Download on the
                   </span>
 
                   <span className="block text-sm font-bold text-white">
                     App Store
                   </span>
                 </span>
-              </Link>
+              </a>
 
-              <Link
-                href="/download#rider"
-                aria-label="View AkiGO Rider Google Play availability"
-                className="flex min-h-14 items-center gap-3 rounded-xl border border-white/[0.12] bg-white/[0.025] px-4 transition hover:border-[#96ed08]/35 hover:bg-white/[0.05] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#96ed08]"
-              >
-                <div
-                  aria-hidden="true"
-                  className="grid size-8 shrink-0 place-items-center rounded-lg bg-white text-[15px] font-black text-black"
+              {RIDER_ANDROID_URL ? (
+                <a
+                  href={RIDER_ANDROID_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Get AkiGO Rider on Google Play"
+                  className="flex min-h-14 items-center gap-3 rounded-xl border border-white/[0.12] bg-white/[0.025] px-4 transition hover:border-[#96ed08]/35 hover:bg-white/[0.05] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#96ed08]"
                 >
-                  ▶
-                </div>
+                  <div
+                    aria-hidden="true"
+                    className="grid size-8 shrink-0 place-items-center rounded-lg bg-white text-[15px] font-black text-black"
+                  >
+                    ▶
+                  </div>
 
-                <span>
-                  <span className="block text-[10px] uppercase tracking-[0.08em] text-white/45">
-                    Coming soon on the
-                  </span>
+                  <span>
+                    <span className="block text-[10px] uppercase tracking-[0.08em] text-white/45">
+                      Get it on
+                    </span>
 
-                  <span className="block text-sm font-bold text-white">
-                    Google Play
+                    <span className="block text-sm font-bold text-white">
+                      Google Play
+                    </span>
                   </span>
-                </span>
-              </Link>
+                </a>
+              ) : (
+                <Link
+                  href="/download#rider"
+                  aria-label="View AkiGO Rider Google Play availability"
+                  className="flex min-h-14 items-center gap-3 rounded-xl border border-white/[0.12] bg-white/[0.025] px-4 transition hover:border-[#96ed08]/35 hover:bg-white/[0.05] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#96ed08]"
+                >
+                  <div
+                    aria-hidden="true"
+                    className="grid size-8 shrink-0 place-items-center rounded-lg bg-white text-[15px] font-black text-black"
+                  >
+                    ▶
+                  </div>
+
+                  <span>
+                    <span className="block text-[10px] uppercase tracking-[0.08em] text-white/45">
+                      Coming soon on the
+                    </span>
+
+                    <span className="block text-sm font-bold text-white">
+                      Google Play
+                    </span>
+                  </span>
+                </Link>
+              )}
             </div>
           </div>
         </div>
