@@ -28,12 +28,12 @@ import {
 const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") || "https://akigo.app";
 
-const RIDER_IOS_URL = process.env.NEXT_PUBLIC_RIDER_IOS_URL?.trim() || "";
-const RIDER_ANDROID_URL =
-  process.env.NEXT_PUBLIC_RIDER_ANDROID_URL?.trim() || "";
-const DRIVER_IOS_URL = process.env.NEXT_PUBLIC_DRIVER_IOS_URL?.trim() || "";
-const DRIVER_ANDROID_URL =
-  process.env.NEXT_PUBLIC_DRIVER_ANDROID_URL?.trim() || "";
+const RIDER_IOS_URL =
+  "https://apps.apple.com/us/app/akigo/id6802560351";
+const RIDER_ANDROID_URL = "";
+const DRIVER_IOS_URL =
+  "https://apps.apple.com/us/app/akigo-driver/id6802773874";
+const DRIVER_ANDROID_URL = "";
 
 export const metadata: Metadata = {
   title: "Download AkiGO | Rider and Driver Apps",
@@ -316,13 +316,23 @@ export default function DownloadPage() {
               </p>
 
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-                <a href="#rider-app" className={primaryButton}>
-                  View Rider app
-                  <ArrowRight size={18} />
+                <a
+                  href={RIDER_IOS_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={primaryButton}
+                >
+                  Download Rider app
+                  <Apple size={18} fill="currentColor" />
                 </a>
-                <a href="#driver-app" className={secondaryButton}>
-                  View Driver app
-                  <ArrowRight size={18} />
+                <a
+                  href={DRIVER_IOS_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={secondaryButton}
+                >
+                  Download Driver app
+                  <Apple size={18} fill="currentColor" />
                 </a>
               </div>
 
