@@ -1,4 +1,5 @@
 import {
+  applicationDefault,
   cert,
   getApps,
   initializeApp,
@@ -39,24 +40,23 @@ function getAdminApp(): App {
   const projectId = getRequiredEnvironmentVariable(
     "FIREBASE_ADMIN_PROJECT_ID",
   );
-  const clientEmail = getRequiredEnvironmentVariable(
-    "FIREBASE_ADMIN_CLIENT_EMAIL",
-  );
-  const privateKey = getPrivateKey();
-
   if (projectId !== EXPECTED_PROJECT_ID) {
     throw new Error(
       `Firebase Admin project mismatch. Expected "${EXPECTED_PROJECT_ID}" but received "${projectId}".`,
     );
   }
 
+  const clientEmail = process.env.FIREBASE_ADMIN_CLIENT_EMAIL?.trim() || "";
+  const privateKey = process.env.FIREBASE_ADMIN_PRIVATE_KEY?.trim() || "";
+  const isPlaceholder = (value: string) =>
+    !value || /PLACEHOLDER|FULL_REAL_KEY_CONTENT_HERE|YOUR_|REAL_/i.test(value);
+  const credential = isPlaceholder(clientEmail) || isPlaceholder(privateKey)
+    ? applicationDefault()
+    : cert({ projectId, clientEmail, privateKey: getPrivateKey() });
+
   return initializeApp({
     projectId,
-    credential: cert({
-      projectId,
-      clientEmail,
-      privateKey,
-    }),
+    credential,
   });
 }
 

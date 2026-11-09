@@ -17,6 +17,11 @@ import {
   primaryButton,
   secondaryButton,
 } from "@/components/marketing";
+import {getPublishedHomepage} from "@/lib/website/homepage";
+import HeroSlideshow from "@/components/marketing/HeroSlideshow";
+
+// Refresh published Website Studio content without requiring a new deployment.
+export const revalidate = 60;
 
 const services = [
   {
@@ -79,7 +84,14 @@ const technologyBenefits = [
   "Support tools for riders, drivers, and businesses",
 ];
 
-export default function Home() {
+export default async function Home() {
+  const published = await getPublishedHomepage();
+  const visibleServices = published.services
+    ? published.services.filter(service => service.enabled).map(service => ({
+        ...service,
+        icon: ({ Ride: CarFront, Deliver: PackageCheck, Drive: WalletCards, Business: Store } as Record<string, typeof CarFront>)[service.title] || Store,
+      }))
+    : services;
   return (
     <MarketingLayout>
       <main className="bg-[#050505]">
@@ -91,21 +103,19 @@ export default function Home() {
             <div className="relative z-20">
               <div className="inline-flex items-center gap-2 rounded-full border border-white/[0.12] bg-white/[0.025] px-4 py-2 text-xs font-semibold text-white/65 backdrop-blur-md">
                 <span className="size-2 rounded-full bg-[#96ed08] shadow-[0_0_14px_rgba(150,237,8,.9)]" />
-                One platform. Many ways forward.
+                {published.eyebrow || "One platform. Many ways forward."}
               </div>
 
               <h1 className="font-display mt-7 max-w-[760px] text-5xl font-extrabold leading-[0.95] tracking-[-0.06em] sm:text-6xl lg:text-[5.45rem]">
-                Move smarter.
+                {published.headline1 || "Move smarter."}
                 <br />
-                Deliver faster.
+                {published.headline2 || "Deliver faster."}
                 <br />
-                <span className="text-[#96ed08]">Earn your way.</span>
+                <span className="text-[#96ed08]">{published.headline3 || "Earn your way."}</span>
               </h1>
 
               <p className="mt-7 max-w-[560px] text-lg leading-8 text-white/62">
-                AkiGO is building a connected mobility and local delivery platform
-                for riders, drivers, businesses, and communities through a
-                controlled market-by-market rollout.
+                {published.description || "AkiGO is building a connected mobility and local delivery platform for riders, drivers, businesses, and communities through a controlled market-by-market rollout."}
               </p>
 
               <div className="mt-8 grid max-w-[650px] grid-cols-2 gap-x-7 gap-y-6 sm:grid-cols-4">
@@ -124,12 +134,12 @@ export default function Home() {
 
               <div className="mt-8 flex flex-col gap-4 sm:flex-row">
                 <Link href="/download" className={primaryButton}>
-                  Download AkiGO
+                  {published.primaryButton || "Download AkiGO"}
                   <ArrowRight size={18} />
                 </Link>
 
                 <Link href="#services" className={secondaryButton}>
-                  Explore the platform
+                  {published.secondaryButton || "Explore the platform"}
                   <ArrowRight size={18} />
                 </Link>
               </div>
@@ -152,13 +162,9 @@ export default function Home() {
                     "radial-gradient(ellipse at center, black 62%, transparent 98%)",
                 }}
               >
-                <Image
-                  src="/images/home/hero-akigo.png"
-                  alt="AkiGO rider and delivery applications with an AkiGO vehicle"
-                  width={1450}
-                  height={1180}
-                  priority
-                  className="h-auto w-full object-contain brightness-[0.94] contrast-[1.08] saturate-[0.92] drop-shadow-[0_35px_100px_rgba(0,0,0,.82)]"
+                <HeroSlideshow
+                  images={published.heroImages?.length?published.heroImages:[published.heroImage || "/images/home/hero-akigo.png"]}
+                  intervalSeconds={published.heroIntervalSeconds||5}
                 />
               </div>
             </div>
@@ -186,7 +192,7 @@ export default function Home() {
             </div>
 
             <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-              {services.map(
+              {visibleServices.map(
                 ({ icon: Icon, title, description, href, image }) => (
                   <Link
                     key={title}
@@ -195,6 +201,7 @@ export default function Home() {
                   >
                     <Image
                       src={image}
+                      unoptimized
                       alt={`${title} with AkiGO`}
                       fill
                       sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 25vw"
