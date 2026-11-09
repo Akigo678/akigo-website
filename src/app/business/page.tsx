@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import {
   ArrowRight,
   Building2,
@@ -25,6 +26,7 @@ import {
   secondaryButton,
 } from "@/components/marketing";
 import { BusinessInterestForm } from "./BusinessInterestForm";
+import { getPublishedHomepage } from "@/lib/website/homepage";
 
 const industries = [
   {
@@ -137,7 +139,8 @@ const useCases = [
   },
 ];
 
-export default function BusinessPage() {
+export default async function BusinessPage() {
+  const published = await getPublishedHomepage();
   return (
     <MarketingLayout>
       <main className="bg-[#050505]">
@@ -201,38 +204,28 @@ export default function BusinessPage() {
               </div>
             </div>
 
-            <div className="relative mx-auto w-full max-w-[520px]">
-              <div className="pointer-events-none absolute inset-12 rounded-full bg-[#96ed08]/10 blur-[110px]" />
-
-              <div className="relative overflow-hidden rounded-[2rem] border border-[#96ed08]/20 bg-[#96ed08] p-8 text-black shadow-[0_30px_100px_rgba(0,0,0,.58)]">
-                <Building2 size={52} strokeWidth={1.8} />
-
-                <h2 className="font-display mt-12 text-4xl font-extrabold tracking-[-0.04em]">
-                  One platform.
-                  <br />
-                  More possibilities.
-                </h2>
-
-                <p className="mt-5 max-w-md leading-7 text-black/65">
-                  Organize approved transportation, delivery, visibility, and
-                  account activity around your local operations.
-                </p>
-
-                <div className="mt-8 flex flex-wrap gap-2">
-                  {[
-                    "Restaurants",
-                    "Retail",
-                    "Healthcare",
-                    "Hospitality",
-                    "Local business",
-                  ].map((industry) => (
-                    <span
-                      key={industry}
-                      className="rounded-full border border-black/20 bg-black/[0.07] px-4 py-2 text-sm font-bold"
-                    >
-                      {industry}
-                    </span>
-                  ))}
+            <div className="relative mx-auto w-full max-w-[560px]">
+              <div className="overflow-hidden rounded-[2rem] border border-white/15 bg-[#111] shadow-[0_30px_100px_rgba(0,0,0,.4)]">
+                <div className="relative aspect-[4/3] w-full">
+                  <Image
+                    src={published.businessHeroImage || "/images/business-visuals/business-partnership.png"}
+                    alt="AkiGO courier and local restaurant owner partnering for deliveries"
+                    fill
+                    unoptimized
+                    priority
+                    className="object-cover"
+                    sizes="(max-width: 1024px) 100vw, 560px"
+                  />
+                </div>
+                <div className="border-t border-white/10 bg-[#0e0e0e] p-6 sm:p-7">
+                  <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-[#96ed08]">Built for local business</p>
+                  <h2 className="font-display mt-2 text-2xl font-bold tracking-tight sm:text-3xl">One platform. More possibilities.</h2>
+                  <p className="mt-3 text-sm leading-6 text-white/60">Support your team, serve your customers, and keep eligible deliveries and transportation organized.</p>
+                  <div className="mt-5 flex flex-wrap gap-2">
+                    {["Restaurants", "Retail", "Healthcare", "Hospitality", "Local business"].map((industry) => (
+                      <span key={industry} className="rounded-full border border-[#96ed08]/25 bg-[#96ed08]/10 px-3 py-1.5 text-xs font-semibold text-[#b8fb61]">{industry}</span>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
@@ -361,10 +354,11 @@ export default function BusinessPage() {
         {/* MANAGEMENT */}
         <section className="border-t border-white/[0.06] py-20 sm:py-24">
           <div className="site-container grid items-center gap-14 lg:grid-cols-[1.02fr_0.98fr]">
-            <div className="relative overflow-hidden rounded-[2rem] border border-white/[0.09] bg-[#0b0b0b] p-7">
-              <div className="pointer-events-none absolute right-[-7rem] top-[-7rem] size-72 rounded-full bg-[#96ed08]/[0.08] blur-[110px]" />
-
-              <div className="relative">
+            <div className="overflow-hidden rounded-[2rem] border border-white/[0.09] bg-[#0b0b0b]">
+              <div className="relative aspect-[16/9] w-full">
+                <Image src={published.businessManagementImage || "/images/business-visuals/business-operations.png"} alt="AkiGO business partner reviewing local logistics with a team member" fill unoptimized className="object-cover" sizes="(max-width: 1024px) 100vw, 700px" />
+              </div>
+              <div className="p-7">
                 <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#96ed08]">
                   Business management
                 </p>

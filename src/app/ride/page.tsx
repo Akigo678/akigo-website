@@ -30,74 +30,96 @@ import {
   primaryButton,
   secondaryButton,
 } from "@/components/marketing";
+import RideVehicleShowcase from "@/components/marketing/RideVehicleShowcase";
+import RideOptionsExplorer from "@/components/marketing/RideOptionsExplorer";
+import RiderJourneyShowcase from "@/components/marketing/RiderJourneyShowcase";
+import {getPublishedHomepage} from "@/lib/website/homepage";
 
 const rideOptions = [
   {
     icon: CarFront,
     title: "Basic",
+    image: "akigo-car-basic.png",
     text: "Affordable, reliable rides for everyday travel.",
     tag: "Everyday",
   },
   {
     icon: Zap,
     title: "Priority",
+    image: "akigo-car-basic.png",
     text: "A faster pickup option when time matters.",
     tag: "Faster pickup",
   },
   {
     icon: Clock3,
     title: "Wait & Save",
+    image: "akigo-car-basic.png",
     text: "A lower-cost option when your pickup time is flexible.",
     tag: "Best value",
   },
   {
     icon: Sparkles,
     title: "Comfort",
+    image: "akigo-comfort-cars.png",
     text: "A more refined ride with additional comfort.",
     tag: "Extra comfort",
   },
   {
     icon: Users,
     title: "XL",
+    image: "akigo-comfort-XL.png",
     text: "Extra room for groups, families, and luggage.",
     tag: "More space",
   },
   {
     icon: Users,
     title: "XXL",
+    image: "akigo-xxl.png",
     text: "A larger-capacity option for bigger groups and more luggage.",
     tag: "Largest groups",
   },
   {
     icon: PawPrint,
     title: "Pet",
+    image: "akigo-car-basic.png",
     text: "Request a ride that can accommodate your pet.",
     tag: "Pet friendly",
   },
   {
     icon: Crown,
     title: "Executive",
+    image: "akigo-black-executive.png",
     text: "Premium vehicles for work, events, and special occasions.",
     tag: "Premium",
   },
   {
     icon: ShieldCheck,
     title: "Executive SUV",
+    image: "akigo-comfort-XL.png",
     text: "Premium SUV space for passengers and luggage.",
     tag: "Premium SUV",
   },
   {
     icon: Box,
     title: "Courier",
+    image: "akigo-delivery-box.png",
     text: "Send eligible local packages through the AkiGO network.",
     tag: "Local delivery",
   },
   {
     icon: Baby,
     title: "Car Seat",
+    image: "akigo-comfort-cars.png",
     text: "Request an eligible ride with a car-seat option.",
     tag: "Family option",
   },
+  {icon: Navigation, title:"Airport Express", image:"akigo-comfort-car.png", text:"Convenient transportation for eligible airport trips.", tag:"Airport rides"},
+  {icon: ShieldCheck, title:"Wheelchair Accessible", image:"akigo-wheelchair-accessible.png", text:"Accessible transportation options where available.", tag:"Accessibility"},
+  {icon: Box, title:"Pickup Truck", image:"akigo-pickup-truck.png", text:"Utility vehicle option for eligible delivery needs.", tag:"Utility"},
+  {icon: Crown, title:"AkiGO Black", image:"akigo-black.png", text:"Luxury black sedan with a professional driving experience.", tag:"Luxury sedan"},
+  {icon: Crown, title:"AkiGO Black SUV", image:"akigo-black-suv.png", text:"Premium luxury SUV with spacious seating.", tag:"Luxury SUV"},
+  {icon: Crown, title:"AkiGO Black Executive", image:"akigo-black-executive.png", text:"Exclusive executive luxury transportation.", tag:"Executive"},
+  {icon: Users, title:"AkiGO Black Van", image:"akigo-black-van.png", text:"Premium luxury van for group travel.", tag:"Luxury van"},
 ];
 
 const heroBenefits = [
@@ -161,16 +183,19 @@ const bookingSteps = [
     icon: Smartphone,
     title: "Open the rider app",
     text: "Enter your pickup and destination to begin.",
+    journeyIndex: 0,
   },
   {
     icon: CarFront,
     title: "Choose and confirm",
     text: "Review ride options, pricing, and payment before confirming.",
+    journeyIndex: 1,
   },
   {
     icon: Navigation,
     title: "Track and ride",
     text: "Follow your driver and trip status through completion.",
+    journeyIndex: 3,
   },
 ];
 
@@ -215,16 +240,19 @@ const specialOptions = [
   },
 ];
 
-export default function RidePage() {
+export const revalidate = 60;
+export default async function RidePage() {
+  const published = await getPublishedHomepage();
   return (
     <MarketingLayout>
       <main className="bg-[#050505]">
         {/* HERO */}
         <section className="relative overflow-hidden pt-[88px]">
+          {published.rideBackgroundImage!==""?<div className="pointer-events-none absolute inset-0" aria-hidden="true"><div className="absolute inset-0 bg-cover bg-no-repeat" style={{backgroundImage:`url(${JSON.stringify(published.rideBackgroundImage||"/images/home/ride-orlando-night.png")})`,backgroundPosition:published.rideBackgroundPosition||"center"}}/><div className="absolute inset-0" style={{backgroundColor:`rgba(0,0,0,${(published.rideBackgroundDarkness??85)/100})`}}/><div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-[#050505]"/></div>:null}
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_72%_22%,rgba(150,237,8,0.10),transparent_34%)]" />
           <div className="pointer-events-none absolute left-[-16rem] top-16 h-[34rem] w-[34rem] rounded-full bg-[#96ed08]/[0.04] blur-[145px]" />
 
-          <div className="site-container relative z-10 grid min-h-[720px] items-center gap-14 py-14 lg:grid-cols-[1.02fr_0.98fr]">
+          <div className="site-container relative z-10 grid min-h-[680px] items-center gap-10 py-12 lg:grid-cols-[1.02fr_0.98fr] lg:gap-14">
             <div>
               <div className="inline-flex items-center gap-2 rounded-full border border-white/[0.12] bg-white/[0.025] px-4 py-2 text-xs font-bold uppercase tracking-[0.08em] text-[#96ed08]">
                 <span className="size-2 rounded-full bg-[#96ed08] shadow-[0_0_14px_rgba(150,237,8,.9)]" />
@@ -232,35 +260,35 @@ export default function RidePage() {
               </div>
 
               <h1 className="font-display mt-6 max-w-[700px] text-5xl font-extrabold leading-[0.95] tracking-[-0.06em] sm:text-6xl lg:text-[5.05rem]">
-                A better way to
+                Your city.
                 <br />
-                move through
+                Your ride.
                 <br />
-                <span className="text-[#96ed08]">your city.</span>
+                <span className="text-[#96ed08]">Your way.</span>
               </h1>
 
               <p className="mt-6 max-w-[580px] text-lg leading-8 text-white/60">
-                Request a ride, compare your options, review pricing, and follow
-                every important update from pickup to destination.
+                Enjoy convenient rides, clear pricing, and real-time trip
+                updates—all from the AkiGO Rider app.
               </p>
 
               <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-                <a href="#rider-launch-list" className={primaryButton}>
-                  Join the rider launch list
+                <a href="https://apps.apple.com/us/app/akigo/id6802560351" className={primaryButton} target="_blank" rel="noopener noreferrer">
+                  Download AkiGO
                   <ArrowRight size={18} />
                 </a>
 
-                <Link href="/faq/riders" className={secondaryButton}>
-                  Rider FAQ
+                <a href="#how-it-works" className={secondaryButton}>
+                  How it works
                   <ArrowRight size={18} />
-                </Link>
+                </a>
               </div>
 
-              <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-4">
+              <div className="mt-9 grid grid-cols-2 gap-2.5 sm:grid-cols-4">
                 {heroBenefits.map(({ icon: Icon, title, text }) => (
                   <div
                     key={title}
-                    className="rounded-2xl border border-white/[0.08] bg-white/[0.025] p-4 transition hover:border-[#96ed08]/25 hover:bg-white/[0.035]"
+                    className="rounded-xl border border-white/[0.06] bg-black/25 p-3.5 backdrop-blur-sm transition hover:border-[#96ed08]/25 hover:bg-[#96ed08]/[0.04]"
                   >
                     <Icon className="text-[#96ed08]" size={22} />
                     <h2 className="mt-3 text-sm font-bold text-white">
@@ -272,126 +300,14 @@ export default function RidePage() {
               </div>
             </div>
 
-            {/* RIDER APP PREVIEW */}
-            <div className="relative mx-auto w-full max-w-[540px]">
-              <div className="pointer-events-none absolute inset-12 rounded-full bg-[#96ed08]/10 blur-[120px]" />
-
-              <div className="relative overflow-hidden rounded-[2rem] border border-white/[0.09] bg-[linear-gradient(145deg,#0d0f0c_0%,#070707_68%)] p-6 shadow-[0_30px_100px_rgba(0,0,0,.58)]">
-                <div className="pointer-events-none absolute right-[-6rem] top-[-6rem] size-72 rounded-full bg-[#96ed08]/[0.08] blur-[100px]" />
-
-                <div className="relative">
-                  <div className="flex items-start justify-between gap-4">
-                    <div>
-                      <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-[#96ed08]">
-                        Rider app preview
-                      </p>
-                      <h2 className="font-display mt-2 text-3xl font-bold">
-                        Your trip, clearly organized.
-                      </h2>
-                    </div>
-
-                    <div className="grid size-12 shrink-0 place-items-center rounded-full bg-[#96ed08] text-black">
-                      <CarFront size={23} />
-                    </div>
-                  </div>
-
-                  <div className="mt-6 rounded-[1.5rem] border border-[#96ed08]/18 bg-black/55 p-5">
-                    <div className="flex items-center gap-3 rounded-xl border border-white/[0.07] bg-white/[0.025] p-4">
-                      <div className="size-3 shrink-0 rounded-full border-[3px] border-[#96ed08] bg-black" />
-                      <div>
-                        <p className="text-xs uppercase tracking-[0.1em] text-white/35">
-                          Pickup
-                        </p>
-                        <p className="mt-1 text-sm font-semibold text-white/72">
-                          Enter your pickup location
-                        </p>
-                      </div>
-                    </div>
-
-                    <div className="mx-5 h-6 border-l border-dashed border-[#96ed08]/35" />
-
-                    <div className="flex items-center gap-3 rounded-xl border border-white/[0.07] bg-white/[0.025] p-4">
-                      <MapPinned
-                        className="shrink-0 text-[#96ed08]"
-                        size={18}
-                      />
-                      <div>
-                        <p className="text-xs uppercase tracking-[0.1em] text-white/35">
-                          Destination
-                        </p>
-                        <p className="mt-1 text-sm font-semibold text-white/72">
-                          Enter where you are going
-                        </p>
-                      </div>
-                    </div>
-
-                    <div className="mt-4 grid grid-cols-3 gap-3">
-                      {[
-                        { label: "Ride type", value: "Choose option" },
-                        { label: "Pricing", value: "Review before booking" },
-                        { label: "Payment", value: "Select method" },
-                      ].map((item) => (
-                        <div
-                          key={item.label}
-                          className="rounded-xl border border-white/[0.07] bg-white/[0.025] p-3"
-                        >
-                          <p className="text-[10px] uppercase tracking-[0.1em] text-white/32">
-                            {item.label}
-                          </p>
-                          <p className="mt-2 text-xs font-semibold leading-5 text-white/64">
-                            {item.value}
-                          </p>
-                        </div>
-                      ))}
-                    </div>
-
-                    <button
-                      type="button"
-                      disabled
-                      className="mt-4 inline-flex min-h-12 w-full cursor-default items-center justify-center gap-2 rounded-full bg-[#96ed08] px-5 font-extrabold text-black opacity-90"
-                    >
-                      Review ride
-                      <ArrowRight size={17} />
-                    </button>
-                  </div>
-
-                  <div className="mt-4 grid gap-3 sm:grid-cols-3">
-                    {[
-                      {
-                        icon: MapPinned,
-                        label: "Tracking",
-                        value: "Live trip updates",
-                      },
-                      {
-                        icon: MessageCircle,
-                        label: "Communication",
-                        value: "Contact your driver",
-                      },
-                      {
-                        icon: ShieldCheck,
-                        label: "Safety",
-                        value: "Trip safety tools",
-                      },
-                    ].map(({ icon: Icon, label, value }) => (
-                      <div
-                        key={label}
-                        className="rounded-2xl border border-white/[0.08] bg-black/45 p-4"
-                      >
-                        <Icon className="text-[#96ed08]" size={19} />
-                        <p className="mt-3 text-xs uppercase tracking-[0.1em] text-white/35">
-                          {label}
-                        </p>
-                        <p className="mt-1 text-sm font-semibold text-white/68">
-                          {value}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-
-                  <p className="mt-4 text-center text-xs text-white/28">
-                    Illustrative rider-app preview. Live ride details appear
-                    only when a trip is requested and available.
-                  </p>
+            {/* RIDER IMAGE GALLERY */}
+            <div className="relative mx-auto w-full max-w-[620px]">
+              <div className="pointer-events-none absolute inset-8 rounded-full bg-[#96ed08]/10 blur-[105px]" />
+              <div className="relative rounded-[2rem] border border-[#96ed08]/20 bg-gradient-to-br from-[#0c190f] via-[#080b08] to-black p-3 shadow-[0_30px_100px_rgba(0,0,0,.55)] sm:p-5">
+                <RideVehicleShowcase images={published.rideImages} intervalSeconds={published.rideIntervalSeconds || 5} />
+                <div className="mt-5 flex flex-wrap items-center justify-between gap-3 px-2 pb-2">
+                  <div><p className="text-xs font-bold uppercase tracking-[.2em] text-[#96ed08]">The AkiGO experience</p><p className="mt-1 text-sm text-white/55">Your journey, made simpler.</p></div>
+                  <span className="inline-flex items-center gap-2 rounded-full border border-[#96ed08]/25 bg-[#96ed08]/10 px-4 py-2 text-xs font-semibold text-[#96ed08]"><ShieldCheck size={15}/> Ride with confidence</span>
                 </div>
               </div>
             </div>
@@ -399,7 +315,7 @@ export default function RidePage() {
         </section>
 
         {/* RIDE OPTIONS */}
-        <section className="border-t border-white/[0.06] py-20 sm:py-24">
+        <section className="border-t border-white/[0.06] bg-[radial-gradient(ellipse_at_50%_0%,rgba(150,237,8,.055),transparent_65%),linear-gradient(#080b07,#050505)] py-16 sm:py-20">
           <div className="site-container">
             <div className="mx-auto max-w-3xl text-center">
               <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#96ed08]">
@@ -416,41 +332,12 @@ export default function RidePage() {
               </p>
             </div>
 
-            <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-              {rideOptions.map(({ icon: Icon, title, text, tag }) => (
-                <article
-                  key={title}
-                  className="group relative overflow-hidden rounded-[1.65rem] border border-white/[0.09] bg-[#0b0b0b] p-6 transition duration-300 hover:-translate-y-1 hover:border-[#96ed08]/35"
-                >
-                  <div className="pointer-events-none absolute right-[-4rem] top-[-4rem] size-40 rounded-full bg-[#96ed08]/[0.045] blur-[70px]" />
-
-                  <div className="relative">
-                    <div className="flex items-start justify-between gap-4">
-                      <div className="grid size-12 place-items-center rounded-2xl border border-[#96ed08]/15 bg-[#96ed08]/10 text-[#96ed08]">
-                        <Icon size={23} />
-                      </div>
-
-                      <span className="rounded-full border border-white/[0.08] bg-white/[0.025] px-3 py-1.5 text-[10px] font-extrabold uppercase tracking-[0.1em] text-white/38">
-                        {tag}
-                      </span>
-                    </div>
-
-                    <h3 className="font-display mt-8 text-2xl font-bold">
-                      {title}
-                    </h3>
-
-                    <p className="mt-3 leading-7 text-white/50">{text}</p>
-
-                    <div className="mt-7 h-px w-full bg-gradient-to-r from-[#96ed08]/25 to-transparent" />
-                  </div>
-                </article>
-              ))}
-            </div>
+            <RideOptionsExplorer options={rideOptions.map(({title,image,text,tag})=>({title,image,text,tag}))}/>
           </div>
         </section>
 
         {/* RIDER JOURNEY */}
-        <section className="border-t border-white/[0.06] py-20 sm:py-24">
+        <section className="border-t border-white/[0.06] py-16 sm:py-20">
           <div className="site-container">
             <div className="grid gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:items-end">
               <div>
@@ -469,41 +356,14 @@ export default function RidePage() {
               </p>
             </div>
 
-            <div className="relative mt-12">
-              <div className="pointer-events-none absolute left-6 top-6 hidden h-px w-[calc(100%-3rem)] bg-gradient-to-r from-[#96ed08] via-[#96ed08]/45 to-white/10 xl:block" />
-
-              <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-5">
-                {riderJourney.map(({ number, icon: Icon, title, text }) => (
-                  <article
-                    key={number}
-                    className="relative rounded-[1.65rem] border border-white/[0.09] bg-[#0b0b0b] p-6"
-                  >
-                    <div className="relative z-10 flex items-center justify-between">
-                      <div className="grid size-12 place-items-center rounded-2xl bg-[#96ed08] text-black">
-                        <Icon size={22} />
-                      </div>
-
-                      <span className="font-display text-3xl font-extrabold text-white/[0.06]">
-                        {number}
-                      </span>
-                    </div>
-
-                    <h3 className="font-display mt-7 text-xl font-bold">
-                      {title}
-                    </h3>
-
-                    <p className="mt-3 text-sm leading-6 text-white/50">
-                      {text}
-                    </p>
-                  </article>
-                ))}
-              </div>
+            <div className="mt-9">
+              <RiderJourneyShowcase steps={published.riderJourneySteps} intervalSeconds={published.riderJourneyIntervalSeconds||5}/>
             </div>
           </div>
         </section>
 
         {/* HOW IT WORKS */}
-        <section className="border-t border-white/[0.06] py-20 sm:py-24">
+        <section id="how-it-works" className="scroll-mt-28 border-t border-white/[0.06] bg-[linear-gradient(180deg,#050505,#090e08_55%,#050505)] py-16 sm:py-20">
           <div className="site-container">
             <div className="mx-auto max-w-3xl text-center">
               <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#96ed08]">
@@ -520,170 +380,34 @@ export default function RidePage() {
               </p>
             </div>
 
-            <div className="mt-12 overflow-hidden rounded-[2rem] border border-white/[0.09] bg-[linear-gradient(145deg,#0c0d0b_0%,#080808_72%)] shadow-[0_28px_90px_rgba(0,0,0,.38)]">
-              <div className="relative px-6 py-8 sm:px-8 sm:py-10 lg:px-10 lg:py-12">
-                <div className="pointer-events-none absolute right-[-7rem] top-[-7rem] size-72 rounded-full bg-[#96ed08]/[0.06] blur-[110px]" />
-
-                <div className="relative grid gap-8 lg:grid-cols-3 lg:gap-10">
-                  {bookingSteps.map(({ icon: Icon, title, text }, index) => (
-                    <article
-                      key={title}
-                      className="group relative rounded-[1.5rem] border border-white/[0.07] bg-black/20 p-5 transition duration-300 hover:border-[#96ed08]/25 hover:bg-white/[0.02] lg:border-0 lg:bg-transparent lg:p-0 lg:hover:bg-transparent"
-                    >
-                      {index < bookingSteps.length - 1 ? (
-                        <div
-                          aria-hidden="true"
-                          className="pointer-events-none absolute left-16 right-[-2.5rem] top-8 z-0 hidden h-[2px] bg-[linear-gradient(90deg,rgba(150,237,8,.82)_0%,rgba(150,237,8,.48)_100%)] shadow-[0_0_16px_rgba(150,237,8,.16)] lg:block"
-                        />
-                      ) : null}
-
-                      <div className="relative z-10 flex items-center gap-4 lg:block">
-                        <div className="grid size-16 shrink-0 place-items-center rounded-full border border-[#96ed08]/55 bg-[#0b1008] text-[#96ed08] shadow-[0_0_0_7px_rgba(150,237,8,0.025),0_0_28px_rgba(150,237,8,0.12)] transition duration-300 group-hover:border-[#96ed08]/85 group-hover:bg-[#10170b] group-hover:shadow-[0_0_0_8px_rgba(150,237,8,0.035),0_0_34px_rgba(150,237,8,0.17)]">
-                          <Icon size={27} strokeWidth={2.1} />
-                        </div>
-
-                        <div className="min-w-0 lg:mt-6">
-                          <span className="block text-xs font-extrabold uppercase tracking-[0.14em] text-[#96ed08]">
-                            Step {index + 1}
-                          </span>
-
-                          <h3 className="font-display mt-2 text-2xl font-bold tracking-[-0.025em] text-white">
-                            {title}
-                          </h3>
-                        </div>
-                      </div>
-
-                      <p className="mt-4 max-w-sm leading-7 text-white/50 lg:mt-3">
-                        {text}
-                      </p>
-                    </article>
-                  ))}
-                </div>
-
-                <div className="mt-9 flex justify-center">
-                  <Link href="/download#rider" className={primaryButton}>
-                    Get the Rider App
-                    <ArrowRight size={18} />
-                  </Link>
-                </div>
-              </div>
+            <div className="mt-10 grid gap-5 lg:grid-cols-3">
+              {bookingSteps.map(({icon: Icon,title,text,journeyIndex},index)=>{
+                const screenshot=published.riderJourneySteps?.[journeyIndex]?.image;
+                return <article key={title} className="group relative overflow-hidden rounded-[2rem] border border-white/[0.09] bg-[linear-gradient(155deg,#111810,#070907_75%)] p-5 shadow-[0_25px_70px_rgba(0,0,0,.35)] transition-all duration-300 hover:-translate-y-1.5 hover:border-[#96ed08]/45 hover:shadow-[0_28px_85px_rgba(94,155,0,.10)] sm:p-6">
+                  <div className="mb-5 flex items-center justify-between"><span className="flex items-center gap-2 text-[11px] font-black uppercase tracking-[.18em] text-[#96ed08]"><span className="grid size-9 place-items-center rounded-xl bg-[#96ed08]/10"><Icon size={20}/></span> Step 0{index+1}</span><span className="font-display text-3xl font-black text-white/[.08]">0{index+1}</span></div>
+                  <div className="relative flex h-[350px] items-center justify-center rounded-[1.5rem] bg-[radial-gradient(circle_at_50%_60%,rgba(150,237,8,.085),transparent_62%)] sm:h-[390px]">
+                    <div className="pointer-events-none absolute bottom-0 h-16 w-3/4 rounded-full bg-[#96ed08]/15 blur-[35px]"/>
+                    <img src={screenshot||["/images/ride-how-it-works/step-01-plan.png","/images/ride-how-it-works/step-02-choose.png","/images/ride-how-it-works/step-03-track.png"][index]} alt={screenshot?`${title} in the AkiGO Rider app`:`Photorealistic illustrative AkiGO phone mockup: ${title}`} className="relative z-10 h-full w-full object-contain transition-transform duration-500 group-hover:scale-[1.045]"/>
+                  </div>
+                  <div className="mt-6"><h3 className="font-display text-2xl font-extrabold tracking-[-.035em] text-white">{title}</h3><p className="mt-3 min-h-[56px] text-sm leading-7 text-white/55">{text}</p></div>
+                  <div className="mt-5 h-px w-full bg-gradient-to-r from-[#96ed08]/55 to-transparent"/>
+                </article>;
+              })}
             </div>
+            <div className="mt-9 flex justify-center"><a href="https://apps.apple.com/us/app/akigo/id6802560351" target="_blank" rel="noopener noreferrer" className={primaryButton}>Get the Rider App <ArrowRight size={18}/></a></div>
           </div>
         </section>
 
-        {/* TRACKING */}
-        <section className="border-t border-white/[0.06] py-20 sm:py-24">
-          <div className="site-container grid items-center gap-14 lg:grid-cols-[1.08fr_0.92fr]">
-            <div className="relative overflow-hidden rounded-[2rem] border border-[#96ed08]/18 bg-[#0b0b0b] p-5 shadow-[0_30px_100px_rgba(0,0,0,.55)]">
-              <div className="relative min-h-[520px] overflow-hidden rounded-[1.5rem] border border-white/[0.08] bg-[#070907]">
-                <div className="absolute inset-0 opacity-40 [background-image:linear-gradient(rgba(255,255,255,.035)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.035)_1px,transparent_1px)] [background-size:42px_42px]" />
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_61%_45%,rgba(150,237,8,0.12),transparent_34%)]" />
-
-                <svg
-                  className="pointer-events-none absolute inset-0 h-full w-full"
-                  viewBox="0 0 700 520"
-                  preserveAspectRatio="none"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="M118 105 C180 140, 215 118, 250 172 S268 255, 330 278 S420 300, 455 350 S530 407, 610 420"
-                    fill="none"
-                    stroke="rgba(150,237,8,0.16)"
-                    strokeWidth="17"
-                    strokeLinecap="round"
-                  />
-                  <path
-                    d="M118 105 C180 140, 215 118, 250 172 S268 255, 330 278 S420 300, 455 350 S530 407, 610 420"
-                    fill="none"
-                    stroke="#96ed08"
-                    strokeWidth="4"
-                    strokeLinecap="round"
-                    strokeDasharray="13 10"
-                  />
-                </svg>
-
-                <div className="absolute left-[14%] top-[17%] size-5 rounded-full border-[5px] border-[#96ed08] bg-black shadow-[0_0_22px_rgba(150,237,8,.6)]" />
-
-                <MapPinned
-                  size={35}
-                  fill="currentColor"
-                  className="absolute bottom-[14%] right-[12%] text-[#96ed08] drop-shadow-[0_0_18px_rgba(150,237,8,.5)]"
-                />
-
-                <div className="absolute left-[40%] top-[45%] grid size-16 place-items-center rounded-full border border-[#96ed08]/50 bg-black shadow-[0_0_30px_rgba(150,237,8,.24)]">
-                  <CarFront size={27} className="text-[#96ed08]" />
-                </div>
-
-                <div className="absolute left-5 top-5 w-[255px] rounded-2xl border border-[#96ed08]/25 bg-black/88 p-4 shadow-[0_18px_50px_rgba(0,0,0,.42)] backdrop-blur-xl">
-                  <div className="flex items-start gap-3">
-                    <div className="grid size-10 shrink-0 place-items-center rounded-xl bg-[#96ed08]/10 text-[#96ed08]">
-                      <CarFront size={20} />
-                    </div>
-
-                    <div>
-                      <p className="text-xs font-bold uppercase tracking-[0.12em] text-[#96ed08]">
-                        Driver assigned
-                      </p>
-                      <p className="mt-1 font-semibold text-white">
-                        Pickup progress available
-                      </p>
-                      <p className="mt-1 text-xs text-white/42">
-                        Driver and vehicle details appear in the app
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="absolute left-[47%] top-[48%] w-[225px] rounded-2xl border border-white/[0.1] bg-black/92 p-4 shadow-[0_18px_50px_rgba(0,0,0,.48)] backdrop-blur-xl">
-                  <div className="flex items-center gap-2">
-                    <span className="size-2.5 rounded-full bg-[#96ed08] shadow-[0_0_12px_rgba(150,237,8,.9)]" />
-                    <p className="font-bold text-white">Trip tracking active</p>
-                  </div>
-
-                  <div className="mt-4 grid grid-cols-2 gap-3">
-                    <div className="rounded-xl border border-white/[0.07] bg-white/[0.025] p-3">
-                      <p className="text-[11px] uppercase tracking-[0.1em] text-white/35">
-                        Pickup
-                      </p>
-                      <p className="mt-1 text-sm font-bold text-white">
-                        In progress
-                      </p>
-                    </div>
-
-                    <div className="rounded-xl border border-white/[0.07] bg-white/[0.025] p-3">
-                      <p className="text-[11px] uppercase tracking-[0.1em] text-white/35">
-                        Updates
-                      </p>
-                      <p className="mt-1 text-sm font-bold text-white">Live</p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="absolute bottom-5 right-5 w-[255px] rounded-2xl border border-[#96ed08]/25 bg-black/90 p-4 backdrop-blur-xl">
-                  <div className="flex items-center justify-between gap-4">
-                    <div>
-                      <p className="text-xs font-bold uppercase tracking-[0.12em] text-white/38">
-                        Trip visibility
-                      </p>
-                      <p className="mt-1 font-bold text-white">
-                        Route and status
-                      </p>
-                      <p className="mt-1 text-xs text-white/42">
-                        Follow important updates in one place
-                      </p>
-                    </div>
-
-                    <div className="grid size-10 shrink-0 place-items-center rounded-full bg-[#96ed08] text-black">
-                      <Route size={20} />
-                    </div>
-                  </div>
-                </div>
-
-                <div className="absolute bottom-5 left-5 flex items-center gap-2 rounded-full border border-white/[0.09] bg-black/78 px-4 py-2 text-xs font-semibold text-white/48 backdrop-blur-md">
-                  <MessageCircle size={14} className="text-[#96ed08]" />
-                  Rider-driver communication
-                </div>
+        {/* LIVE TRIP VISIBILITY */}
+        <section className="border-t border-white/[0.06] py-16 sm:py-20">
+          <div className="site-container grid items-center gap-10 lg:grid-cols-[1.08fr_0.92fr]">
+            <div className="relative flex min-h-[560px] items-center justify-center px-2 py-6 sm:min-h-[650px]">
+              <div className="pointer-events-none absolute inset-12 rounded-full bg-[#96ed08]/[.08] blur-[95px]" aria-hidden="true" />
+              <div className="pointer-events-none absolute left-4 top-4 z-10 flex items-center gap-2 rounded-full border border-[#96ed08]/25 bg-black/80 px-4 py-2 text-xs font-bold tracking-[.08em] text-[#96ed08]">
+                <span className="size-2 rounded-full bg-[#96ed08] shadow-[0_0_12px_#96ed08]" /> DRIVER ON THE WAY
               </div>
+              <img src={published.liveTripPhoneImage || "/images/ride-live-trip/driver-on-the-way.png"} alt="AkiGO Rider phone showing driver location, arrival time, and trip details" className="relative z-[1] h-[525px] w-full max-w-[400px] object-contain drop-shadow-[0_30px_38px_rgba(0,0,0,.75)] sm:h-[620px]" />
+              <div className="pointer-events-none absolute bottom-3 left-4 z-10 rounded-full border border-white/10 bg-black/70 px-4 py-2 text-xs text-white/60">Real-time trip updates</div>
             </div>
 
             <div>
@@ -704,7 +428,7 @@ export default function RidePage() {
                 {trackingItems.map((item) => (
                   <div
                     key={item}
-                    className="flex items-start gap-3 rounded-2xl border border-white/[0.08] bg-white/[0.025] p-4 transition hover:border-[#96ed08]/22"
+                    className="group flex items-start gap-3 rounded-2xl border border-[#96ed08]/[.12] bg-[linear-gradient(140deg,rgba(150,237,8,.035),rgba(255,255,255,.015))] p-4 transition hover:-translate-y-0.5 hover:border-[#96ed08]/40 hover:bg-[#96ed08]/[.055]"
                   >
                     <div className="mt-0.5 grid size-7 shrink-0 place-items-center rounded-full bg-[#96ed08] text-black">
                       <Check size={15} strokeWidth={3} />
@@ -721,9 +445,9 @@ export default function RidePage() {
         </section>
 
         {/* PRICING + PAYMENTS */}
-        <section className="border-t border-white/[0.06] py-20 sm:py-24">
+        <section className="border-t border-white/[0.06] bg-[radial-gradient(ellipse_at_50%_0%,rgba(150,237,8,.045),transparent_68%)] py-16 sm:py-20">
           <div className="site-container grid gap-5 lg:grid-cols-2">
-            <article className="relative overflow-hidden rounded-[1.8rem] border border-white/[0.09] bg-[linear-gradient(145deg,#0c0d0b_0%,#070707_70%)] p-8">
+            <article className="relative overflow-hidden rounded-[1.8rem] border border-[#96ed08]/[.14] bg-[linear-gradient(145deg,#10170d_0%,#070907_70%)] p-6 sm:p-8">
               <div className="pointer-events-none absolute right-[-5rem] top-[-5rem] size-56 rounded-full bg-[#96ed08]/[0.08] blur-[95px]" />
 
               <div className="relative">
@@ -743,6 +467,11 @@ export default function RidePage() {
                   The rider experience is designed to present the available ride
                   option and trip price before you complete the booking.
                 </p>
+
+                <div className="relative mt-5 flex h-[420px] items-center justify-center sm:h-[490px]">
+                  <div className="pointer-events-none absolute size-48 rounded-full bg-[#96ed08]/[.07] blur-[75px]" aria-hidden="true" />
+                  <img src={published.ridePricingPhoneImage || "/images/ride-pricing-payment/pricing-phone.png"} alt="Illustrative AkiGO Rider app displaying Basic, Comfort, and XL ride prices" className="relative h-full w-full max-w-[325px] object-contain drop-shadow-[0_20px_30px_rgba(0,0,0,.7)]" />
+                </div>
 
                 <div className="mt-7 grid gap-3 sm:grid-cols-2">
                   {[
@@ -765,7 +494,7 @@ export default function RidePage() {
               </div>
             </article>
 
-            <article className="relative overflow-hidden rounded-[1.8rem] border border-white/[0.09] bg-[linear-gradient(145deg,#0c0d0b_0%,#070707_70%)] p-8">
+            <article className="relative overflow-hidden rounded-[1.8rem] border border-[#96ed08]/[.14] bg-[linear-gradient(145deg,#10170d_0%,#070907_70%)] p-6 sm:p-8">
               <div className="pointer-events-none absolute right-[-5rem] top-[-5rem] size-56 rounded-full bg-[#96ed08]/[0.08] blur-[95px]" />
 
               <div className="relative">
@@ -783,14 +512,19 @@ export default function RidePage() {
 
                 <p className="mt-4 max-w-xl leading-7 text-white/52">
                   Available payment choices can include supported cards, wallet
-                  balance, and eligible device-based payment options.
+                  balance, and Apple Pay on eligible devices.
                 </p>
+
+                <div className="relative mt-5 flex h-[420px] items-center justify-center sm:h-[490px]">
+                  <div className="pointer-events-none absolute size-48 rounded-full bg-[#96ed08]/[.07] blur-[75px]" aria-hidden="true" />
+                  <img src={published.ridePaymentPhoneImage || "/images/ride-pricing-payment/payment-phone.png"} alt="Illustrative AkiGO Rider app with Card, Wallet, and Apple Pay options" className="relative h-full w-full max-w-[325px] object-contain drop-shadow-[0_20px_30px_rgba(0,0,0,.7)]" />
+                </div>
 
                 <div className="mt-7 grid gap-3 sm:grid-cols-3">
                   {[
                     { icon: CreditCard, label: "Card" },
                     { icon: WalletCards, label: "Wallet" },
-                    { icon: Smartphone, label: "Device payment" },
+                    { icon: Smartphone, label: "Apple Pay" },
                   ].map(({ icon: Icon, label }) => (
                     <div
                       key={label}
@@ -809,9 +543,11 @@ export default function RidePage() {
         </section>
 
         {/* SAFETY */}
-        <section className="border-t border-white/[0.06] py-20 sm:py-24">
-          <div className="site-container grid items-center gap-14 lg:grid-cols-[0.92fr_1.08fr]">
-            <div>
+        <section className="relative border-t border-white/[0.06] py-20 sm:py-24">
+          <div className="pointer-events-none absolute left-0 top-1/4 h-96 w-1/3 rounded-full bg-[#96ed08]/[.035] blur-[110px]" aria-hidden="true" />
+          <div className="site-container relative grid items-center gap-12 lg:grid-cols-[0.92fr_1.08fr]">
+            <div className="max-w-xl">
+              <div className="mb-7 flex size-16 items-center justify-center rounded-[1.4rem] border border-[#96ed08]/25 bg-[#96ed08]/10 text-[#96ed08] shadow-[0_0_40px_rgba(150,237,8,.08)]"><ShieldCheck size={32} strokeWidth={1.7}/></div>
               <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#96ed08]">
                 Rider safety
               </p>
@@ -825,9 +561,11 @@ export default function RidePage() {
                 share trip details, report concerns, and reach support.
               </p>
 
+              <div className="mt-6 flex flex-wrap gap-2"><span className="rounded-full border border-[#96ed08]/20 bg-[#96ed08]/[.06] px-4 py-2 text-xs font-bold text-[#c2f877]">Before pickup</span><span className="rounded-full border border-[#96ed08]/20 bg-[#96ed08]/[.06] px-4 py-2 text-xs font-bold text-[#c2f877]">During your ride</span><span className="rounded-full border border-[#96ed08]/20 bg-[#96ed08]/[.06] px-4 py-2 text-xs font-bold text-[#c2f877]">When you need help</span></div>
+
               <Link
                 href="/safety"
-                className="mt-7 inline-flex items-center gap-2 font-bold text-[#96ed08]"
+                className="mt-8 inline-flex items-center gap-3 rounded-full border border-[#96ed08]/35 px-5 py-3 font-bold text-[#96ed08] transition hover:bg-[#96ed08] hover:text-black"
               >
                 Explore rider safety
                 <ArrowRight size={17} />
@@ -838,7 +576,7 @@ export default function RidePage() {
               {safetyItems.map((item, index) => (
                 <div
                   key={item}
-                  className="flex items-center gap-4 rounded-2xl border border-white/[0.08] bg-[#0b0b0b] p-5"
+                  className="group flex min-h-[125px] flex-col justify-between gap-4 rounded-[1.4rem] border border-[#96ed08]/[.12] bg-[linear-gradient(145deg,#10160e,#090b09_80%)] p-5 transition-all duration-300 hover:-translate-y-1 hover:border-[#96ed08]/45 hover:shadow-[0_16px_35px_rgba(0,0,0,.35)]"
                 >
                   <div className="grid size-10 shrink-0 place-items-center rounded-xl bg-[#96ed08]/10 text-[#96ed08]">
                     {index === 0 && <Route size={20} />}
@@ -849,7 +587,7 @@ export default function RidePage() {
                     {index === 5 && <HeartHandshake size={20} />}
                   </div>
 
-                  <p className="font-semibold text-white/72">{item}</p>
+                  <p className="font-semibold leading-6 text-white/85">{item}</p>
                 </div>
               ))}
             </div>
@@ -867,23 +605,29 @@ export default function RidePage() {
               <h2 className="font-display mt-4 text-4xl font-extrabold tracking-[-0.05em] sm:text-5xl">
                 Options for everyday plans and special needs.
               </h2>
+              <p className="mx-auto mt-5 max-w-xl text-base leading-7 text-white/50">Whether you're planning ahead, traveling together, or bringing family along, explore the options that fit your trip.</p>
             </div>
 
             <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-              {specialOptions.map(({ icon: Icon, title, text }) => (
+              {specialOptions.map(({ icon: Icon, title, text }, index) => (
                 <article
                   key={title}
-                  className="rounded-[1.65rem] border border-white/[0.09] bg-[#0b0b0b] p-7 transition duration-300 hover:-translate-y-1 hover:border-[#96ed08]/30"
+                  className="group relative flex min-h-[290px] flex-col overflow-hidden rounded-[1.65rem] border border-[#96ed08]/[.12] bg-[linear-gradient(155deg,#11190d,#090a09_70%)] p-7 transition duration-300 hover:-translate-y-1.5 hover:border-[#96ed08]/45 hover:shadow-[0_22px_48px_rgba(0,0,0,.5)]"
                 >
-                  <div className="grid size-12 place-items-center rounded-2xl bg-[#96ed08]/10 text-[#96ed08]">
-                    <Icon size={24} />
+                  <div className="pointer-events-none absolute -right-12 -top-12 size-40 rounded-full bg-[#96ed08]/[.055] blur-[50px]" aria-hidden="true" />
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="grid size-14 place-items-center rounded-2xl border border-[#96ed08]/20 bg-[#96ed08]/10 text-[#96ed08] transition group-hover:bg-[#96ed08] group-hover:text-black">
+                      <Icon size={28} />
+                    </div>
+                    <span className="font-display text-4xl font-black text-white/[.07]">0{index+1}</span>
                   </div>
 
-                  <h3 className="font-display mt-7 text-2xl font-bold">
+                  <h3 className="font-display mt-9 text-2xl font-bold">
                     {title}
                   </h3>
 
                   <p className="mt-3 leading-7 text-white/50">{text}</p>
+                  <div className="mt-auto pt-7"><div className="h-px w-full bg-gradient-to-r from-[#96ed08]/45 to-transparent" /></div>
                 </article>
               ))}
             </div>
@@ -893,7 +637,7 @@ export default function RidePage() {
         {/* RIDER FAQ CTA */}
         <section className="border-t border-white/[0.06] py-20 sm:py-24">
           <div className="site-container">
-            <div className="relative overflow-hidden rounded-[2rem] border border-[#96ed08]/20 bg-[#0b0b0b] px-8 py-10 text-center shadow-[0_0_70px_rgba(150,237,8,0.04)] sm:px-10 sm:py-12">
+            <div className="relative overflow-hidden rounded-[2rem] border border-[#96ed08]/25 bg-[#0b0b0b] px-7 py-12 text-center shadow-[0_20px_80px_rgba(0,0,0,.35)] sm:px-10 sm:py-16">
               <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(135deg,#050505_0%,#091103_50%,#050505_100%)]" />
               <div className="pointer-events-none absolute right-[-8rem] top-1/2 size-72 -translate-y-1/2 rounded-full bg-[#96ed08]/10 blur-[120px]" />
 
@@ -912,9 +656,13 @@ export default function RidePage() {
                   experience.
                 </p>
 
+                <div className="mx-auto mt-8 flex max-w-2xl flex-wrap justify-center gap-2.5">
+                  {["Booking a ride","Fares & payments","Safety & support","Accessibility"].map(topic=><Link key={topic} href="/faq/riders" className="rounded-full border border-white/15 bg-white/[.035] px-4 py-2.5 text-sm font-semibold text-white/75 transition hover:border-[#96ed08]/55 hover:text-[#96ed08]">{topic}</Link>)}
+                </div>
+
                 <Link
                   href="/faq/riders"
-                  className={`${primaryButton} mt-8 inline-flex`}
+                  className={`${primaryButton} mt-9 inline-flex`}
                 >
                   View Rider FAQ
                   <ArrowRight size={18} />
@@ -930,8 +678,9 @@ export default function RidePage() {
           className="scroll-mt-28 border-t border-white/[0.06] py-16 sm:py-20"
         >
           <div className="site-container">
-            <div className="relative overflow-hidden rounded-[1.5rem] border border-[#96ed08]/25 bg-[#050505] px-7 py-8 shadow-[0_0_70px_rgba(150,237,8,0.04)] sm:px-10">
+            <div className="relative overflow-hidden rounded-[2rem] border border-[#96ed08]/25 bg-[#050505] px-7 py-10 shadow-[0_22px_80px_rgba(0,0,0,.35)] sm:px-11 sm:py-12">
               <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(135deg,#050505_0%,#091103_50%,#050505_100%)]" />
+              <div className="pointer-events-none absolute -left-24 top-1/2 size-64 -translate-y-1/2 rounded-full bg-[#96ed08]/10 blur-[95px]" aria-hidden="true" />
 
               <div className="relative z-10 grid items-center gap-8 lg:grid-cols-[1fr_1.15fr]">
                 <div>
@@ -939,14 +688,15 @@ export default function RidePage() {
                     Be the first to ride
                   </p>
 
-                  <h2 className="font-display mt-2 text-2xl font-bold">
+                  <h2 className="font-display mt-3 max-w-md text-3xl font-extrabold tracking-[-.04em] sm:text-4xl">
                     Be among the first to ride with AkiGO.
                   </h2>
 
-                  <p className="mt-2 text-sm leading-6 text-white/48">
+                  <p className="mt-4 max-w-md text-base leading-7 text-white/55">
                     Join the rider list for early access, launch-market updates,
                     and availability information.
                   </p>
+                  <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-[#96ed08]/20 bg-[#96ed08]/[.065] px-4 py-2 text-xs font-bold text-[#b7f76b]"><span className="size-2 rounded-full bg-[#96ed08]"/> Stay updated as AkiGO expands</div>
                 </div>
 
                 <LaunchListForm source="ride_page" />

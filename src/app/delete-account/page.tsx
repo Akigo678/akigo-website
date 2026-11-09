@@ -324,7 +324,7 @@ export default function DeleteAccountPage() {
             overflow: hidden;
             border-bottom: 1px solid rgba(255,255,255,.05);
             background:
-              linear-gradient(90deg, #020202 0%, #000000 52%, #000000 100%);
+              linear-gradient(90deg, #060606 0%, #000000 52%, #000000 100%);
           }
 
           .heroGlow {

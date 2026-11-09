@@ -276,15 +276,15 @@ export default function FounderLetterPage() {
 
                   <div className="mt-16 flex flex-col gap-6 border-t border-white/[0.09] pt-10 sm:flex-row sm:items-end sm:justify-between">
                     <div>
-                      <p className="font-display text-3xl font-bold text-white">
-                        Sunday Akinnusi
+                      <p className="font-display text-3xl font-bold tracking-[-0.03em] text-white">
+                        Sunday A.
                       </p>
 
-                      <p className="mt-2 text-sm font-semibold text-[#96ed08]">
-                        Founder and CEO
+                      <p className="mt-2 text-sm font-semibold uppercase tracking-[0.12em] text-[#96ED08]">
+                        Founder &amp; CEO
                       </p>
 
-                      <p className="mt-1 text-sm text-white/38">
+                      <p className="mt-1 text-sm text-white/45">
                         AkiGO Technologies
                       </p>
                     </div>

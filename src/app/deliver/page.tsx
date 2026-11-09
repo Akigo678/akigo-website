@@ -26,6 +26,9 @@ import {
   primaryButton,
   secondaryButton,
 } from "@/components/marketing";
+import {getPublishedHomepage} from "@/lib/website/homepage";
+
+export const revalidate = 60;
 
 const deliveryTypes = [
   {
@@ -142,13 +145,16 @@ const deliveryFlow = [
   },
 ];
 
-export default function DeliverPage() {
+export default async function DeliverPage() {
+  const published=await getPublishedHomepage();
   return (
     <MarketingLayout>
       <main className="bg-[#050505]">
         {/* HERO */}
-        <section className="relative overflow-hidden pt-[88px]">
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_73%_23%,rgba(150,237,8,0.10),transparent_34%)]" />
+        <section className="relative isolate overflow-hidden pt-[88px]">
+          <div className="pointer-events-none absolute inset-0 -z-10 bg-cover bg-center" style={{backgroundImage:`url("${published.deliverHeroBackgroundImage || "/images/deliver-visuals/delivery-hero.png"}")`}}/>
+          <div className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(0,0,0,.91)_0%,rgba(0,0,0,.79)_41%,rgba(0,0,0,.72)_100%),linear-gradient(0deg,#050505,transparent_24%,transparent_80%,#050505)]"/>
+          <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_73%_23%,rgba(150,237,8,0.10),transparent_34%)]" />
           <div className="pointer-events-none absolute left-[-15rem] top-16 h-[34rem] w-[34rem] rounded-full bg-[#96ed08]/[0.04] blur-[145px]" />
 
           <div className="site-container relative z-10 grid min-h-[690px] items-center gap-14 py-14 lg:grid-cols-[1.03fr_0.97fr]">
@@ -206,71 +212,13 @@ export default function DeliverPage() {
               </div>
             </div>
 
-            <div className="relative mx-auto w-full max-w-[520px]">
-              <div className="pointer-events-none absolute inset-12 rounded-full bg-[#96ed08]/10 blur-[110px]" />
-
-              <div className="relative overflow-hidden rounded-[2rem] border border-white/[0.09] bg-[linear-gradient(145deg,#0d0f0c_0%,#070707_65%)] p-7 shadow-[0_30px_100px_rgba(0,0,0,.58)]">
-                <div className="pointer-events-none absolute right-[-5rem] top-[-5rem] size-64 rounded-full bg-[#96ed08]/[0.08] blur-[95px]" />
-
-                <div className="relative">
-                  <div className="flex items-center justify-between gap-4">
-                    <div className="grid size-14 place-items-center rounded-2xl border border-[#96ed08]/25 bg-[#96ed08]/10 text-[#96ed08]">
-                      <PackageCheck size={29} />
-                    </div>
-
-                    <span className="rounded-full border border-white/[0.08] bg-white/[0.025] px-4 py-2 text-xs font-bold uppercase tracking-[0.12em] text-white/42">
-                      Delivery network
-                    </span>
-                  </div>
-
-                  <h2 className="font-display mt-8 text-4xl font-bold tracking-[-0.045em]">
-                    From pickup to doorstep.
-                  </h2>
-
-                  <p className="mt-4 max-w-md leading-7 text-white/55">
-                    One connected experience for customers, couriers,
-                    restaurants, retailers, and local organizations.
-                  </p>
-
-                  <div className="relative mt-8">
-                    <div className="absolute bottom-5 left-[18px] top-5 w-px bg-gradient-to-b from-[#96ed08] via-[#96ed08]/55 to-white/10" />
-
-                    <div className="space-y-4">
-                      {[
-                        "Create the request",
-                        "Confirm pickup details",
-                        "Track courier progress",
-                        "Receive delivery confirmation",
-                      ].map((item, index) => (
-                        <div
-                          key={item}
-                          className="relative flex items-center gap-4 rounded-2xl border border-white/[0.08] bg-black/45 p-4 backdrop-blur"
-                        >
-                          <div
-                            className={`relative z-10 grid size-9 shrink-0 place-items-center rounded-full font-extrabold ${
-                              index < 2
-                                ? "bg-[#96ed08] text-black"
-                                : "border border-[#96ed08]/35 bg-black text-[#96ed08]"
-                            }`}
-                          >
-                            {index < 2 ? <Check size={16} strokeWidth={3} /> : index + 1}
-                          </div>
-
-                          <div>
-                            <p className="font-semibold text-white/78">{item}</p>
-                            <p className="mt-1 text-xs text-white/35">
-                              {index === 0 && "Delivery information entered"}
-                              {index === 1 && "Pickup information reviewed"}
-                              {index === 2 && "Live updates during delivery"}
-                              {index === 3 && "Final completion confirmation"}
-                            </p>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
+            <div className="relative mx-auto flex w-full max-w-[550px] flex-col items-center overflow-hidden rounded-[2.5rem] border border-[#96ed08]/20 bg-[radial-gradient(ellipse_at_50%_45%,rgba(150,237,8,.14),rgba(0,0,0,.77)_70%)] px-6 pb-6 pt-8 shadow-[0_25px_85px_rgba(0,0,0,.58)] sm:px-10">
+              <div className="flex w-full items-center justify-between gap-4">
+                <p className="text-[11px] font-extrabold uppercase tracking-[0.18em] text-[#96ed08]">AkiGO Delivery · Live tracking</p>
+                <span className="rounded-full border border-[#96ed08]/25 bg-[#96ed08]/10 px-3 py-1.5 text-[10px] font-black uppercase tracking-wider text-[#96ed08]">On the way</span>
               </div>
+              <img src={published.deliverHeroPhoneImage || "/images/deliver-visuals/tracking-phone.png"} alt="Realistic AkiGO Delivery phone showing package tracking in Orlando" className="mt-5 h-[490px] w-auto max-w-full object-contain drop-shadow-[0_22px_45px_rgba(0,0,0,.85)] sm:h-[550px]" />
+              <p className="mt-4 max-w-sm text-center text-xs leading-5 text-white/40">Illustrative delivery tracking preview. Availability and updates depend on your order.</p>
             </div>
           </div>
         </section>
@@ -581,6 +529,15 @@ export default function DeliverPage() {
         {/* USE CASES */}
         <section className="border-t border-white/[0.06] py-20 sm:py-24">
           <div className="site-container">
+            <div className="mb-16 grid overflow-hidden rounded-[2rem] border border-[#96ed08]/20 bg-[linear-gradient(130deg,#10190c,#050505)] lg:grid-cols-[.85fr_1.15fr]">
+              <div className="flex flex-col justify-center p-8 sm:p-12">
+                <p className="text-xs font-black uppercase tracking-[0.18em] text-[#96ed08]">From pickup to doorstep</p>
+                <h2 className="font-display mt-4 max-w-md text-4xl font-extrabold leading-tight tracking-[-0.05em] sm:text-5xl">Handled with care. Delivered with purpose.</h2>
+                <p className="mt-5 max-w-md leading-7 text-white/55">From a local shop to a customer’s front door, AkiGO brings pickup and delivery into one connected experience.</p>
+                <a href="#delivery-launch-list" className="mt-7 inline-flex items-center gap-2 font-bold text-[#96ed08]">Explore AkiGO Delivery <ArrowRight size={18}/></a>
+              </div>
+              <img src={published.deliverHandoffImage || "/images/deliver-visuals/doorstep-handoff.png"} alt="Courier carefully handing a sealed parcel to a customer at their doorstep" className="h-[300px] w-full object-cover sm:h-[400px] lg:h-full lg:min-h-[430px]"/>
+            </div>
             <div className="mx-auto max-w-3xl text-center">
               <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#96ed08]">
                 Built for local communities

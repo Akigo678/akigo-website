@@ -39,13 +39,15 @@ export function SiteHeader() {
             Launch Markets
           </Link>
 
-          <Link
-            href="/download"
+          <a
+            href="https://apps.apple.com/us/app/akigo/id6802560351"
+            target="_blank"
+            rel="noopener noreferrer"
             className={`${primaryButton} hidden min-h-0 px-6 py-3 text-sm sm:inline-flex`}
           >
             Download AkiGO
             <ArrowRight size={16} strokeWidth={2.5} />
-          </Link>
+          </a>
 
           <details className="group relative lg:hidden">
             <summary className="grid size-11 cursor-pointer list-none place-items-center rounded-full border border-white/12 bg-white/[0.04] text-white transition hover:border-[#96ed08]/45 hover:bg-white/[0.08] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#96ed08] [&::-webkit-details-marker]:hidden">
@@ -77,13 +79,15 @@ export function SiteHeader() {
                 <ChevronRight size={17} className="text-white/30" />
               </Link>
 
-              <Link
-                href="/download"
+              <a
+                href="https://apps.apple.com/us/app/akigo/id6802560351"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="mt-2 flex items-center justify-between rounded-2xl bg-[#96ed08] px-4 py-3.5 font-extrabold text-black transition hover:bg-[#a7ff22] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#96ed08] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
               >
                 Download AkiGO
                 <ArrowRight size={17} />
-              </Link>
+              </a>
             </nav>
           </details>
         </div>

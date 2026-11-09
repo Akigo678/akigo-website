@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <rect width="128" height="128" rx="29" fill="#050505"/>
+  <rect x="3" y="3" width="122" height="122" rx="26" fill="none" stroke="#96ed08" stroke-width="4"/>
+  <text x="64" y="76" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="39" font-weight="900" letter-spacing="-3"><tspan fill="#ffffff">Aki</tspan><tspan fill="#96ed08">GO</tspan></text>
+</svg>

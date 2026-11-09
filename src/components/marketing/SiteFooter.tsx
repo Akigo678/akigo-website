@@ -1,15 +1,11 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Apple, Download, Smartphone } from "lucide-react";
 
 import { FooterLocaleControls } from "./FooterLocaleControls";
 
 const RIDER_IOS_URL =
   process.env.NEXT_PUBLIC_RIDER_IOS_URL?.trim() ||
   "https://apps.apple.com/us/app/akigo/id6802560351";
-
-const RIDER_ANDROID_URL =
-  process.env.NEXT_PUBLIC_RIDER_ANDROID_URL?.trim() || "";
-
 
 const footerColumns = [
   {
@@ -56,13 +52,9 @@ const footerColumns = [
 ];
 
 const resourceLinks = [
-  { label: "Help Center", href: "/help" },
   { label: "Rider FAQ", href: "/faq/riders" },
   { label: "Driver FAQ", href: "/faq/drivers" },
-  { label: "Delivery FAQ", href: "/faq/delivery" },
   { label: "Business FAQ", href: "/faq/business" },
-  { label: "Safety Center", href: "/safety-center" },
-  { label: "Accessibility", href: "/accessibility" },
 ];
 
 const socialLinks = [
@@ -103,10 +95,24 @@ const socialLinks = [
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-white/[0.08] bg-black">
+    <footer className="border-t border-[#96ed08]/[0.12] bg-[linear-gradient(180deg,#071009_0%,#030503_35%,#000_100%)]">
       <div className="site-container">
+        <div className="flex flex-col gap-5 border-b border-white/10 py-9 lg:flex-row lg:items-center lg:justify-between">
+          <div>
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#96ed08]">Stay connected with AkiGO</p>
+            <h2 className="mt-2 text-xl font-extrabold tracking-tight text-white sm:text-2xl">Ride smarter. Earn better.</h2>
+          </div>
+          <div className="flex flex-wrap gap-3">
+            <a href={RIDER_IOS_URL} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center gap-2 rounded-xl bg-[#96ed08] px-5 text-sm font-bold text-black transition hover:bg-[#b1ff39] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">
+              <Apple size={18} /> AkiGO Rider <Download size={15} />
+            </a>
+            <a href="https://apps.apple.com/us/app/akigo-driver/id6802773874" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center gap-2 rounded-xl border border-white/20 bg-white/[0.05] px-5 text-sm font-bold text-white transition hover:border-[#96ed08]/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#96ed08]">
+              <Smartphone size={18} /> AkiGO Driver <ArrowRight size={15} />
+            </a>
+          </div>
+        </div>
         {/* PRIMARY FOOTER ROW */}
-        <div className="grid gap-10 py-12 sm:grid-cols-2 sm:py-14 lg:grid-cols-[1.45fr_repeat(4,minmax(0,0.82fr))_1.08fr] lg:gap-9">
+        <div className="grid gap-x-8 gap-y-10 py-11 sm:grid-cols-2 lg:grid-cols-[1.7fr_repeat(4,minmax(0,1fr))] lg:gap-7 lg:py-13">
           <div className="sm:col-span-2 lg:col-span-1">
             <Link
               href="/"
@@ -116,10 +122,8 @@ export function SiteFooter() {
               Aki<span className="text-[#96ed08]">GO</span>
             </Link>
 
-            <p className="mt-5 max-w-[310px] text-sm leading-6 text-white/48">
-              A connected mobility and local delivery platform being prepared
-              for riders, drivers, businesses, and communities through a
-              controlled rollout.
+            <p className="mt-5 max-w-[310px] text-sm leading-6 text-white/55">
+              Rides, deliveries, and opportunities—connected by smarter technology.
             </p>
 
             {socialLinks.length > 0 ? (
@@ -154,7 +158,7 @@ export function SiteFooter() {
                   <Link
                     key={link.label}
                     href={link.href}
-                    className="group flex w-fit items-center gap-1.5 rounded-sm text-sm text-white/45 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#96ed08]"
+                  className="group flex w-fit items-center gap-1.5 rounded-sm text-sm text-white/55 transition hover:text-[#96ed08] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#96ed08]"
                   >
                     {link.label}
 
@@ -169,100 +173,18 @@ export function SiteFooter() {
             </div>
           ))}
 
-          <div>
-            <h2 className="text-sm font-bold text-white">
-              Download the app
-            </h2>
-
-            <div className="mt-5 space-y-3">
-              <a
-                href={RIDER_IOS_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Download AkiGO Rider on the App Store"
-                className="flex min-h-14 items-center gap-3 rounded-xl border border-white/[0.12] bg-white/[0.025] px-4 transition hover:border-[#96ed08]/35 hover:bg-white/[0.05] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#96ed08]"
-              >
-                <div
-                  aria-hidden="true"
-                  className="grid size-8 shrink-0 place-items-center rounded-lg bg-white text-[17px] font-black text-black"
-                >
-                  A
-                </div>
-
-                <span>
-                  <span className="block text-[10px] uppercase tracking-[0.08em] text-white/45">
-                    Download on the
-                  </span>
-
-                  <span className="block text-sm font-bold text-white">
-                    App Store
-                  </span>
-                </span>
-              </a>
-
-              {RIDER_ANDROID_URL ? (
-                <a
-                  href={RIDER_ANDROID_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Get AkiGO Rider on Google Play"
-                  className="flex min-h-14 items-center gap-3 rounded-xl border border-white/[0.12] bg-white/[0.025] px-4 transition hover:border-[#96ed08]/35 hover:bg-white/[0.05] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#96ed08]"
-                >
-                  <div
-                    aria-hidden="true"
-                    className="grid size-8 shrink-0 place-items-center rounded-lg bg-white text-[15px] font-black text-black"
-                  >
-                    ▶
-                  </div>
-
-                  <span>
-                    <span className="block text-[10px] uppercase tracking-[0.08em] text-white/45">
-                      Get it on
-                    </span>
-
-                    <span className="block text-sm font-bold text-white">
-                      Google Play
-                    </span>
-                  </span>
-                </a>
-              ) : (
-                <Link
-                  href="/download#rider"
-                  aria-label="View AkiGO Rider Google Play availability"
-                  className="flex min-h-14 items-center gap-3 rounded-xl border border-white/[0.12] bg-white/[0.025] px-4 transition hover:border-[#96ed08]/35 hover:bg-white/[0.05] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#96ed08]"
-                >
-                  <div
-                    aria-hidden="true"
-                    className="grid size-8 shrink-0 place-items-center rounded-lg bg-white text-[15px] font-black text-black"
-                  >
-                    ▶
-                  </div>
-
-                  <span>
-                    <span className="block text-[10px] uppercase tracking-[0.08em] text-white/45">
-                      Coming soon on the
-                    </span>
-
-                    <span className="block text-sm font-bold text-white">
-                      Google Play
-                    </span>
-                  </span>
-                </Link>
-              )}
-            </div>
-          </div>
         </div>
 
         {/* RESOURCES ROW */}
-        <div className="border-t border-white/[0.08] py-7">
+        <div className="border-t border-white/[0.08] py-5">
           <div className="flex flex-col gap-5 lg:flex-row lg:items-center">
             <div className="shrink-0">
               <h2 className="text-sm font-bold text-white">
-                Resources
+                Quick answers
               </h2>
 
               <p className="mt-1 text-xs text-white/35">
-                Help, safety, accessibility, and frequently asked questions.
+                Find answers to common questions.
               </p>
             </div>
 
@@ -274,7 +196,7 @@ export function SiteFooter() {
                 <Link
                   key={link.label}
                   href={link.href}
-                  className="inline-flex min-h-10 items-center gap-2 rounded-full border border-white/[0.10] bg-white/[0.025] px-4 text-sm font-semibold text-white/55 transition hover:-translate-y-0.5 hover:border-[#96ed08]/40 hover:bg-[#96ed08]/[0.07] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#96ed08]"
+                  className="inline-flex min-h-9 items-center gap-2 rounded-full border border-white/[0.10] bg-white/[0.025] px-4 text-xs font-semibold text-white/60 transition hover:border-[#96ed08]/40 hover:bg-[#96ed08]/[0.07] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#96ed08]"
                 >
                   {link.label}
                   <ArrowRight

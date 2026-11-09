@@ -4,7 +4,9 @@ import {
   ArrowRight,
   BadgeDollarSign,
   CarFront,
+  CreditCard,
   Headphones,
+  MapPin,
   PackageCheck,
   ShieldCheck,
   Store,
@@ -19,6 +21,7 @@ import {
 } from "@/components/marketing";
 import {getPublishedHomepage} from "@/lib/website/homepage";
 import HeroSlideshow from "@/components/marketing/HeroSlideshow";
+import TechnologyGallery from "@/components/marketing/TechnologyGallery";
 
 // Refresh published Website Studio content without requiring a new deployment.
 export const revalidate = 60;
@@ -30,6 +33,7 @@ const services = [
     description: "Get where you need to go comfortably and affordably.",
     href: "/ride",
     image: "/images/home/ride.jpg",
+    action: "Explore Rides",
   },
   {
     icon: PackageCheck,
@@ -37,6 +41,7 @@ const services = [
     description: "Fast, reliable delivery for eligible packages and meals.",
     href: "/deliver",
     image: "/images/home/deliver.jpg",
+    action: "Explore Delivery",
   },
   {
     icon: WalletCards,
@@ -44,6 +49,7 @@ const services = [
     description: "Flexible earning opportunities on your schedule.",
     href: "/drive",
     image: "/images/home/drive.jpg",
+    action: "Drive with AkiGO",
   },
   {
     icon: Store,
@@ -51,6 +57,7 @@ const services = [
     description: "Tools and solutions designed to support local businesses.",
     href: "/business",
     image: "/images/home/business.jpg",
+    action: "Business Solutions",
   },
 ];
 
@@ -78,10 +85,26 @@ const trustItems = [
 ];
 
 const technologyBenefits = [
-  "Real-time tracking and live updates",
-  "Multiple secure payment options",
-  "Driver eligibility and background-check workflows",
-  "Support tools for riders, drivers, and businesses",
+  {
+    icon: MapPin,
+    title: "Live Tracking",
+    description: "Follow your trip with real-time updates.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Safety First",
+    description: "Safety tools designed for peace of mind.",
+  },
+  {
+    icon: CreditCard,
+    title: "Clear Pricing",
+    description: "See the price before confirming.",
+  },
+  {
+    icon: Headphones,
+    title: "Support Access",
+    description: "Find help when you need it.",
+  },
 ];
 
 export default async function Home() {
@@ -90,6 +113,7 @@ export default async function Home() {
     ? published.services.filter(service => service.enabled).map(service => ({
         ...service,
         icon: ({ Ride: CarFront, Deliver: PackageCheck, Drive: WalletCards, Business: Store } as Record<string, typeof CarFront>)[service.title] || Store,
+        action: ({ Ride: "Explore Rides", Deliver: "Explore Delivery", Drive: "Drive with AkiGO", Business: "Business Solutions" } as Record<string, string>)[service.title] || "Explore Service",
       }))
     : services;
   return (
@@ -137,10 +161,10 @@ export default async function Home() {
               </div>
 
               <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-                <Link href="/download" className={primaryButton}>
+                <a href="https://apps.apple.com/us/app/akigo/id6802560351" target="_blank" rel="noopener noreferrer" className={primaryButton}>
                   {published.primaryButton || "Download AkiGO"}
                   <ArrowRight size={18} />
-                </Link>
+                </a>
 
                 <Link href="#services" className={secondaryButton}>
                   {published.secondaryButton || "Explore the platform"}
@@ -164,59 +188,48 @@ export default async function Home() {
           <div className="site-container">
             <div className="mx-auto max-w-3xl text-center">
               <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#96ed08]">
-                Our services
+                Explore AkiGO
               </p>
 
               <h2 className="font-display mt-4 text-4xl font-extrabold tracking-[-0.05em] sm:text-5xl">
-                Solutions for different needs
+                One Platform. More Ways to Move.
               </h2>
 
               <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-white/55">
-                Explore AkiGO experiences for transportation, delivery, flexible
-                earning, and local business operations.
+                From everyday rides to local deliveries and business solutions,
+                AkiGO helps you keep moving.
               </p>
             </div>
 
-            <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+            <div className="mt-12 grid gap-6 md:grid-cols-2">
               {visibleServices.map(
-                ({ icon: Icon, title, description, href, image }) => (
+                ({ icon: Icon, title, description, href, image, action }) => (
                   <Link
                     key={title}
                     href={href}
-                    className="group relative min-h-[405px] overflow-hidden rounded-[1.5rem] border border-white/[0.10] bg-[#0c0c0c] transition duration-300 hover:-translate-y-1 hover:border-[#96ed08]/35 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#96ed08]"
+                    className="group overflow-hidden rounded-[1.5rem] border border-white/[0.12] bg-[#111511] transition duration-300 hover:-translate-y-1 hover:border-[#96ed08]/55 hover:shadow-[0_18px_55px_rgba(150,237,8,0.08)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#96ed08]"
                   >
-                    <Image
-                      src={image}
-                      unoptimized
-                      alt={`${title} with AkiGO`}
-                      fill
-                      sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 25vw"
-                      className="object-cover brightness-[0.64] contrast-[1.08] saturate-[0.78] transition duration-700 group-hover:scale-[1.04] group-hover:brightness-[0.72] motion-reduce:transition-none"
-                    />
-
-                    <div className="absolute inset-0 bg-gradient-to-b from-black/78 via-black/18 to-black/96" />
-                    <div className="absolute inset-0 bg-[#071000]/14 mix-blend-color" />
-
-                    <div className="absolute inset-0 flex flex-col p-6">
-                      <div className="grid size-12 place-items-center rounded-full border border-[#96ed08]/55 bg-black/45 text-[#96ed08] backdrop-blur-sm">
+                    <div className="relative aspect-[16/10] overflow-hidden sm:aspect-[16/9]">
+                      <Image
+                        src={image}
+                        unoptimized
+                        alt={`${title} with AkiGO`}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        className="object-cover transition duration-700 group-hover:scale-[1.045] motion-reduce:transition-none"
+                      />
+                      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#111511]/50 via-transparent to-transparent" />
+                      <div className="absolute left-5 top-5 grid size-12 place-items-center rounded-full border border-[#96ed08]/55 bg-black/65 text-[#96ed08] backdrop-blur-sm">
                         <Icon size={22} strokeWidth={1.9} />
                       </div>
-
-                      <div className="mt-auto">
-                        <h3 className="font-display text-2xl font-bold">{title}</h3>
-
-                        <p className="mt-3 max-w-[245px] text-sm leading-6 text-white/70">
-                          {description}
-                        </p>
-
-                        <span className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-[#96ed08]">
-                          Learn more
-                          <ArrowRight
-                            size={16}
-                            className="transition group-hover:translate-x-1 motion-reduce:transition-none"
-                          />
-                        </span>
-                      </div>
+                    </div>
+                    <div className="p-6 sm:p-7">
+                      <h3 className="font-display text-2xl font-bold text-white">{title}</h3>
+                      <p className="mt-2 text-sm leading-6 text-white/65">{description}</p>
+                      <span className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-[#96ed08]">
+                        {action}
+                        <ArrowRight size={16} className="transition-transform group-hover:translate-x-1 motion-reduce:transition-none" />
+                      </span>
                     </div>
                   </Link>
                 ),
@@ -225,87 +238,74 @@ export default async function Home() {
           </div>
         </section>
 
-        <section className="border-t border-white/[0.06] py-24 sm:py-28">
-          <div className="site-container grid items-center gap-14 lg:grid-cols-[1.05fr_0.95fr]">
-            <div className="relative">
-              <div className="pointer-events-none absolute inset-12 rounded-full bg-[#96ed08]/[0.07] blur-[115px]" />
-
-              <div
-                className="relative"
-                style={{
-                  WebkitMaskImage:
-                    "radial-gradient(ellipse at center, black 65%, transparent 98%)",
-                  maskImage:
-                    "radial-gradient(ellipse at center, black 65%, transparent 98%)",
-                }}
-              >
-                <Image
-                  src="/images/home/technology.png"
-                  alt="AkiGO route, safety, pricing, and technology features"
-                  width={1200}
-                  height={1000}
-                  className="h-auto w-full scale-[1.04] object-contain brightness-[0.9] contrast-[1.08] saturate-[0.86]"
-                />
-              </div>
+        <section className="relative isolate overflow-hidden border-t border-white/[0.06] py-20 sm:py-28">
+          <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_24%_50%,rgba(35,66,12,0.24),transparent_52%),linear-gradient(120deg,#050805,#090d09_55%,#050505)]" />
+          <div className="site-container grid items-center gap-12 lg:grid-cols-[1.04fr_0.96fr] lg:gap-16">
+            <div className="relative mx-auto w-full max-w-[660px] lg:mx-0">
+              <div className="pointer-events-none absolute inset-x-12 inset-y-16 rounded-full bg-[#96ed08]/[0.13] blur-[95px]" />
+              <TechnologyGallery images={published.technologyImages?.length?published.technologyImages:["/images/home/technology.png"]} intervalSeconds={published.technologyIntervalSeconds||5}/>
             </div>
 
-            <div>
+            <div className="lg:py-4">
               <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#96ed08]">
                 Why AkiGO
               </p>
 
-              <h2 className="font-display mt-4 max-w-xl text-4xl font-extrabold tracking-[-0.05em] sm:text-5xl">
-                Technology designed around the journey
+              <h2 className="font-display mt-4 max-w-xl text-4xl font-extrabold leading-[1.07] tracking-[-0.05em] sm:text-5xl">
+                Smarter Technology.
+                <span className="mt-1 block text-[#96ed08]">Better Every Mile.</span>
               </h2>
 
-              <p className="mt-5 max-w-xl text-base leading-7 text-white/58">
-                AkiGO combines routing, payments, communication, safety workflows,
-                and operational tools to support riders, drivers, deliveries, and
-                businesses.
+              <p className="mt-6 max-w-xl text-base leading-7 text-white/70">
+                From booking to drop-off, AkiGO connects every part of your
+                journey with technology designed for convenience, transparency,
+                and peace of mind.
               </p>
 
-              <div className="mt-7 space-y-3">
-                {technologyBenefits.map((benefit) => (
-                  <div key={benefit} className="flex items-center gap-3">
-                    <span className="grid size-5 shrink-0 place-items-center rounded-full border border-[#96ed08] text-[#96ed08]">
-                      <span className="size-1.5 rounded-full bg-[#96ed08]" />
-                    </span>
-                    <p className="text-sm font-medium text-white/72">{benefit}</p>
+              <div className="mt-8 grid gap-3 sm:grid-cols-2">
+                {technologyBenefits.map(({ icon: Icon, title, description }) => (
+                  <div key={title} className="group rounded-2xl border border-white/[0.12] bg-[#111a12]/90 p-5 transition-colors hover:border-[#96ed08]/50 hover:bg-[#172218]">
+                    <div className="grid size-11 place-items-center rounded-xl border border-[#96ed08]/25 bg-[#96ed08]/10 text-[#96ed08]">
+                      <Icon size={22} strokeWidth={1.9} />
+                    </div>
+                    <h3 className="mt-4 text-base font-bold text-white">{title}</h3>
+                    <p className="mt-2 text-sm leading-6 text-white/60">{description}</p>
                   </div>
                 ))}
               </div>
+
+              <Link href="/download" className={`${primaryButton} mt-8 w-fit`}>
+                Explore AkiGO
+                <ArrowRight size={18} />
+              </Link>
             </div>
           </div>
         </section>
 
         <section className="border-t border-white/[0.06] py-16 sm:py-20">
           <div className="site-container">
-            <div className="relative overflow-hidden rounded-[1.5rem] border border-[#96ed08]/20 bg-[#050505] shadow-[0_0_80px_rgba(150,237,8,0.05)]">
-              <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(135deg,#050505_0%,#091103_45%,#050505_100%)]" />
-              <div className="pointer-events-none absolute right-[-140px] top-1/2 h-[360px] w-[360px] -translate-y-1/2 rounded-full bg-[#96ed08]/10 blur-[140px]" />
-              <div className="pointer-events-none absolute bottom-[-120px] left-[-120px] h-[260px] w-[260px] rounded-full bg-[#96ed08]/[0.06] blur-[120px]" />
-
-              <div className="relative z-10 flex min-h-[220px] flex-col gap-8 px-7 py-10 sm:px-10 lg:flex-row lg:items-center lg:justify-between lg:px-12">
-                <div>
+            <div className="relative overflow-hidden rounded-[2rem] border border-[#96ed08]/25 bg-[linear-gradient(115deg,#0d1c10_0%,#071009_46%,#030503_100%)] shadow-[0_30px_90px_rgba(0,0,0,0.3)]">
+              <div className="pointer-events-none absolute -left-20 bottom-[-170px] size-[400px] rounded-full bg-[#96ed08]/10 blur-[110px]" />
+              <div className="pointer-events-none absolute -right-20 top-[-160px] size-[390px] rounded-full bg-[#96ed08]/10 blur-[110px]" />
+              <div className="relative grid items-center gap-9 px-7 py-10 sm:px-10 lg:grid-cols-[1.04fr_0.96fr] lg:gap-12 lg:px-12 lg:py-14">
+                <div className="relative min-w-0">
+                  <TechnologyGallery images={published.downloadImages?.length ? published.downloadImages : ["/images/home/technology.png"]} intervalSeconds={published.downloadIntervalSeconds || 5} />
+                </div>
+                <div className="relative z-10">
                   <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#96ed08]">
                     AkiGO apps
                   </p>
-
-                  <h2 className="font-display mt-4 text-3xl font-extrabold tracking-[-0.04em] sm:text-4xl">
-                    Check app availability
+                  <h2 className="font-display mt-4 max-w-xl text-4xl font-extrabold leading-tight tracking-[-0.05em] text-white sm:text-5xl">
+                    Your next ride <span className="text-[#96ed08]">starts here.</span>
                   </h2>
-
-                  <p className="mt-3 max-w-2xl text-sm leading-6 text-white/58 sm:text-base">
-                    View the current release status for the AkiGO Rider and AkiGO
-                    Driver apps. Verified store links will appear as they become
-                    available.
+                  <p className="mt-5 max-w-lg text-sm leading-7 text-white/65 sm:text-base">
+                    Book a ride, follow your journey, or start driving with AkiGO.
+                    Choose the app that works for you.
                   </p>
+                  <a href="https://apps.apple.com/us/app/akigo/id6802560351" target="_blank" rel="noopener noreferrer" className={`${primaryButton} mt-8 w-fit`}>
+                    Download AkiGO <ArrowRight size={18} />
+                  </a>
                 </div>
-
-                <Link href="/download" className={`${primaryButton} shrink-0`}>
-                  Download AkiGO
-                  <ArrowRight size={18} />
-                </Link>
               </div>
             </div>
           </div>

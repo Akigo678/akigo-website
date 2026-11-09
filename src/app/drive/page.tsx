@@ -25,6 +25,9 @@ import {
   primaryButton,
   secondaryButton,
 } from "@/components/marketing";
+import { getPublishedHomepage } from "@/lib/website/homepage";
+
+export const revalidate = 60;
 
 const driverBenefits = [
   {
@@ -166,13 +169,19 @@ const approvalStages = [
   "Market activation and final approval",
 ];
 
-export default function DrivePage() {
+export default async function DrivePage() {
+  const published = await getPublishedHomepage();
   return (
     <MarketingLayout>
       <main className="bg-[#050505]">
         {/* HERO */}
-        <section className="relative overflow-hidden pt-[88px]">
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_73%_24%,rgba(150,237,8,0.10),transparent_34%)]" />
+        <section className="relative isolate overflow-hidden pt-[88px]">
+          <div
+            className="pointer-events-none absolute inset-0 -z-10 bg-cover bg-center"
+            style={{backgroundImage:`url("${published.driveHeroBackgroundImage || "/images/drive-hero/driver-recruitment.png"}")`}}
+          />
+          <div className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(0,0,0,.91)_0%,rgba(0,0,0,.78)_40%,rgba(0,0,0,.66)_100%),linear-gradient(0deg,#050505_0%,transparent_25%,transparent_75%,#050505_100%)]" />
+          <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_73%_24%,rgba(150,237,8,0.10),transparent_34%)]" />
           <div className="pointer-events-none absolute left-[-15rem] top-16 h-[34rem] w-[34rem] rounded-full bg-[#96ed08]/[0.04] blur-[145px]" />
 
           <div className="site-container relative z-10 grid min-h-[720px] items-center gap-14 py-14 lg:grid-cols-[1.02fr_0.98fr]">
@@ -230,155 +239,14 @@ export default function DrivePage() {
               </div>
             </div>
 
-            {/* DRIVER APP PREVIEW */}
-            <div className="relative mx-auto w-full max-w-[540px]">
-              <div className="pointer-events-none absolute inset-12 rounded-full bg-[#96ed08]/10 blur-[120px]" />
-
-              <div className="relative overflow-hidden rounded-[2rem] border border-white/[0.09] bg-[linear-gradient(145deg,#0d0f0c_0%,#070707_68%)] p-6 shadow-[0_30px_100px_rgba(0,0,0,.58)]">
-                <div className="pointer-events-none absolute right-[-6rem] top-[-6rem] size-72 rounded-full bg-[#96ed08]/[0.08] blur-[100px]" />
-
-                <div className="relative">
-                  <div className="flex items-center justify-between gap-4">
-                    <div>
-                      <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-[#96ed08]">
-                        Driver app preview
-                      </p>
-                      <h2 className="font-display mt-2 text-3xl font-bold">
-                        Your day, clearly organized.
-                      </h2>
-                    </div>
-
-                    <div className="flex shrink-0 items-center gap-2 rounded-full border border-[#96ed08]/25 bg-[#96ed08]/10 px-4 py-2">
-                      <span className="size-2 rounded-full bg-[#96ed08] shadow-[0_0_12px_rgba(150,237,8,.9)]" />
-                      <span className="text-xs font-extrabold uppercase tracking-[0.12em] text-[#96ed08]">
-                        Online
-                      </span>
-                    </div>
-                  </div>
-
-                  <div className="mt-6 rounded-[1.5rem] border border-[#96ed08]/20 bg-black/55 p-5">
-                    <div className="flex items-start justify-between gap-4">
-                      <div>
-                        <p className="text-xs font-bold uppercase tracking-[0.12em] text-[#96ed08]">
-                          Trip opportunity
-                        </p>
-                        <h3 className="mt-2 text-xl font-bold text-white">
-                          Review before accepting
-                        </h3>
-                      </div>
-
-                      <div className="grid size-11 place-items-center rounded-xl bg-[#96ed08] text-black">
-                        <MapPinned size={22} />
-                      </div>
-                    </div>
-
-                    <div className="mt-5 space-y-3">
-                      <div className="flex items-start gap-3 rounded-xl border border-white/[0.07] bg-white/[0.025] p-4">
-                        <div className="mt-0.5 size-3 shrink-0 rounded-full border-[3px] border-[#96ed08] bg-black" />
-                        <div>
-                          <p className="text-xs uppercase tracking-[0.1em] text-white/35">
-                            Pickup
-                          </p>
-                          <p className="mt-1 text-sm font-semibold text-white/72">
-                            Pickup details shown in app
-                          </p>
-                        </div>
-                      </div>
-
-                      <div className="flex items-start gap-3 rounded-xl border border-white/[0.07] bg-white/[0.025] p-4">
-                        <MapPinned
-                          className="mt-0.5 shrink-0 text-[#96ed08]"
-                          size={17}
-                        />
-                        <div>
-                          <p className="text-xs uppercase tracking-[0.1em] text-white/35">
-                            Destination
-                          </p>
-                          <p className="mt-1 text-sm font-semibold text-white/72">
-                            Destination and route available
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="mt-4 grid grid-cols-2 gap-3">
-                      <div className="rounded-xl border border-white/[0.07] bg-white/[0.025] p-4">
-                        <p className="text-xs uppercase tracking-[0.1em] text-white/35">
-                          Driver pay
-                        </p>
-                        <p className="mt-2 text-sm font-bold text-white">
-                          Shown before acceptance
-                        </p>
-                      </div>
-
-                      <div className="rounded-xl border border-white/[0.07] bg-white/[0.025] p-4">
-                        <p className="text-xs uppercase tracking-[0.1em] text-white/35">
-                          Route
-                        </p>
-                        <p className="mt-2 text-sm font-bold text-white">
-                          Preview available
-                        </p>
-                      </div>
-                    </div>
-
-                    <div className="mt-4 flex gap-3">
-                      <button
-                        type="button"
-                        disabled
-                        className="min-h-11 flex-1 cursor-default rounded-full border border-white/[0.1] bg-white/[0.025] px-5 text-sm font-bold text-white/45"
-                      >
-                        Decline
-                      </button>
-
-                      <button
-                        type="button"
-                        disabled
-                        className="min-h-11 flex-1 cursor-default rounded-full bg-[#96ed08] px-5 text-sm font-extrabold text-black opacity-90"
-                      >
-                        Accept trip
-                      </button>
-                    </div>
-                  </div>
-
-                  <div className="mt-4 grid gap-3 sm:grid-cols-3">
-                    {[
-                      {
-                        icon: Navigation,
-                        label: "Navigation",
-                        value: "Live route tools",
-                      },
-                      {
-                        icon: WalletCards,
-                        label: "Earnings",
-                        value: "Trip pay activity",
-                      },
-                      {
-                        icon: Headphones,
-                        label: "Support",
-                        value: "Help when needed",
-                      },
-                    ].map(({ icon: Icon, label, value }) => (
-                      <div
-                        key={label}
-                        className="rounded-2xl border border-white/[0.08] bg-black/45 p-4"
-                      >
-                        <Icon className="text-[#96ed08]" size={19} />
-                        <p className="mt-3 text-xs uppercase tracking-[0.1em] text-white/35">
-                          {label}
-                        </p>
-                        <p className="mt-1 text-sm font-semibold text-white/68">
-                          {value}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-
-                  <p className="mt-4 text-center text-xs text-white/28">
-                    Illustrative driver-app preview. Live details appear only
-                    when an eligible trip is available.
-                  </p>
-                </div>
+            {/* REAL DRIVER APP PREVIEW */}
+            <div className="relative mx-auto flex w-full max-w-[560px] flex-col items-center justify-center overflow-hidden rounded-[2.5rem] border border-[#96ed08]/15 bg-[radial-gradient(ellipse_at_50%_45%,rgba(150,237,8,0.13),transparent_67%)] px-6 pb-6 pt-8 sm:px-10">
+              <div className="flex w-full items-center justify-between gap-3">
+                <span className="text-[11px] font-black uppercase tracking-[0.19em] text-[#96ed08]">AkiGO Driver · App preview</span>
+                <span className="flex items-center gap-2 rounded-full border border-[#96ed08]/25 bg-[#96ed08]/10 px-3 py-1.5 text-[10px] font-black uppercase tracking-widest text-[#96ed08]"><span className="size-1.5 rounded-full bg-[#96ed08]"/> Online</span>
               </div>
+              <img src={published.driveHeroPhoneImage || "/images/drive-phones/offer.png"} alt="AkiGO Driver trip offer preview on a realistic smartphone" className="relative mt-5 h-[470px] w-auto max-w-full object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,.85)] sm:h-[555px]" />
+              <p className="mt-3 max-w-sm text-center text-xs leading-5 text-white/40">Illustrative app preview. Trip details and displayed earnings are examples, not live offers.</p>
             </div>
           </div>
         </section>
@@ -786,76 +654,47 @@ export default function DrivePage() {
                   Driver pay and earnings information remain separate from rider
                   fare.
                 </div>
+                <div className="relative mt-7 flex flex-col items-center overflow-hidden rounded-[1.5rem] border border-[#96ed08]/15 bg-[radial-gradient(ellipse_at_center,rgba(150,237,8,.13),transparent_72%)] py-6">
+                  <img
+                    src={published.driveEarningsPhoneImage || "/images/drive-phones/earnings.png"}
+                    alt="Illustrative AkiGO Driver earnings dashboard on an iPhone"
+                    className="h-[400px] w-auto max-w-full object-contain drop-shadow-[0_22px_40px_rgba(0,0,0,.8)]"
+                  />
+                  <p className="mt-3 px-5 text-center text-xs text-white/40">Illustrative preview. Actual earnings vary by completed trips.</p>
+                </div>
               </div>
             </article>
           </div>
         </section>
 
-        {/* DRIVER REQUIREMENTS CTA */}
+        {/* DRIVER RESOURCES */}
         <section className="border-t border-white/[0.06] py-20 sm:py-24">
           <div className="site-container">
-            <div className="relative overflow-hidden rounded-[2rem] border border-[#96ed08]/20 bg-[#0b0b0b] px-8 py-10 text-center shadow-[0_0_70px_rgba(150,237,8,0.04)] sm:px-10 sm:py-12">
-              <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(135deg,#050505_0%,#091103_50%,#050505_100%)]" />
-              <div className="relative z-10 mx-auto max-w-3xl">
-                <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#96ed08]">
-                  Before you apply
-                </p>
-
-                <h2 className="font-display mt-4 text-4xl font-extrabold tracking-[-0.05em] sm:text-5xl">
-                  Review the Driver Requirements
-                </h2>
-
-                <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-white/55">
-                  Learn about eligibility, vehicle standards, required documents,
-                  background checks, approval, and market-dependent requirements
-                  before creating your driver account.
-                </p>
-
-                <Link
-                  href="/driver-requirements"
-                  className={`${primaryButton} mt-8 inline-flex`}
-                >
-                  View Driver Requirements
-                  <ArrowRight size={18} />
-                </Link>
+            <div className="mb-10 flex flex-col justify-between gap-5 md:flex-row md:items-end">
+              <div>
+                <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#96ed08]">Before you get started</p>
+                <h2 className="font-display mt-3 max-w-2xl text-4xl font-extrabold tracking-[-0.05em] sm:text-5xl">Everything you need to drive with confidence.</h2>
               </div>
+              <p className="max-w-sm text-sm leading-7 text-white/50">Explore eligibility, driver standards, and answers to common questions before joining.</p>
+            </div>
+            <div className="grid gap-5 md:grid-cols-2">
+              <article className="group relative flex min-h-[310px] flex-col overflow-hidden rounded-[2rem] border border-[#96ed08]/20 bg-[linear-gradient(145deg,#10190b,#080808_75%)] p-8 sm:p-10">
+                <div className="mb-10 flex size-14 items-center justify-center rounded-2xl border border-[#96ed08]/25 bg-[#96ed08]/10 text-[#96ed08]"><FileCheck2 size={27}/></div>
+                <p className="text-xs font-black uppercase tracking-[0.16em] text-[#96ed08]">Eligibility & documents</p>
+                <h3 className="font-display mt-3 text-3xl font-bold tracking-tight">Driver requirements</h3>
+                <p className="mt-3 max-w-md leading-7 text-white/50">Know what to prepare, from license and vehicle documents to approval and local market rules.</p>
+                <Link href="/driver-requirements" className="mt-7 inline-flex items-center gap-2 font-bold text-[#96ed08]">Explore requirements <ArrowRight size={18} className="transition-transform group-hover:translate-x-1"/></Link>
+              </article>
+              <article className="group relative flex min-h-[310px] flex-col overflow-hidden rounded-[2rem] border border-white/[0.11] bg-[linear-gradient(145deg,#121212,#070907_75%)] p-8 sm:p-10">
+                <div className="mb-10 flex size-14 items-center justify-center rounded-2xl border border-[#96ed08]/25 bg-[#96ed08]/10 text-[#96ed08]"><Headphones size={27}/></div>
+                <p className="text-xs font-black uppercase tracking-[0.16em] text-[#96ed08]">We're here to help</p>
+                <h3 className="font-display mt-3 text-3xl font-bold tracking-tight">Driver questions, answered.</h3>
+                <p className="mt-3 max-w-md leading-7 text-white/50">Learn about signup, trip offers, payments, driver support, and what to expect on the road.</p>
+                <Link href="/faq/drivers" className="mt-7 inline-flex items-center gap-2 font-bold text-[#96ed08]">View driver FAQs <ArrowRight size={18} className="transition-transform group-hover:translate-x-1"/></Link>
+              </article>
             </div>
           </div>
         </section>
-
-        {/* DRIVER FAQ CTA */}
-        <section className="border-t border-white/[0.06] py-20 sm:py-24">
-          <div className="site-container">
-            <div className="relative overflow-hidden rounded-[2rem] border border-white/[0.10] bg-[#0b0b0b] px-8 py-10 text-center shadow-[0_0_70px_rgba(150,237,8,0.035)] sm:px-10 sm:py-12">
-              <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(135deg,#050505_0%,#0a1005_50%,#050505_100%)]" />
-              <div className="pointer-events-none absolute left-1/2 top-[-9rem] size-72 -translate-x-1/2 rounded-full bg-[#96ed08]/[0.08] blur-[120px]" />
-
-              <div className="relative z-10 mx-auto max-w-3xl">
-                <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#96ed08]">
-                  Driver questions
-                </p>
-
-                <h2 className="font-display mt-4 text-4xl font-extrabold tracking-[-0.05em] sm:text-5xl">
-                  Find answers before you start driving.
-                </h2>
-
-                <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-white/55">
-                  Review registration, approval, going online, trip offers,
-                  earnings, payouts, safety, and driver-support guidance.
-                </p>
-
-                <Link
-                  href="/faq/drivers"
-                  className={`${primaryButton} mt-8 inline-flex`}
-                >
-                  View Driver FAQ
-                  <ArrowRight size={18} />
-                </Link>
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* WAITLIST */}
         <section
           id="driver-waitlist"
