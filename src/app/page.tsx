@@ -95,18 +95,22 @@ export default async function Home() {
   return (
     <MarketingLayout>
       <main className="bg-[#050505]">
-        <section className="relative overflow-hidden pt-[88px]">
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_70%_24%,rgba(150,237,8,0.10),transparent_34%)]" />
-          <div className="pointer-events-none absolute left-[-15rem] top-20 h-[34rem] w-[34rem] rounded-full bg-[#96ed08]/[0.045] blur-[150px]" />
+        <section className="relative isolate min-h-[760px] overflow-hidden pt-[88px]">
+          <HeroSlideshow
+            images={published.heroImages?.length ? published.heroImages : [published.heroImage || "/images/home/hero-akigo.png"]}
+            intervalSeconds={published.heroIntervalSeconds || 5}
+          />
+          <div className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-r from-black/50 via-black/20 to-transparent" />
+          <div className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-t from-black/45 via-transparent to-black/10" />
 
-          <div className="site-container relative z-10 grid min-h-[760px] items-center gap-10 py-12 lg:grid-cols-[0.93fr_1.07fr] lg:py-14">
-            <div className="relative z-20">
+          <div className="site-container relative z-[2] flex min-h-[760px] items-center py-12 lg:py-14">
+            <div className="relative z-20 w-full max-w-[760px]">
               <div className="inline-flex items-center gap-2 rounded-full border border-white/[0.12] bg-white/[0.025] px-4 py-2 text-xs font-semibold text-white/65 backdrop-blur-md">
                 <span className="size-2 rounded-full bg-[#96ed08] shadow-[0_0_14px_rgba(150,237,8,.9)]" />
                 {published.eyebrow || "One platform. Many ways forward."}
               </div>
 
-              <h1 className="font-display mt-7 max-w-[760px] text-5xl font-extrabold leading-[0.95] tracking-[-0.06em] sm:text-6xl lg:text-[5.45rem]">
+              <h1 className="font-display mt-7 max-w-[760px] text-5xl font-extrabold leading-[0.95] tracking-[-0.06em] [text-shadow:0_3px_22px_rgba(0,0,0,0.9)] sm:text-6xl lg:text-[5.45rem]">
                 {published.headline1 || "Move smarter."}
                 <br />
                 {published.headline2 || "Deliver faster."}
@@ -114,7 +118,7 @@ export default async function Home() {
                 <span className="text-[#96ed08]">{published.headline3 || "Earn your way."}</span>
               </h1>
 
-              <p className="mt-7 max-w-[560px] text-lg leading-8 text-white/62">
+              <p className="mt-7 max-w-[560px] text-lg leading-8 text-white/90 [text-shadow:0_2px_12px_rgba(0,0,0,0.95)]">
                 {published.description || "AkiGO is building a connected mobility and local delivery platform for riders, drivers, businesses, and communities through a controlled market-by-market rollout."}
               </p>
 
@@ -150,24 +154,6 @@ export default async function Home() {
               </div>
             </div>
 
-            <div className="relative mx-auto w-full max-w-[790px] lg:max-w-none">
-              <div className="pointer-events-none absolute inset-12 rounded-full bg-[#96ed08]/10 blur-[120px]" />
-
-              <div
-                className="relative overflow-hidden"
-                style={{
-                  WebkitMaskImage:
-                    "radial-gradient(ellipse at center, black 62%, transparent 98%)",
-                  maskImage:
-                    "radial-gradient(ellipse at center, black 62%, transparent 98%)",
-                }}
-              >
-                <HeroSlideshow
-                  images={published.heroImages?.length?published.heroImages:[published.heroImage || "/images/home/hero-akigo.png"]}
-                  intervalSeconds={published.heroIntervalSeconds||5}
-                />
-              </div>
-            </div>
           </div>
         </section>
 
