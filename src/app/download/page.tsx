@@ -14,7 +14,6 @@ import {
   Play,
   QrCode,
   ShieldCheck,
-  Smartphone,
   Sparkles,
   UserRound,
 } from "lucide-react";
@@ -182,8 +181,8 @@ function AppCard({
   const hasVerifiedLink = Boolean(iosUrl || androidUrl);
 
   return (
-    <article className="relative overflow-hidden rounded-[2rem] border border-white/[0.10] bg-[#0a0a0a] p-6 shadow-[0_24px_90px_rgba(0,0,0,0.30)] sm:p-8 lg:p-10">
-      <div className="pointer-events-none absolute right-[-7rem] top-[-7rem] size-64 rounded-full bg-[#96ed08]/[0.06] blur-[90px]" />
+    <article className="relative overflow-hidden rounded-[2rem] border border-[#96ed08]/20 bg-[linear-gradient(130deg,#152010_0%,#090e08_54%,#080a08_100%)] p-6 shadow-[0_24px_90px_rgba(0,0,0,0.30)] sm:p-8 lg:p-10">
+      <div className="pointer-events-none absolute right-[-7rem] top-[-7rem] size-64 rounded-full bg-[#96ed08]/[0.11] blur-[90px]" />
 
       <div className="relative z-10">
         <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
@@ -292,27 +291,34 @@ export default function DownloadPage() {
           }}
         />
 
-        <section className="relative overflow-hidden pt-[88px]">
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_74%_20%,rgba(150,237,8,0.12),transparent_32%)]" />
-          <div className="pointer-events-none absolute left-[-16rem] top-20 size-[36rem] rounded-full bg-[#96ed08]/[0.045] blur-[150px]" />
+        <section className="relative isolate overflow-hidden pt-[88px] text-[#101510]">
+          <div className="pointer-events-none absolute inset-0 -z-10 bg-[#ecebe6]">
+            <img
+              src="/images/download/akigo-download-hero.png"
+              alt=""
+              aria-hidden="true"
+              className="h-full w-full object-cover object-[62%_center]"
+            />
+          </div>
+          <div className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(248,248,243,0.97)_0%,rgba(248,248,243,0.87)_34%,rgba(248,248,243,0.2)_66%,rgba(248,248,243,0.03)_100%)] lg:bg-[linear-gradient(90deg,rgba(248,248,243,0.9)_0%,rgba(248,248,243,0.67)_34%,rgba(248,248,243,0.05)_66%,rgba(248,248,243,0.0)_100%)]" />
 
-          <div className="site-container relative z-10 grid min-h-[650px] items-center gap-14 py-16 lg:grid-cols-[1.02fr_0.98fr] lg:py-20">
-            <div>
-              <div className="inline-flex items-center gap-2 rounded-full border border-white/[0.12] bg-white/[0.025] px-4 py-2 text-xs font-bold uppercase tracking-[0.09em] text-[#96ed08]">
+          <div className="site-container relative z-10 flex min-h-[720px] items-center py-16 lg:py-24">
+            <div className="max-w-[710px]">
+              <div className="inline-flex items-center gap-2 rounded-full border border-[#1b3010]/20 bg-white/80 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.12em] text-[#3d6800] shadow-sm">
                 <Download size={14} />
                 AkiGO apps
               </div>
 
-              <h1 className="font-display mt-7 max-w-[790px] text-5xl font-extrabold leading-[0.94] tracking-[-0.065em] sm:text-6xl lg:text-[5.4rem]">
-                One destination for
+              <h1 className="font-display mt-7 max-w-[790px] text-5xl font-extrabold leading-[0.96] tracking-[-0.065em] sm:text-6xl lg:text-[5.1rem]">
+                Your next move
                 <br />
-                <span className="text-[#96ed08]">every verified download.</span>
+                <span className="text-[#538700]">starts here.</span>
               </h1>
 
-              <p className="mt-7 max-w-[650px] text-lg leading-8 text-white/58">
-                Check the current release status of the AkiGO Rider and AkiGO
-                Driver apps. Store buttons appear only when the corresponding
-                public listing has been verified.
+              <p className="mt-7 max-w-[580px] text-lg font-medium leading-8 text-[#394337]">
+                Ride with confidence or drive with purpose. Get the official
+                AkiGO Rider and Driver apps through our verified store links,
+                and check each app’s availability in one place.
               </p>
 
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
@@ -329,96 +335,36 @@ export default function DownloadPage() {
                   href={DRIVER_IOS_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={secondaryButton}
+                  className="inline-flex min-h-[56px] items-center justify-center gap-3 rounded-full border border-[#162313]/40 bg-white/85 px-7 text-base font-extrabold text-[#121a10] shadow-lg transition hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#538700]"
                 >
                   Download Driver app
                   <Apple size={18} fill="currentColor" />
                 </a>
               </div>
 
-              <div className="mt-10 flex flex-wrap gap-x-7 gap-y-3 text-sm text-white/48">
+              <div className="mt-10 flex flex-wrap gap-x-7 gap-y-3 text-sm font-semibold text-[#2e3e2b]">
                 <span className="inline-flex items-center gap-2">
-                  <BadgeCheck size={16} className="text-[#96ed08]" />
+                  <BadgeCheck size={16} className="text-[#538700]" />
                   Verified links only
                 </span>
                 <span className="inline-flex items-center gap-2">
-                  <ShieldCheck size={16} className="text-[#96ed08]" />
+                  <ShieldCheck size={16} className="text-[#538700]" />
                   Controlled rollout
                 </span>
                 <span className="inline-flex items-center gap-2">
-                  <MapPinned size={16} className="text-[#96ed08]" />
+                  <MapPinned size={16} className="text-[#538700]" />
                   Market-dependent access
                 </span>
               </div>
             </div>
 
-            <div className="relative mx-auto w-full max-w-[570px]">
-              <div className="absolute inset-8 rounded-[3rem] bg-[#96ed08]/10 blur-[75px]" />
-              <div className="relative overflow-hidden rounded-[2.25rem] border border-[#96ed08]/24 bg-[#080a07] p-5 shadow-[0_34px_120px_rgba(0,0,0,0.55)] sm:p-7">
-                <div className="rounded-[1.7rem] border border-white/[0.09] bg-black/55 p-5 sm:p-7">
-                  <div className="flex items-center justify-between gap-4">
-                    <div>
-                      <p className="text-xs font-bold uppercase tracking-[0.14em] text-[#96ed08]">
-                        Current status
-                      </p>
-                      <h2 className="font-display mt-2 text-2xl font-extrabold tracking-[-0.04em]">
-                        Store publication
-                      </h2>
-                    </div>
-                    <Smartphone size={32} className="text-[#96ed08]" />
-                  </div>
-
-                  <div className="mt-7 space-y-3">
-                    {[
-                      ["AkiGO Rider · App Store", RIDER_IOS_URL],
-                      ["AkiGO Rider · Google Play", RIDER_ANDROID_URL],
-                      ["AkiGO Driver · App Store", DRIVER_IOS_URL],
-                      ["AkiGO Driver · Google Play", DRIVER_ANDROID_URL],
-                    ].map(([label, url]) => (
-                      <div
-                        key={label}
-                        className="flex items-center gap-3 rounded-xl border border-white/[0.08] bg-white/[0.025] px-4 py-3.5"
-                      >
-                        <span
-                          className={`size-2.5 shrink-0 rounded-full ${
-                            url
-                              ? "bg-[#96ed08] shadow-[0_0_12px_rgba(150,237,8,.85)]"
-                              : "bg-white/25"
-                          }`}
-                        />
-                        <span className="min-w-0 flex-1 text-sm font-semibold text-white/72">
-                          {label}
-                        </span>
-                        <span className="text-xs font-bold text-white/38">
-                          {url ? "Available" : "Preparing"}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="mt-5 rounded-[1.4rem] border border-white/[0.08] bg-white/[0.025] p-5">
-                  <div className="flex items-start gap-4">
-                    <div className="grid size-11 shrink-0 place-items-center rounded-xl bg-[#96ed08]/10 text-[#96ed08]">
-                      <ShieldCheck size={22} />
-                    </div>
-                    <div>
-                      <h3 className="font-bold text-white">No placeholder downloads</h3>
-                      <p className="mt-2 text-sm leading-6 text-white/48">
-                        AkiGO does not show fake store links, QR codes, launch dates,
-                        or unsupported availability claims.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </section>
 
-        <section className="border-t border-white/[0.07] py-16 sm:py-20">
+        <section className="border-t border-[#96ed08]/20 bg-[#071007] py-16 sm:py-20">
           <div className="site-container space-y-7">
             <div id="rider-app" className="scroll-mt-28">
+              <span id="rider" className="block scroll-mt-28" aria-hidden="true" />
               <AppCard
                 audience="Rider"
                 title="Request and manage rides"
@@ -438,6 +384,7 @@ export default function DownloadPage() {
             </div>
 
             <div id="driver-app" className="scroll-mt-28">
+              <span id="driver" className="block scroll-mt-28" aria-hidden="true" />
               <AppCard
                 audience="Driver"
                 title="Manage trips and earnings"
@@ -459,7 +406,7 @@ export default function DownloadPage() {
         </section>
 
         {showQrArea ? (
-          <section className="border-t border-white/[0.07] py-16 sm:py-20">
+          <section className="border-t border-[#96ed08]/10 bg-[#060b06] py-16 sm:py-20">
             <div className="site-container">
               <div className="rounded-[2rem] border border-[#96ed08]/22 bg-[#071006] p-7 sm:p-10">
                 <div className="flex flex-col gap-7 lg:flex-row lg:items-center lg:justify-between">
@@ -488,7 +435,7 @@ export default function DownloadPage() {
           </section>
         ) : null}
 
-        <section className="border-t border-white/[0.07] py-16 sm:py-20">
+        <section className="border-t border-[#96ed08]/10 bg-[#0b100a] py-16 sm:py-20">
           <div className="site-container">
             <div className="max-w-3xl">
               <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-[#96ed08]">
@@ -509,7 +456,7 @@ export default function DownloadPage() {
               {rolloutSteps.map(({ icon: Icon, title, text }, index) => (
                 <article
                   key={title}
-                  className="rounded-[1.6rem] border border-white/[0.09] bg-[#0a0a0a] p-6"
+                  className="rounded-[1.6rem] border border-[#96ed08]/15 bg-[linear-gradient(145deg,#172113,#10150e)] p-6"
                 >
                   <div className="flex items-center justify-between gap-4">
                     <div className="grid size-12 place-items-center rounded-2xl bg-[#96ed08]/10 text-[#96ed08]">

@@ -197,11 +197,18 @@ export default function CommunityGuidelinesPage() {
       <main className="bg-[#050505]">
         {/* HERO */}
         <section className="relative overflow-hidden pt-[88px]">
+          <div className="relative h-[980px] w-full overflow-hidden sm:h-[900px] lg:h-[860px]">
+            <img
+              src="/images/community/akigo-community-respect.png"
+              alt="AkiGO driver greeting a passenger respectfully while a courier completes a courteous package handoff with a local business"
+              className="h-full w-full object-cover object-[65%_center] lg:object-center"
+            />
+          </div>
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_74%_22%,rgba(150,237,8,0.10),transparent_34%)]" />
           <div className="pointer-events-none absolute left-[-15rem] top-16 h-[34rem] w-[34rem] rounded-full bg-[#96ed08]/[0.04] blur-[145px]" />
 
-          <div className="site-container relative z-10 grid min-h-[640px] items-center gap-14 py-14 lg:grid-cols-[1.02fr_0.98fr]">
-            <div>
+          <div className="site-container relative z-10 -mt-[980px] grid min-h-[980px] items-center gap-14 py-12 sm:-mt-[900px] sm:min-h-[900px] lg:-mt-[860px] lg:min-h-[860px] lg:grid-cols-[1.02fr_0.98fr]">
+            <div className="max-w-[690px] [text-shadow:0_2px_9px_rgba(0,0,0,.85)]">
               <div className="inline-flex items-center gap-2 rounded-full border border-white/[0.12] bg-white/[0.025] px-4 py-2 text-xs font-bold uppercase tracking-[0.08em] text-[#96ed08]">
                 <span className="size-2 rounded-full bg-[#96ed08] shadow-[0_0_14px_rgba(150,237,8,.9)]" />
                 AkiGO Community Guidelines
@@ -213,7 +220,7 @@ export default function CommunityGuidelinesPage() {
                 <span className="text-[#96ed08]">every interaction.</span>
               </h1>
 
-              <p className="mt-6 max-w-[640px] text-lg leading-8 text-white/60">
+              <p className="mt-6 max-w-[640px] text-lg font-semibold leading-8 text-white [text-shadow:0_2px_7px_rgba(0,0,0,1)]">
                 These Guidelines explain the conduct expected from riders,
                 drivers, couriers, customers, businesses, merchants, and anyone
                 using the AkiGO platform.
@@ -230,6 +237,20 @@ export default function CommunityGuidelinesPage() {
                 </Link>
               </div>
 
+              <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4">
+                {[
+                  { icon: CarFront, label: "Riders" },
+                  { icon: UserCheck, label: "Drivers" },
+                  { icon: PackageCheck, label: "Couriers" },
+                  { icon: Store, label: "Businesses" },
+                ].map(({ icon: Icon, label }) => (
+                  <div key={label} className="rounded-2xl border border-white/20 bg-black/85 p-4 shadow-lg">
+                    <Icon className="text-[#96ed08]" size={22} />
+                    <p className="mt-3 text-sm font-bold text-white">{label}</p>
+                  </div>
+                ))}
+              </div>
+
               <div className="mt-10 flex flex-wrap gap-3 text-sm text-white/48">
                 <span className="rounded-full border border-white/[0.09] bg-white/[0.025] px-4 py-2">
                   Effective: {EFFECTIVE_DATE}
@@ -241,7 +262,7 @@ export default function CommunityGuidelinesPage() {
             </div>
 
             {/* OVERVIEW */}
-            <div className="relative mx-auto w-full max-w-[520px]">
+            <div className="hidden">
               <div className="pointer-events-none absolute inset-12 rounded-full bg-[#96ed08]/10 blur-[120px]" />
 
               <div className="relative overflow-hidden rounded-[2rem] border border-white/[0.09] bg-[linear-gradient(145deg,#0d0f0c_0%,#070707_68%)] p-7 shadow-[0_30px_100px_rgba(0,0,0,.58)]">

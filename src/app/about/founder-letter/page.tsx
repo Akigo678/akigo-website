@@ -1,8 +1,8 @@
 import Link from "next/link";
+import Image from "next/image";
 import {
   ArrowLeft,
   ArrowRight,
-  Building2,
   BriefcaseBusiness,
   Newspaper,
   Quote,
@@ -40,7 +40,7 @@ const relatedLinks = [
     icon: Newspaper,
     title: "News and Updates",
     text: "Follow important company announcements, product progress, and launch updates.",
-    href: "/news",
+    href: "/newsroom",
   },
 ];
 
@@ -51,10 +51,13 @@ export default function FounderLetterPage() {
         {/* HERO */}
         <section className="relative overflow-hidden pt-[88px]">
           <div className="relative min-h-[620px] overflow-hidden bg-[#080808] sm:min-h-[700px] lg:min-h-[780px]">
-            <img
+            <Image
               src="/images/founder/sunday-akinnusi-founder-wide.png"
               alt="Sunday A., Founder and CEO of AkiGO Technologies"
-              className="absolute inset-0 h-full w-full object-cover object-[72%_center] sm:object-[70%_center] lg:object-center"
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover object-[72%_center] sm:object-[70%_center] lg:object-center"
             />
 
             <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.94)_0%,rgba(0,0,0,0.84)_28%,rgba(0,0,0,0.48)_52%,rgba(0,0,0,0.12)_74%,transparent_100%)]" />
@@ -276,15 +279,15 @@ export default function FounderLetterPage() {
 
                   <div className="mt-16 flex flex-col gap-6 border-t border-white/[0.09] pt-10 sm:flex-row sm:items-end sm:justify-between">
                     <div>
-                      <p className="font-display text-3xl font-bold tracking-[-0.03em] text-white">
-                        Sunday A.
+                      <p className="font-display text-3xl font-bold text-white">
+                        Sunday Akinnusi
                       </p>
 
-                      <p className="mt-2 text-sm font-semibold uppercase tracking-[0.12em] text-[#96ED08]">
-                        Founder &amp; CEO
+                      <p className="mt-2 text-sm font-semibold text-[#96ed08]">
+                        Founder and CEO
                       </p>
 
-                      <p className="mt-1 text-sm text-white/45">
+                      <p className="mt-1 text-sm text-white/38">
                         AkiGO Technologies
                       </p>
                     </div>

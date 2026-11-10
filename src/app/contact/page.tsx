@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import {
   AlertTriangle,
   ArrowRight,
@@ -77,6 +77,7 @@ const inquiryOptions = [
   "Delivery support",
   "Business partnership",
   "Safety support",
+  "Privacy Request",
   "Media or press",
   "Careers",
   "Other",
@@ -118,6 +119,12 @@ export default function ContactPage() {
     "idle" | "submitting" | "success" | "error"
   >("idle");
   const [errorMessage, setErrorMessage] = useState("");
+
+  useEffect(() => {
+    if (new URLSearchParams(window.location.search).get("inquiry") === "privacy") {
+      setForm((current) => ({ ...current, inquiryType: "Privacy Request" }));
+    }
+  }, []);
 
   function updateField<K extends keyof ContactFormState>(
     field: K,
@@ -182,23 +189,30 @@ export default function ContactPage() {
       <main className="bg-[#050505]">
         {/* HERO */}
         <section className="relative overflow-hidden pt-[88px]">
+          <div className="relative h-[980px] w-full overflow-hidden sm:h-[860px] lg:h-[800px]">
+            <img
+              src="/images/contact/akigo-contact-office.png"
+              alt="AkiGO customer support representatives helping riders, drivers, and businesses from a bright modern support office"
+              className="h-full w-full object-cover object-[65%_center] lg:object-center"
+            />
+          </div>
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_73%_23%,rgba(150,237,8,0.11),transparent_34%)]" />
           <div className="pointer-events-none absolute left-[-15rem] top-16 h-[34rem] w-[34rem] rounded-full bg-[#96ed08]/[0.04] blur-[145px]" />
 
-          <div className="site-container relative z-10 grid min-h-[680px] items-center gap-14 py-14 lg:grid-cols-[1.02fr_0.98fr]">
-            <div>
-              <div className="inline-flex items-center gap-2 rounded-full border border-white/[0.12] bg-white/[0.025] px-4 py-2 text-xs font-bold uppercase tracking-[0.08em] text-[#96ed08]">
+          <div className="site-container relative z-10 -mt-[980px] grid min-h-[980px] items-center gap-14 py-12 sm:-mt-[860px] sm:min-h-[860px] lg:-mt-[800px] lg:min-h-[800px] lg:grid-cols-[1.02fr_0.98fr]">
+            <div className="max-w-[700px] text-[#080808] [text-shadow:0_2px_16px_rgba(255,255,255,.55)]">
+              <div className="inline-flex items-center gap-2 rounded-full border border-black/20 bg-black/85 px-4 py-2 text-xs font-bold uppercase tracking-[0.08em] text-[#96ed08]">
                 <span className="size-2 rounded-full bg-[#96ed08] shadow-[0_0_14px_rgba(150,237,8,.9)]" />
                 Contact AkiGO
               </div>
 
               <h1 className="font-display mt-6 max-w-[760px] text-5xl font-extrabold leading-[0.95] tracking-[-0.06em] sm:text-6xl lg:text-[5.1rem]">
-                Let’s start the right
+                We’re here to help.
                 <br />
-                <span className="text-[#96ed08]">conversation.</span>
+                <span className="text-[#518500]">Let’s talk.</span>
               </h1>
 
-              <p className="mt-6 max-w-[620px] text-lg leading-8 text-white/60">
+              <p className="mt-6 max-w-[620px] text-lg font-semibold leading-8 text-white [text-shadow:0_2px_5px_rgba(0,0,0,.95),0_0_18px_rgba(0,0,0,.7)]">
                 Contact AkiGO for support, driver questions, delivery concerns,
                 business partnerships, safety follow-up, media inquiries, and
                 general company information.
@@ -224,7 +238,7 @@ export default function ContactPage() {
                 ].map(({ icon: Icon, label }) => (
                   <div
                     key={label}
-                    className="rounded-2xl border border-white/[0.08] bg-white/[0.025] p-4 transition hover:border-[#96ed08]/25 hover:bg-white/[0.035]"
+                    className="rounded-2xl border border-white/15 bg-black/85 p-4 text-white shadow-lg transition hover:border-[#96ed08]/60 hover:bg-black/95"
                   >
                     <Icon className="text-[#96ed08]" size={21} />
                     <p className="mt-3 text-sm font-semibold text-white/72">
@@ -236,7 +250,7 @@ export default function ContactPage() {
             </div>
 
             {/* CONTACT PREVIEW */}
-            <div className="relative mx-auto w-full max-w-[540px]">
+            <div className="hidden">
               <div className="pointer-events-none absolute inset-12 rounded-full bg-[#96ed08]/10 blur-[120px]" />
 
               <div className="relative overflow-hidden rounded-[2rem] border border-white/[0.09] bg-[linear-gradient(145deg,#0d0f0c_0%,#070707_68%)] p-6 shadow-[0_30px_100px_rgba(0,0,0,.58)]">
@@ -534,6 +548,11 @@ export default function ContactPage() {
                       className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-white/35"
                     />
                   </span>
+                  {form.inquiryType === "Privacy Request" && (
+                    <p className="mt-3 text-sm leading-6 text-white/60">
+                      Tell us whether you want to access, correct, delete, or ask a question about your personal information. We may need to verify your identity before acting on a request. Do not submit passwords, authentication codes, or complete payment-card details.
+                    </p>
+                  )}
                 </label>
 
                 <label className="block sm:col-span-2">

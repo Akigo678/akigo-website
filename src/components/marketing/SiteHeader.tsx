@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, ChevronRight, Menu, X } from "lucide-react";
+import { ArrowRight, ChevronDown, ChevronRight, Menu, X } from "lucide-react";
 
 import { primaryNavigation } from "@/data/navigation";
 import { primaryButton } from "./buttons";
@@ -21,6 +21,19 @@ export function SiteHeader() {
           className="hidden items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.025] px-3 py-2 text-sm font-semibold text-white/70 lg:flex xl:gap-3"
         >
           {primaryNavigation.map((item) => (
+            item.label === "Ride" ? (
+              <div key={item.label} className="group/ride relative">
+                <Link href={item.href} className="inline-flex items-center gap-1 rounded-full px-4 py-3 transition-all duration-300 hover:bg-white/[0.07] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#96ed08] xl:px-5">
+                  Ride <ChevronDown size={14} aria-hidden="true" />
+                </Link>
+                <div className="invisible absolute left-0 top-full w-60 pt-3 opacity-0 transition group-hover/ride:visible group-hover/ride:opacity-100 group-focus-within/ride:visible group-focus-within/ride:opacity-100">
+                  <div className="rounded-2xl border border-white/15 bg-[#0b0e09] p-2 shadow-2xl">
+                    <Link href="/ride" className="block rounded-xl px-4 py-3 text-sm text-white/80 hover:bg-white/10 hover:text-white">Explore rides</Link>
+                    <Link href="/long-distance-quote" className="block rounded-xl bg-[#96ed08]/10 px-4 py-3 text-sm font-bold text-[#96ed08] hover:bg-[#96ed08]/20">Long-distance quotes <ArrowRight size={14} className="ml-1 inline" /></Link>
+                  </div>
+                </div>
+              </div>
+            ) : (
             <Link
               key={item.label}
               href={item.href}
@@ -28,6 +41,7 @@ export function SiteHeader() {
             >
               {item.label}
             </Link>
+            )
           ))}
         </nav>
 
@@ -70,6 +84,10 @@ export function SiteHeader() {
                   <ChevronRight size={17} className="text-white/30" />
                 </Link>
               ))}
+
+              <Link href="/long-distance-quote" className="mt-1 flex items-center justify-between rounded-2xl bg-[#96ed08]/10 px-4 py-3.5 font-bold text-[#96ed08] transition hover:bg-[#96ed08]/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#96ed08]">
+                Request a long-distance quote <ArrowRight size={17} />
+              </Link>
 
               <Link
                 href="/launch-markets"

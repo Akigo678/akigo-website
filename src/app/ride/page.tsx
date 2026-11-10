@@ -314,6 +314,22 @@ export default async function RidePage() {
           </div>
         </section>
 
+        {/* LONG-DISTANCE QUOTE FEATURE */}
+        <section className="border-t border-[#96ed08]/15 bg-[#0a1007] py-10 sm:py-12">
+          <div className="site-container">
+            <div className="flex flex-col items-start justify-between gap-6 rounded-[1.7rem] border border-[#96ed08]/35 bg-[radial-gradient(circle_at_95%_5%,rgba(150,237,8,.16),transparent_45%),#101b0a] p-7 sm:p-10 lg:flex-row lg:items-center">
+              <div className="max-w-2xl">
+                <p className="text-xs font-extrabold uppercase tracking-[.18em] text-[#96ed08]">Long-distance rides · Personalized quotes</p>
+                <h2 className="font-display mt-3 text-3xl font-extrabold tracking-[-.05em] sm:text-4xl">Going far? <span className="text-[#96ed08]">Let’s find a fair fare.</span></h2>
+                <p className="mt-3 text-base leading-7 text-white/70">Traveling to another city or planning a longer journey? Share your route and schedule for an AkiGO fare review, subject to driver availability.</p>
+              </div>
+              <Link href="/long-distance-quote" className={`${primaryButton} shrink-0`}>
+                Request a Long-Distance Quote <ArrowRight size={18} />
+              </Link>
+            </div>
+          </div>
+        </section>
+
         {/* RIDE OPTIONS */}
         <section className="border-t border-white/[0.06] bg-[radial-gradient(ellipse_at_50%_0%,rgba(150,237,8,.055),transparent_65%),linear-gradient(#080b07,#050505)] py-16 sm:py-20">
           <div className="site-container">
@@ -605,7 +621,7 @@ export default async function RidePage() {
               <h2 className="font-display mt-4 text-4xl font-extrabold tracking-[-0.05em] sm:text-5xl">
                 Options for everyday plans and special needs.
               </h2>
-              <p className="mx-auto mt-5 max-w-xl text-base leading-7 text-white/50">Whether you're planning ahead, traveling together, or bringing family along, explore the options that fit your trip.</p>
+              <p className="mx-auto mt-5 max-w-xl text-base leading-7 text-white/50">Whether you&apos;re planning ahead, traveling together, or bringing family along, explore the options that fit your trip.</p>
             </div>
 
             <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
@@ -669,6 +685,26 @@ export default async function RidePage() {
                 </Link>
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* LONG-DISTANCE QUOTES */}
+        <section className="border-t border-white/[0.06] bg-[#090c07] py-14 sm:py-20">
+          <div className="site-container flex flex-col gap-7 rounded-[1.75rem] border border-[#96ed08]/20 bg-[linear-gradient(115deg,#111a09,#070907)] p-8 lg:flex-row lg:items-center lg:justify-between sm:p-11">
+            <div>
+              <p className="text-xs font-extrabold uppercase tracking-[0.17em] text-[#96ed08]">Long-distance travel</p>
+              <h2 className="font-display mt-3 text-3xl font-extrabold tracking-[-0.05em] sm:text-4xl">
+                Going far? Let’s find a fair fare.
+              </h2>
+              <p className="mt-4 max-w-2xl text-base leading-7 text-white/65">
+                Planning a longer trip? Tell AkiGO about your route and request
+                a personalized quote for review. No booking or payment is made
+                when you submit a request.
+              </p>
+            </div>
+            <Link href="/long-distance-quote" className={`${primaryButton} shrink-0`}>
+              Request a long-distance quote <ArrowRight size={18} />
+            </Link>
           </div>
         </section>
 

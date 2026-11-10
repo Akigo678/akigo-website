@@ -15,7 +15,6 @@ import {
   Mail,
   MapPinned,
   PackageCheck,
-  Scale,
   ShieldCheck,
   Smartphone,
   Trash2,
@@ -116,12 +115,17 @@ export default function PrivacyPage() {
       <main className="bg-[#050505]">
         {/* HERO */}
         <section className="relative overflow-hidden pt-[88px]">
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_74%_22%,rgba(150,237,8,0.10),transparent_34%)]" />
-          <div className="pointer-events-none absolute left-[-15rem] top-16 h-[34rem] w-[34rem] rounded-full bg-[#96ed08]/[0.04] blur-[145px]" />
+          <div className="h-[960px] w-full sm:h-[850px] lg:h-[810px]">
+            <img
+              src="/images/privacy/akigo-privacy-office.png"
+              alt="AkiGO privacy team reviewing account security safeguards in a bright office"
+              className="h-full w-full object-cover object-[62%_center] lg:object-center"
+            />
+          </div>
 
-          <div className="site-container relative z-10 grid min-h-[610px] items-center gap-14 py-14 lg:grid-cols-[1.02fr_0.98fr]">
-            <div>
-              <div className="inline-flex items-center gap-2 rounded-full border border-white/[0.12] bg-white/[0.025] px-4 py-2 text-xs font-bold uppercase tracking-[0.08em] text-[#96ed08]">
+          <div className="site-container relative z-10 -mt-[960px] grid min-h-[960px] items-center py-12 sm:-mt-[850px] sm:min-h-[850px] lg:-mt-[810px] lg:min-h-[810px] lg:grid-cols-[1.02fr_0.98fr]">
+            <div className="max-w-[690px] text-black [text-shadow:0_2px_14px_rgba(255,255,255,.55)]">
+              <div className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-black/85 px-4 py-2 text-xs font-bold uppercase tracking-[0.08em] text-[#96ed08] [text-shadow:none]">
                 <span className="size-2 rounded-full bg-[#96ed08] shadow-[0_0_14px_rgba(150,237,8,.9)]" />
                 AkiGO privacy
               </div>
@@ -129,10 +133,10 @@ export default function PrivacyPage() {
               <h1 className="font-display mt-6 max-w-[760px] text-5xl font-extrabold leading-[0.95] tracking-[-0.06em] sm:text-6xl lg:text-[5.05rem]">
                 Privacy
                 <br />
-                <span className="text-[#96ed08]">Policy.</span>
+                <span className="text-[#518500]">Policy.</span>
               </h1>
 
-              <p className="mt-6 max-w-[630px] text-lg leading-8 text-white/60">
+              <p className="mt-6 max-w-[630px] text-lg font-semibold leading-8 text-black/85">
                 This Policy explains how AkiGO collects, uses, shares, retains,
                 and protects information across our websites, rider and driver
                 applications, delivery services, business tools, payments,
@@ -150,63 +154,29 @@ export default function PrivacyPage() {
                 </Link>
               </div>
 
-              <div className="mt-10 flex flex-wrap gap-3 text-sm text-white/48">
-                <span className="rounded-full border border-white/[0.09] bg-white/[0.025] px-4 py-2">
+              <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 [text-shadow:none]">
+                {[
+                  { icon: Users, label: "Account data" },
+                  { icon: MapPinned, label: "Location data" },
+                  { icon: CreditCard, label: "Payment data" },
+                  { icon: Smartphone, label: "Device data" },
+                  { icon: ShieldCheck, label: "Safety data" },
+                  { icon: Building2, label: "Business data" },
+                ].map(({ icon: Icon, label }) => (
+                  <div key={label} className="flex items-center gap-3 rounded-2xl border border-white/20 bg-black/85 p-3 text-white shadow-lg">
+                    <Icon className="shrink-0 text-[#96ed08]" size={21} />
+                    <span className="text-sm font-bold">{label}</span>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-8 flex flex-wrap gap-3 text-sm text-white [text-shadow:none]">
+                <span className="rounded-full border border-white/20 bg-black/80 px-4 py-2">
                   Effective: {EFFECTIVE_DATE}
                 </span>
-                <span className="rounded-full border border-white/[0.09] bg-white/[0.025] px-4 py-2">
+                <span className="rounded-full border border-white/20 bg-black/80 px-4 py-2">
                   Last updated: {LAST_UPDATED}
                 </span>
-              </div>
-            </div>
-
-            {/* PRIVACY OVERVIEW */}
-            <div className="relative mx-auto w-full max-w-[520px]">
-              <div className="pointer-events-none absolute inset-12 rounded-full bg-[#96ed08]/10 blur-[120px]" />
-
-              <div className="relative overflow-hidden rounded-[2rem] border border-white/[0.09] bg-[linear-gradient(145deg,#0d0f0c_0%,#070707_68%)] p-7 shadow-[0_30px_100px_rgba(0,0,0,.58)]">
-                <div className="pointer-events-none absolute right-[-6rem] top-[-6rem] size-72 rounded-full bg-[#96ed08]/[0.08] blur-[100px]" />
-
-                <div className="relative">
-                  <div className="flex items-start justify-between gap-4">
-                    <div>
-                      <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-[#96ed08]">
-                        Privacy overview
-                      </p>
-                      <h2 className="font-display mt-2 text-3xl font-bold">
-                        Information should be used responsibly.
-                      </h2>
-                    </div>
-
-                    <div className="grid size-13 shrink-0 place-items-center rounded-full bg-[#96ed08] text-black">
-                      <LockKeyhole size={25} />
-                    </div>
-                  </div>
-
-                  <div className="mt-6 grid gap-3 sm:grid-cols-2">
-                    {[
-                      { icon: Users, label: "Account data" },
-                      { icon: MapPinned, label: "Location data" },
-                      { icon: CreditCard, label: "Payment data" },
-                      { icon: Smartphone, label: "Device data" },
-                      { icon: ShieldCheck, label: "Safety data" },
-                      { icon: Building2, label: "Business data" },
-                    ].map(({ icon: Icon, label }) => (
-                      <div
-                        key={label}
-                        className="flex items-center gap-3 rounded-2xl border border-white/[0.08] bg-black/50 p-4"
-                      >
-                        <div className="grid size-10 place-items-center rounded-xl bg-[#96ed08]/10 text-[#96ed08]">
-                          <Icon size={20} />
-                        </div>
-                        <span className="font-semibold text-white/68">
-                          {label}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-
-                </div>
               </div>
             </div>
           </div>
@@ -247,18 +217,6 @@ export default function PrivacyPage() {
                 </nav>
               </div>
 
-              <div className="mt-4 rounded-2xl border border-white/[0.08] bg-white/[0.025] p-4">
-                <div className="flex items-start gap-3">
-                  <Scale
-                    size={18}
-                    className="mt-0.5 shrink-0 text-[#96ed08]"
-                  />
-                  <p className="text-xs leading-5 text-white/42">
-                    Privacy rights vary by location. AkiGO should confirm which
-                    state, federal, and international laws apply before launch.
-                  </p>
-                </div>
-              </div>
             </aside>
 
             <article className="rounded-[1.8rem] border border-white/[0.09] bg-[#090909] px-6 py-8 sm:px-10 sm:py-10">
@@ -1079,13 +1037,13 @@ export default function PrivacyPage() {
                   </p>
                 </div>
 
-                <a
-                  href={`mailto:${CONTACT_EMAIL}?subject=AkiGO%20Privacy%20Request`}
+                <Link
+                  href="/contact?inquiry=privacy#contact-form"
                   className={`${primaryButton} shrink-0`}
                 >
                   Submit a privacy request
                   <ArrowRight size={18} />
-                </a>
+                </Link>
               </div>
             </div>
           </div>

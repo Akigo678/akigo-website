@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import {
   ArrowRight,
   Building2,
@@ -8,11 +9,8 @@ import {
   Handshake,
   HeartHandshake,
   Lightbulb,
-  MapPinned,
   PackageCheck,
-  Route,
   ShieldCheck,
-  Sparkles,
   Store,
   Target,
   Users,
@@ -122,183 +120,270 @@ const roadmap = [
   },
 ];
 
+const companyDetails = [
+  { label: "Company", value: "AkiGO Technologies LLC" },
+  { label: "Primary market", value: "Orlando, Florida" },
+  { label: "Focus", value: "Rideshare, delivery, and local business mobility" },
+];
+
+const whyChooseAkigo = [
+  {
+    icon: CarFront,
+    title: "Rider value",
+    text: "Ride choices with clear information so customers can compare options and make informed decisions.",
+  },
+  {
+    icon: Users,
+    title: "Driver opportunity",
+    text: "Tools designed around flexible work, earnings visibility, and fair treatment of drivers.",
+  },
+  {
+    icon: PackageCheck,
+    title: "Convenient delivery",
+    text: "One platform designed to coordinate local food, package, and everyday deliveries.",
+  },
+  {
+    icon: Store,
+    title: "Local business support",
+    text: "Practical transportation and delivery coordination for restaurants, merchants, and other organizations.",
+  },
+];
+
 export default function AboutPage() {
   return (
     <MarketingLayout>
       <main className="bg-[#050505]">
-        {/* HERO */}
-        <section className="relative overflow-hidden pt-[88px]">
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_73%_23%,rgba(150,237,8,0.10),transparent_34%)]" />
-          <div className="pointer-events-none absolute left-[-15rem] top-16 h-[34rem] w-[34rem] rounded-full bg-[#96ed08]/[0.04] blur-[145px]" />
+        {/* The approved wide-screen artwork is shown at its original proportions.
+            The navigation remains live in MarketingLayout; interactive hotspots
+            preserve the hero's two calls to action. */}
+        <section className="hidden pt-[88px] xl:block" aria-label="About AkiGO introduction">
+          <div className="relative aspect-[1560/913] w-full overflow-hidden bg-[#050505] [container-type:inline-size]">
+            <Image
+              src="/images/about/about-reference.png"
+              alt=""
+              width={1560}
+              height={1008}
+              priority
+              unoptimized
+              sizes="100vw"
+              className="pointer-events-none absolute left-0 top-[-10.405%] h-auto w-full max-w-none select-none"
+            />
+            {/* Cover the rasterized copy; all visible copy below is real HTML text. */}
+            <div className="pointer-events-none absolute inset-y-0 left-0 w-[43%] bg-[linear-gradient(90deg,#030904_0%,#030904_82%,rgba(3,9,4,.95)_87%,transparent_100%)]" />
 
-          <div className="site-container relative z-10 grid min-h-[700px] items-center gap-14 py-14 lg:grid-cols-[1.02fr_0.98fr]">
-            <div>
-              <div className="inline-flex items-center gap-2 rounded-full border border-white/[0.12] bg-white/[0.025] px-4 py-2 text-xs font-bold uppercase tracking-[0.08em] text-[#96ed08]">
-                <span className="size-2 rounded-full bg-[#96ed08] shadow-[0_0_14px_rgba(150,237,8,.9)]" />
-                About AkiGO
-              </div>
+            <div className="absolute left-[3.9%] top-[6.2%] flex items-center gap-[1cqw] text-[1.1cqw] font-bold uppercase tracking-[.26em] text-[#96ed08]">
+              <span className="size-[.8cqw] rounded-full bg-[#96ed08]" />
+              About AkiGO
+            </div>
+            <h1 className="font-display absolute left-[3.9%] top-[11.8%] text-[4.55cqw] font-extrabold leading-[1.07] tracking-[-.055em] text-white">
+              Moving people.
+              <br />
+              Connecting
+              <br />
+              <span className="text-[#96ed08]">communities.</span>
+            </h1>
+            <p className="absolute left-[4%] top-[38.5%] max-w-[35%] text-[1.53cqw] leading-[1.38] text-white/85">
+              AkiGO brings rides, deliveries, drivers, and local businesses together through one connected platform.
+            </p>
+            <div className="absolute left-[3.9%] top-[52.9%] flex h-[6.4%] items-stretch gap-[1cqw] text-[1.15cqw] font-bold">
+              <Link href="/ride" className="flex w-[14.75cqw] items-center justify-center rounded-full bg-[#96ed08] text-black transition-colors hover:bg-[#b1ff32] focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-2 focus-visible:outline-white">
+                Explore AkiGO
+              </Link>
+              <Link href="/partners" className="flex w-[15.65cqw] items-center justify-center rounded-full border border-white bg-black/35 text-white transition-colors hover:bg-white/15 focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-2 focus-visible:outline-[#96ed08]">
+                Partner with us
+              </Link>
+            </div>
 
-              <h1 className="font-display mt-6 max-w-[770px] text-5xl font-extrabold leading-[0.95] tracking-[-0.06em] sm:text-6xl lg:text-[5.1rem]">
-                Building a more connected way to
-                <br />
-                <span className="text-[#96ed08]">move locally.</span>
-              </h1>
-
-              <p className="mt-6 max-w-[620px] text-lg leading-8 text-white/60">
-                AkiGO Technologies is building one connected platform for rides,
-                driver opportunities, local delivery, business logistics, and
-                safety-focused support.
-              </p>
-
-              <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-                <Link href="/ride" className={primaryButton}>
-                  Explore AkiGO
-                  <ArrowRight size={18} />
-                </Link>
-
-                <a
-                  href="mailto:akigo678@gmail.com?subject=AkiGO%20Partnership"
-                  className={secondaryButton}
-                >
-                  Contact partnerships
-                </a>
-              </div>
-
-              <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-4">
+            <div className="absolute inset-x-0 bottom-0 h-[27.7%] bg-[#030904] px-[3.9%]">
+              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_44%_100%,rgba(82,137,8,.18),transparent_55%)]" />
+              <div className="relative h-px bg-white/35" />
+              <div className="relative grid grid-cols-4 gap-[3cqw] pt-[3.1cqw]">
                 {[
-                  { icon: Route, label: "Connected mobility" },
-                  { icon: PackageCheck, label: "Local delivery" },
-                  { icon: Store, label: "Business tools" },
-                  { icon: ShieldCheck, label: "Safety systems" },
-                ].map(({ icon: Icon, label }) => (
-                  <div
-                    key={label}
-                    className="rounded-2xl border border-white/[0.08] bg-white/[0.025] p-4 transition hover:border-[#96ed08]/25 hover:bg-white/[0.035]"
-                  >
-                    <Icon className="text-[#96ed08]" size={21} />
-                    <p className="mt-3 text-sm font-semibold text-white/72">
-                      {label}
-                    </p>
+                  { icon: CarFront, title: "Rides", text: "Reliable, convenient rides across your city." },
+                  { icon: Users, title: "Driver opportunities", text: "Flexible earning opportunities with the support you deserve." },
+                  { icon: PackageCheck, title: "Local delivery", text: "Fast, dependable delivery for people and businesses nearby." },
+                  { icon: Store, title: "Business solutions", text: "Mobility and delivery tools to help local businesses grow." },
+                ].map(({ icon: Icon, title, text }) => (
+                  <div key={title} className="min-w-0 border-r border-white/20 pr-[2cqw] last:border-r-0">
+                    <Icon className="h-[2.8cqw] w-[2.8cqw] text-[#96ed08]" strokeWidth={1.8} />
+                    <h2 className="mt-[.8cqw] text-[1.7cqw] font-bold leading-tight text-white">{title}</h2>
+                    <p className="mt-[.6cqw] max-w-[21cqw] text-[1.28cqw] leading-[1.35] text-white/80">{text}</p>
                   </div>
                 ))}
               </div>
             </div>
+          </div>
+        </section>
+        {/* HERO */}
+        <section className="relative overflow-hidden pt-[88px] xl:hidden">
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_72%_35%,rgba(150,237,8,0.09),transparent_42%)]" />
+          <div className="relative mx-auto max-w-[1860px] px-6 pb-14 pt-8 sm:px-10">
+            <div className="relative">
+              <div className="pointer-events-none relative mb-10 aspect-[16/10] overflow-hidden rounded-[2rem] sm:aspect-[16/8]">
+                <Image
+                  src="/images/about/akigo-about-hero.png"
+                  alt="An AkiGO driver welcoming a passenger beside a black SUV in Orlando"
+                  fill
+                  priority
+                  sizes="(max-width: 1024px) 100vw, 70vw"
+                  className="object-cover object-[55%_center]"
+                />
+                <div className="absolute inset-0 hidden bg-[linear-gradient(90deg,rgba(5,5,5,.45)_0%,transparent_33%)] lg:block" />
+                {/* Restrained green glass ribbon, following the image's left edge. */}
+                <svg
+                  aria-hidden="true"
+                  className="absolute inset-y-0 left-0 hidden h-full w-[24%] lg:block"
+                  viewBox="0 0 280 700"
+                  preserveAspectRatio="none"
+                >
+                  <defs>
+                    <linearGradient id="aboutGreenCurve" x1="0" x2="1" y1="0" y2="0">
+                      <stop offset="0" stopColor="#96ED08" stopOpacity="0.04" />
+                      <stop offset="0.48" stopColor="#96ED08" stopOpacity="0.13" />
+                      <stop offset="1" stopColor="#96ED08" stopOpacity="0" />
+                    </linearGradient>
+                    <linearGradient id="aboutGreenSweep" x1="0" x2="1" y1="0" y2="0">
+                      <stop offset="0" stopColor="#96ED08" stopOpacity="0.22" />
+                      <stop offset="0.65" stopColor="#96ED08" stopOpacity="0.68" />
+                      <stop offset="1" stopColor="#96ED08" stopOpacity="0.76" />
+                    </linearGradient>
+                  </defs>
+                  <path
+                    d="M 116 0 C 35 42 47 153 16 260 C -15 366 1 443 71 509 C 45 399 86 311 124 231 C 161 145 146 65 207 0 Z"
+                    fill="url(#aboutGreenCurve)"
+                  />
+                  <path
+                    d="M 0 659 C 94 628 180 610 280 594 L 280 614 C 170 633 92 657 0 681 Z"
+                    fill="url(#aboutGreenSweep)"
+                  />
+                </svg>
+              </div>
 
-            {/* COMPANY PREVIEW */}
-            <div className="relative mx-auto w-full max-w-[540px]">
-              <div className="pointer-events-none absolute inset-12 rounded-full bg-[#96ed08]/10 blur-[120px]" />
+              <div className="relative z-10">
+                <p className="flex items-center gap-3 text-xs font-extrabold uppercase tracking-[0.25em] text-[#96ed08] sm:text-sm">
+                  <span className="size-2.5 shrink-0 rounded-full bg-[#96ed08] shadow-[0_0_18px_rgba(150,237,8,.6)]" />
+                  About AkiGO
+                </p>
+                <h1 className="font-display mt-8 max-w-[660px] text-[clamp(2.8rem,4vw,4.9rem)] font-extrabold leading-[1.03] tracking-[-0.06em] text-white">
+                  Moving people.
+                  <br />
+                  Connecting
+                  <br />
+                  <span className="text-[#96ed08]">communities.</span>
+                </h1>
+                <p className="mt-7 max-w-[31rem] text-base leading-8 text-white/80 sm:text-lg">
+                  AkiGO brings rides, deliveries, drivers, and local businesses
+                  together through one connected platform.
+                </p>
+                <div className="mt-8 flex flex-wrap gap-4">
+                  <Link href="/ride" className={primaryButton}>
+                    Explore AkiGO <ArrowRight size={18} />
+                  </Link>
+                  <Link href="/partners" className={secondaryButton}>
+                    Partner with us
+                  </Link>
+                </div>
+              </div>
+            </div>
 
-              <div className="relative overflow-hidden rounded-[2rem] border border-white/[0.09] bg-[linear-gradient(145deg,#0d0f0c_0%,#070707_68%)] p-7 shadow-[0_30px_100px_rgba(0,0,0,.58)]">
-                <div className="pointer-events-none absolute right-[-6rem] top-[-6rem] size-72 rounded-full bg-[#96ed08]/[0.08] blur-[100px]" />
+            <div className="mt-6 grid gap-8 border-t border-white/20 pt-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
+              {[
+                { icon: CarFront, title: "Rides", text: "Reliable, convenient rides across your city." },
+                { icon: Users, title: "Driver opportunities", text: "Flexible earning opportunities with the support you deserve." },
+                { icon: PackageCheck, title: "Local delivery", text: "Fast, dependable delivery for people and businesses nearby." },
+                { icon: Store, title: "Business solutions", text: "Mobility and delivery tools to help local businesses grow." },
+              ].map(({ icon: Icon, title, text }) => (
+                <div key={title} className="border-white/15 lg:border-r lg:pr-5 last:border-r-0">
+                  <Icon className="text-[#96ed08]" size={30} strokeWidth={1.8} />
+                  <h2 className="mt-4 text-lg font-bold text-white">{title}</h2>
+                  <p className="mt-2 max-w-xs text-sm leading-6 text-white/60">{text}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
 
-                <div className="relative">
-                  <div className="flex items-start justify-between gap-4">
-                    <div>
-                      <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-[#96ed08]">
-                        AkiGO Technologies
-                      </p>
-                      <h2 className="font-display mt-2 text-3xl font-bold">
-                        One platform. Multiple local experiences.
-                      </h2>
+        {/* WHY AKIGO */}
+        <section className="relative isolate overflow-hidden border-t border-white/[0.06] bg-[#020503] py-24 sm:py-28 lg:py-36">
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_3%_3%,rgba(150,237,8,.09),transparent_32%),radial-gradient(ellipse_at_96%_92%,rgba(150,237,8,.12),transparent_33%)]" />
+          <svg aria-hidden="true" className="pointer-events-none absolute -bottom-9 -left-10 hidden h-[45%] w-[60%] opacity-80 lg:block" viewBox="0 0 900 330" fill="none" preserveAspectRatio="none">
+            <path d="M-20 296 C145 296 144 252 219 252 H294 C361 252 348 205 429 205 H520 C586 205 551 148 635 148 H940" stroke="#96ed08" strokeOpacity=".12" strokeWidth="2" />
+            <path d="M-20 275 C135 275 142 225 231 225 H301 C362 225 350 176 439 176 H514 C589 176 574 126 646 126 H940" stroke="#96ed08" strokeOpacity=".88" strokeWidth="3" />
+            <circle cx="363" cy="175" r="19" fill="#101a06" stroke="#96ed08" strokeWidth="2" />
+            <path d="m354 174 16-7-5 17-4-7-7-3Z" fill="#d2ff83" />
+            <path d="M0 312 250 312 320 275 500 275 610 320 860 320" stroke="#96ed08" strokeOpacity=".09" strokeWidth="2" />
+          </svg>
+          <svg aria-hidden="true" className="pointer-events-none absolute right-0 top-0 hidden h-[34%] w-[42%] lg:block" viewBox="0 0 650 230" fill="none" preserveAspectRatio="none">
+            <path d="M-20 15 110 100 H330 C396 100 360 48 428 48 H620" stroke="#96ed08" strokeOpacity=".15" strokeWidth="2" />
+            <path d="M-20 0 125 82 H330 C396 82 364 28 428 28 H620" stroke="#96ed08" strokeOpacity=".76" strokeWidth="3" />
+            <path d="M620 26a15 15 0 0 0-30 0c0 11 15 28 15 28s15-17 15-28Z" fill="#96ed08" />
+            <circle cx="605" cy="25" r="5" fill="#142104" />
+          </svg>
+
+          <div className="site-container relative grid items-center gap-14 lg:grid-cols-[1fr_1.04fr] lg:gap-16 xl:gap-24">
+            <div className="relative z-10 max-w-[670px]">
+              <p className="text-sm font-extrabold uppercase tracking-[0.25em] text-[#96ed08]">Why AkiGO</p>
+              <h2 className="font-display mt-8 text-[clamp(2.6rem,4.3vw,4.7rem)] font-extrabold leading-[1.08] tracking-[-0.055em] text-white">
+                Local movement should feel <span className="text-[#96ed08]">more connected.</span>
+              </h2>
+              <p className="mt-9 max-w-[590px] text-lg leading-[1.6] text-white/85 sm:text-xl">
+                Rides, deliveries, drivers, and local businesses should work together, not in separate systems.
+              </p>
+              <p className="mt-7 max-w-[590px] text-lg leading-[1.6] text-white/85 sm:text-xl">
+                AkiGO is building one connected platform to make everyday movement simpler, clearer, and more dependable.
+              </p>
+            </div>
+
+            <div className="relative overflow-hidden rounded-[2rem] border border-[#96ed08]/30 bg-[linear-gradient(135deg,rgba(20,32,10,.87)_0%,#080b07_40%,rgba(21,36,10,.88)_100%)] p-6 shadow-[0_20px_90px_rgba(0,0,0,.35)] sm:p-9">
+              <div className="pointer-events-none absolute -right-28 -top-36 size-80 rounded-full bg-[#96ed08]/10 blur-[90px]" />
+              <div className="relative">
+                <p className="text-sm font-extrabold uppercase tracking-[0.24em] text-[#96ed08] sm:text-base">The opportunity</p>
+                <div className="mt-7 space-y-3">
+                  {[
+                    "Clear choices for riders",
+                    "Flexible tools for drivers",
+                    "Everyday local delivery",
+                    "Smarter solutions for businesses",
+                    "Stronger community connections",
+                  ].map((item, index) => (
+                    <div key={item} className="flex min-h-[75px] items-center gap-5 rounded-[1.2rem] border border-white/20 bg-black/55 px-5 py-4 sm:gap-6 sm:px-6">
+                      <span className="grid size-11 shrink-0 place-items-center rounded-full border border-[#96ed08] text-base font-extrabold text-[#96ed08]">
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+                      <span className="h-9 w-px shrink-0 bg-[#96ed08]/35" />
+                      <p className="text-base font-bold leading-snug text-white sm:text-lg">{item}</p>
                     </div>
-
-                    <div className="grid size-13 shrink-0 place-items-center rounded-full bg-[#96ed08] text-black">
-                      <Sparkles size={24} />
-                    </div>
-                  </div>
-
-                  <div className="mt-7 grid gap-3 sm:grid-cols-2">
-                    {[
-                      { icon: CarFront, title: "Rider", text: "Trips and mobility" },
-                      { icon: Users, title: "Driver", text: "Flexible earning tools" },
-                      { icon: PackageCheck, title: "Delivery", text: "Local logistics" },
-                      { icon: Building2, title: "Business", text: "Operational support" },
-                    ].map(({ icon: Icon, title, text }) => (
-                      <div
-                        key={title}
-                        className="rounded-2xl border border-white/[0.08] bg-black/50 p-5"
-                      >
-                        <Icon className="text-[#96ed08]" size={22} />
-                        <h3 className="mt-4 font-bold text-white">{title}</h3>
-                        <p className="mt-2 text-sm text-white/42">{text}</p>
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="mt-4 rounded-2xl border border-[#96ed08]/18 bg-[#96ed08]/[0.05] p-4">
-                    <div className="flex items-start gap-3">
-                      <MapPinned
-                        className="mt-0.5 shrink-0 text-[#96ed08]"
-                        size={19}
-                      />
-                      <p className="text-sm leading-6 text-white/58">
-                        AkiGO is being prepared for responsible launch and market
-                        expansion. Availability will depend on product,
-                        operational, and local readiness.
-                      </p>
-                    </div>
-                  </div>
+                  ))}
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* WHY AKIGO */}
-        <section className="border-t border-white/[0.06] py-20 sm:py-24">
-          <div className="site-container grid items-center gap-14 lg:grid-cols-[0.92fr_1.08fr]">
-            <div>
-              <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#96ed08]">
-                Why AkiGO
-              </p>
-
-              <h2 className="font-display mt-4 max-w-xl text-4xl font-extrabold tracking-[-0.05em] sm:text-5xl">
-                Local movement should feel more connected.
-              </h2>
-
-              <p className="mt-5 max-w-xl text-base leading-7 text-white/55">
-                Transportation, delivery, driver tools, and local-business
-                logistics are often separated into disconnected experiences.
-                AkiGO is being built to bring those needs together through one
-                coordinated platform.
-              </p>
-
-              <p className="mt-4 max-w-xl text-base leading-7 text-white/55">
-                The goal is not simply to add another app. It is to create a
-                clearer, more responsible system for people and organizations
-                that need to move locally.
-              </p>
-            </div>
-
-            <div className="relative overflow-hidden rounded-[2rem] border border-white/[0.09] bg-[#0b0b0b] p-7">
-              <div className="pointer-events-none absolute right-[-7rem] top-[-7rem] size-72 rounded-full bg-[#96ed08]/[0.08] blur-[110px]" />
-
-              <div className="relative">
-                <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-[#96ed08]">
-                  The opportunity
+        {/* COMPANY PROFILE */}
+        <section className="border-t border-white/[0.06] bg-[#080a06] py-16 sm:py-20">
+          <div className="site-container">
+            <div className="grid gap-9 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
+              <div>
+                <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#96ed08]">Who we are</p>
+                <h2 className="font-display mt-4 text-4xl font-extrabold tracking-[-0.05em] sm:text-5xl">
+                  Rooted in Orlando. Built for local communities.
+                </h2>
+                <p className="mt-5 max-w-xl leading-7 text-white/65">
+                  AkiGO Technologies LLC is developing a connected rideshare and
+                  delivery platform, starting with a focus on Orlando, Florida.
+                  Our goal is to make transportation and local delivery easier
+                  to navigate for individuals, drivers, and businesses.
                 </p>
-
-                <div className="mt-6 space-y-3">
-                  {[
-                    "Riders need clear choices and trip visibility",
-                    "Drivers need flexible tools and clear trip information",
-                    "Customers need practical local delivery",
-                    "Businesses need organized mobility and logistics",
-                    "Communities need responsible platform operations",
-                  ].map((item, index) => (
-                    <div
-                      key={item}
-                      className="flex items-center gap-4 rounded-2xl border border-white/[0.08] bg-black/45 p-4"
-                    >
-                      <div className="grid size-9 shrink-0 place-items-center rounded-full border border-[#96ed08]/30 text-sm font-extrabold text-[#96ed08]">
-                        {index + 1}
-                      </div>
-
-                      <p className="font-semibold text-white/72">{item}</p>
-                    </div>
-                  ))}
-                </div>
               </div>
+              <dl className="grid gap-4 sm:grid-cols-3">
+                {companyDetails.map(({ label, value }) => (
+                  <div key={label} className="rounded-2xl border border-white/10 bg-black/35 p-5">
+                    <dt className="text-xs font-extrabold uppercase tracking-[0.12em] text-[#96ed08]">{label}</dt>
+                    <dd className="mt-3 text-base font-bold leading-6 text-white">{value}</dd>
+                  </div>
+                ))}
+              </dl>
             </div>
           </div>
         </section>
@@ -356,35 +441,59 @@ export default function AboutPage() {
           </div>
         </section>
 
+        {/* WHAT MAKES AKIGO DIFFERENT */}
+        <section className="border-t border-white/[0.06] py-20 sm:py-24">
+          <div className="site-container">
+            <div className="max-w-3xl">
+              <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#96ed08]">The AkiGO approach</p>
+              <h2 className="font-display mt-4 text-4xl font-extrabold tracking-[-0.05em] sm:text-5xl">
+                Designed around people who move our communities.
+              </h2>
+              <p className="mt-5 max-w-2xl leading-7 text-white/60">
+                We are building toward affordable ride choices, fair driver
+                opportunities, convenient delivery, and practical partnerships.
+                Specific services depend on market availability.
+              </p>
+            </div>
+            <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+              {whyChooseAkigo.map(({ icon: Icon, title, text }) => (
+                <article key={title} className="rounded-[1.5rem] border border-white/10 bg-[#0b0d09] p-6">
+                  <Icon size={27} className="text-[#96ed08]" />
+                  <h3 className="mt-5 text-xl font-bold text-white">{title}</h3>
+                  <p className="mt-3 text-sm leading-7 text-white/60">{text}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* FOUNDER LETTER */}
         <section className="border-t border-white/[0.06] py-20 sm:py-24">
-          <div className="relative min-h-[640px] overflow-hidden bg-[#080808] sm:min-h-[700px] lg:min-h-[760px]">
-            <img
+          <div className="relative min-h-[560px] overflow-hidden bg-[#080808] sm:min-h-[620px] lg:min-h-[680px]">
+            <Image
               src="/images/founder/sunday-akinnusi-founder-wide.png"
               alt="Sunday Akinnusi, Founder of AkiGO Technologies"
-              className="absolute inset-0 h-full w-full object-cover object-[73%_center] sm:object-[72%_center] lg:object-[74%_center]"
+              fill
+              sizes="100vw"
+              className="object-cover object-[68%_center] sm:object-[64%_center] lg:object-center"
             />
 
-            {/* Darken the text side while keeping the founder portrait bright. */}
-            <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.90)_0%,rgba(0,0,0,0.82)_24%,rgba(0,0,0,0.48)_46%,rgba(0,0,0,0.14)_66%,transparent_100%)]" />
-            <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.10)_0%,rgba(0,0,0,0.00)_52%,rgba(0,0,0,0.42)_100%)]" />
+            <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.97)_0%,rgba(0,0,0,0.92)_30%,rgba(0,0,0,0.58)_52%,rgba(0,0,0,0.08)_78%,transparent_100%)]" />
+            <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.08)_0%,rgba(0,0,0,0.02)_58%,rgba(0,0,0,0.48)_100%)]" />
 
-            {/* Add a stronger mobile overlay so text stays readable on narrow screens. */}
-            <div className="pointer-events-none absolute inset-0 bg-black/30 sm:hidden" />
-
-            <div className="site-container relative z-10 flex min-h-[640px] items-center py-20 sm:min-h-[700px] sm:py-24 lg:min-h-[760px] lg:py-28">
-              <div className="max-w-[700px] pt-8 sm:pt-12 lg:pt-20">
-                <p className="text-xs font-extrabold uppercase tracking-[0.24em] text-[#96ed08] sm:text-sm">
+            <div className="site-container relative z-10 flex min-h-[560px] items-center py-16 sm:min-h-[620px] sm:py-20 lg:min-h-[680px]">
+              <div className="max-w-[650px]">
+                <p className="text-xs font-extrabold uppercase tracking-[0.22em] text-[#96ed08]">
                   From the Founder
                 </p>
 
-                <h2 className="font-display mt-6 text-5xl font-extrabold leading-[0.92] tracking-[-0.06em] text-white sm:text-7xl lg:text-[6rem]">
+                <h2 className="font-display mt-5 text-5xl font-extrabold leading-[0.94] tracking-[-0.055em] text-white sm:text-6xl lg:text-[5rem]">
                   A Letter from
                   <br />
                   our <span className="text-[#96ed08]">Founder</span>
                 </h2>
 
-                <p className="mt-10 max-w-[620px] text-base leading-7 text-white/75 sm:text-lg sm:leading-8 lg:text-xl lg:leading-9">
+                <p className="mt-7 max-w-[590px] text-base leading-7 text-white/68 sm:text-lg sm:leading-8">
                   Learn why AkiGO was created, the vision behind the company,
                   and our commitment to building one connected platform for
                   transportation, delivery, businesses, drivers, and communities.
@@ -392,10 +501,10 @@ export default function AboutPage() {
 
                 <Link
                   href="/about/founder-letter"
-                  className={`${primaryButton} mt-10 inline-flex px-9 py-4 text-base`}
+                  className={`${primaryButton} mt-9 inline-flex`}
                 >
                   Read Founder&apos;s Letter
-                  <ArrowRight size={19} />
+                  <ArrowRight size={18} />
                 </Link>
               </div>
             </div>
@@ -627,13 +736,10 @@ export default function AboutPage() {
                   </p>
                 </div>
 
-                <a
-                  href="mailto:akigo678@gmail.com?subject=AkiGO%20Partnership"
-                  className={`${primaryButton} shrink-0`}
-                >
+                <Link href="/contact" className={`${primaryButton} shrink-0`}>
                   Contact AkiGO
                   <ArrowRight size={18} />
-                </a>
+                </Link>
               </div>
             </div>
           </div>

@@ -65,8 +65,7 @@ export default function DeleteAccountPage() {
       <main className="page">
         {/* HERO */}
         <section className="hero">
-          <div className="heroGlow" />
-          <div className="heroGrid" />
+          <div className="heroPhoto" role="img" aria-label="AkiGO support professionals helping protect customer account data" />
 
           <div className="heroInner">
             <div className="heroCopy">
@@ -324,7 +323,7 @@ export default function DeleteAccountPage() {
             overflow: hidden;
             border-bottom: 1px solid rgba(255,255,255,.05);
             background:
-              linear-gradient(90deg, #060606 0%, #000000 52%, #000000 100%);
+              linear-gradient(90deg, #020202 0%, #000000 52%, #000000 100%);
           }
 
           .heroGlow {
@@ -1058,6 +1057,232 @@ export default function DeleteAccountPage() {
               grid-column: auto;
               justify-self: stretch;
             }
+          }
+
+          /* Refreshed full-page AkiGO design */
+          .page {
+            background: #070907;
+            font-family: inherit;
+          }
+
+          .hero {
+            min-height: 690px;
+            background: #f2f1eb;
+          }
+
+          .heroPhoto {
+            position: absolute;
+            inset: 0;
+            background-image: url('/images/delete-account/akigo-account-privacy-team.png');
+            background-size: cover;
+            background-position: 58% center;
+          }
+
+          .heroInner {
+            width: min(1400px, calc(100% - 64px));
+            min-height: 690px;
+            padding: 72px 0 64px;
+            grid-template-columns: minmax(0, 1.05fr) minmax(340px, .95fr);
+            gap: 56px;
+          }
+
+          .heroCopy { max-width: 660px; }
+
+          .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            width: fit-content;
+            padding: 11px 17px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(255,255,255,.25);
+            border-radius: 100px;
+            background: rgba(0,0,0,.88);
+            color: #96ed08;
+            font-size: 12px;
+            letter-spacing: 2px;
+          }
+
+          .hero h1 {
+            max-width: 630px;
+            color: #090c07;
+            font-size: clamp(53px, 5.5vw, 87px);
+            font-weight: 900;
+            line-height: .99;
+            letter-spacing: -.065em;
+            text-shadow: 0 2px 15px rgba(255,255,255,.55);
+          }
+
+          .hero h1 span { color: #518500; }
+
+          .heroDescription {
+            max-width: 565px;
+            color: #20251b;
+            font-size: 19px;
+            font-weight: 650;
+            line-height: 1.65;
+            text-shadow: 0 1px 13px rgba(255,255,255,.9);
+          }
+
+          .tagline {
+            display: inline-block;
+            margin-top: 28px;
+            padding: 13px 18px;
+            border-radius: 12px;
+            background: rgba(0,0,0,.84);
+            color: #a4ff1b;
+            font-weight: 800;
+            letter-spacing: 2px;
+          }
+
+          .trustList {
+            justify-self: end;
+            align-self: end;
+            width: min(100%, 430px);
+            gap: 10px;
+          }
+
+          .trustItem {
+            grid-template-columns: 48px 1fr;
+            gap: 14px;
+            padding: 14px 16px;
+            border: 1px solid rgba(255,255,255,.16);
+            border-radius: 18px;
+            background: rgba(5,7,5,.87);
+            box-shadow: 0 14px 38px rgba(0,0,0,.19);
+            backdrop-filter: blur(13px);
+          }
+
+          .trustIcon {
+            width: 48px;
+            height: 48px;
+            border: 0;
+            border-radius: 13px;
+            color: #96ed08;
+            background: rgba(150,237,8,.11);
+          }
+
+          .trustItem h3 { font-size: 15px; }
+          .trustItem p { font-size: 12px; color: rgba(255,255,255,.73); }
+
+          .content {
+            width: min(1400px, calc(100% - 64px));
+            padding: 42px 0 100px;
+          }
+
+          .warning {
+            border-radius: 23px;
+            padding: 28px 32px;
+            background: linear-gradient(110deg, #341313, #170b0b);
+            border-color: rgba(255,84,91,.6);
+          }
+
+          .warning h2 { font-size: 23px; }
+          .warning p { font-size: 15px; }
+
+          .processCard, .requestCard, .infoCard, .helpCard {
+            background: linear-gradient(145deg, #121712, #0c0f0c);
+            border: 1px solid rgba(150,237,8,.17);
+            box-shadow: 0 22px 50px rgba(0,0,0,.19);
+          }
+
+          .processCard, .requestCard {
+            margin-top: 27px;
+            border-radius: 27px;
+            padding: 35px 38px 40px;
+          }
+
+          .sectionLead h2, .requestHeader h2, .infoCard h2, .helpCard h2 {
+            color: #fff;
+            font-size: clamp(20px, 2vw, 27px);
+            font-weight: 800;
+          }
+
+          .sectionLead p, .requestHeader p, .infoCard p, .helpCard p {
+            font-size: 15px;
+            color: rgba(255,255,255,.67);
+          }
+
+          .stepCircle { width: 52px; height: 52px; min-width: 52px; }
+          .stepsGrid { margin-top: 34px; gap: 14px; }
+
+          .stepItem {
+            min-height: 190px;
+            padding: 26px 12px 18px;
+            border: 1px solid rgba(255,255,255,.08);
+            border-radius: 20px;
+            background: rgba(255,255,255,.025);
+          }
+
+          .stepIconWrap { color: #96ed08; background: rgba(150,237,8,.08); }
+          .stepBadge { margin-top: -15px; }
+          .stepTitle { color: rgba(255,255,255,.85); font-size: 13px; font-weight: 650; }
+          .stepArrow { right: -17px; z-index: 3; }
+          .centerAction { margin-top: 30px; }
+          .downloadButton, .primaryButton { min-height: 51px; border-radius: 100px; }
+          .gmailButton, .contactButton { border-radius: 100px; }
+
+          .requestBody {
+            margin-top: 30px;
+            padding: 27px;
+            border: 1px solid rgba(255,255,255,.08);
+            border-radius: 22px;
+            background: rgba(0,0,0,.25);
+          }
+
+          .mailIcon { background: #182415; }
+          .emailLabel { color: #96ed08; font-size: 11px; }
+          .requestInstruction { font-size: 14px; }
+          .smallNote { font-size: 12px; }
+
+          .twoColumn { margin-top: 27px; gap: 25px; }
+          .infoCard { min-height: 330px; padding: 34px; border-radius: 25px; }
+          .infoIcon, .helpIcon { border-color: rgba(150,237,8,.22); background: rgba(150,237,8,.10); }
+          .check { margin-top: 16px; font-size: 14px; }
+          .helpCard { margin-top: 27px; padding: 32px 35px; border-radius: 25px; }
+
+          @media (max-width: 1100px) {
+            .heroInner { grid-template-columns: 1fr; min-height: 790px; gap: 30px; }
+            .trustList { width: 100%; max-width: 760px; justify-self: start; grid-template-columns: repeat(3, 1fr); }
+            .trustItem { display: block; }
+            .trustIcon { margin-bottom: 10px; }
+            .heroPhoto { background-position: 65% center; }
+          }
+
+          @media (max-width: 760px) {
+            .hero { min-height: 890px; }
+            .heroInner, .content { width: min(100% - 32px, 1400px); }
+            .heroInner { min-height: 890px; padding: 55px 0 42px; align-content: space-between; }
+            .heroPhoto { background-position: 59% center; }
+            .hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg,rgba(255,255,255,.92),rgba(255,255,255,.72) 55%,rgba(255,255,255,.10)); }
+            .heroInner { z-index: 3; }
+            .hero h1 { font-size: clamp(46px, 10.5vw, 69px); }
+            .heroDescription { font-size: 16px; }
+            .trustList { grid-template-columns: 1fr; gap: 9px; }
+            .trustItem { display: grid; grid-template-columns: 42px 1fr; padding: 10px 13px; }
+            .trustIcon { width: 42px; height: 42px; margin: 0; }
+            .content { padding-top: 26px; }
+            .stepsGrid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+            .stepItem { min-height: 168px; }
+            .stepArrow { display: none; }
+            .requestBody { grid-template-columns: 1fr; padding: 20px; }
+            .twoColumn { grid-template-columns: 1fr; }
+          }
+
+          @media (max-width: 520px) {
+            .hero { min-height: 920px; }
+            .heroInner { min-height: 920px; padding: 38px 0 35px; }
+            .eyebrow { font-size: 10px; letter-spacing: 1px; margin-bottom: 17px; }
+            .hero h1 { letter-spacing: -.052em; }
+            .tagline { font-size: 9px; line-height: 1.7; }
+            .warning, .processCard, .requestCard, .infoCard, .helpCard { padding: 22px; }
+            .stepsGrid { grid-template-columns: 1fr; gap: 11px; }
+            .stepItem { min-height: 0; display: grid; grid-template-columns: 45px 24px 1fr; gap: 11px; align-items: center; padding: 13px; text-align: left; }
+            .stepIconWrap { width: 45px; height: 45px; margin: 0; }
+            .stepBadge { margin: 0; box-shadow: none; }
+            .stepTitle { max-width: none; text-align: left; }
+            .infoCard { grid-template-columns: 1fr; }
+            .helpCard { grid-template-columns: 1fr; }
+            .contactButton { grid-column: auto; justify-self: stretch; }
           }
         `}</style>
       </main>

@@ -185,12 +185,17 @@ export default function CookiePolicyPage() {
       <main className="bg-[#050505]">
         {/* HERO */}
         <section className="relative overflow-hidden pt-[88px]">
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_74%_22%,rgba(150,237,8,0.10),transparent_34%)]" />
-          <div className="pointer-events-none absolute left-[-15rem] top-16 h-[34rem] w-[34rem] rounded-full bg-[#96ed08]/[0.04] blur-[145px]" />
+          <div className="h-[950px] w-full sm:h-[830px] lg:h-[790px]">
+            <img
+              src="/images/cookies/akigo-cookie-policy-office.png"
+              alt="AkiGO team reviewing website privacy preferences in a bright office"
+              className="h-full w-full object-cover object-[60%_center] lg:object-center"
+            />
+          </div>
 
-          <div className="site-container relative z-10 grid min-h-[610px] items-center gap-14 py-14 lg:grid-cols-[1.02fr_0.98fr]">
-            <div>
-              <div className="inline-flex items-center gap-2 rounded-full border border-white/[0.12] bg-white/[0.025] px-4 py-2 text-xs font-bold uppercase tracking-[0.08em] text-[#96ed08]">
+          <div className="site-container relative z-10 -mt-[950px] grid min-h-[950px] items-center py-10 sm:-mt-[830px] sm:min-h-[830px] lg:-mt-[790px] lg:min-h-[790px] lg:grid-cols-[1.1fr_0.9fr]">
+            <div className="max-w-[690px] text-black [text-shadow:0_2px_14px_rgba(255,255,255,.65)]">
+              <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/85 px-4 py-2 text-xs font-bold uppercase tracking-[0.08em] text-[#96ed08] [text-shadow:none]">
                 <span className="size-2 rounded-full bg-[#96ed08] shadow-[0_0_14px_rgba(150,237,8,.9)]" />
                 AkiGO legal
               </div>
@@ -198,10 +203,10 @@ export default function CookiePolicyPage() {
               <h1 className="font-display mt-6 max-w-[760px] text-5xl font-extrabold leading-[0.95] tracking-[-0.06em] sm:text-6xl lg:text-[5.05rem]">
                 Cookie
                 <br />
-                <span className="text-[#96ed08]">Policy.</span>
+                <span className="text-[#518500]">Policy.</span>
               </h1>
 
-              <p className="mt-6 max-w-[640px] text-lg leading-8 text-white/60">
+              <p className="mt-6 max-w-[640px] text-lg font-semibold leading-8 text-black/85">
                 This Policy explains how AkiGO may use cookies, browser storage,
                 software development kits, pixels, and similar technologies on
                 our website and related digital experiences.
@@ -218,82 +223,47 @@ export default function CookiePolicyPage() {
                 </Link>
               </div>
 
-              <div className="mt-10 flex flex-wrap gap-3 text-sm text-white/48">
-                <span className="rounded-full border border-white/[0.09] bg-white/[0.025] px-4 py-2">
+              <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 [text-shadow:none]">
+                {[
+                  { icon: LockKeyhole, label: "Essential" },
+                  { icon: SlidersHorizontal, label: "Preferences" },
+                  { icon: Gauge, label: "Performance" },
+                  { icon: BarChart3, label: "Analytics" },
+                  { icon: ShieldCheck, label: "Security" },
+                  { icon: Settings2, label: "User controls" },
+                ].map(({ icon: Icon, label }) => (
+                  <div key={label} className="flex items-center gap-2 rounded-2xl border border-white/20 bg-black/85 p-3 text-white shadow-lg">
+                    <Icon size={21} className="shrink-0 text-[#96ed08]" />
+                    <span className="text-sm font-bold">{label}</span>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-6 flex flex-wrap gap-3 text-sm text-white [text-shadow:none]">
+                <span className="rounded-full border border-white/20 bg-black/85 px-4 py-2">
                   Effective: {EFFECTIVE_DATE}
                 </span>
-                <span className="rounded-full border border-white/[0.09] bg-white/[0.025] px-4 py-2">
+                <span className="rounded-full border border-white/20 bg-black/85 px-4 py-2">
                   Last updated: {LAST_UPDATED}
                 </span>
-              </div>
-            </div>
-
-            {/* COOKIE OVERVIEW */}
-            <div className="relative mx-auto w-full max-w-[520px]">
-              <div className="pointer-events-none absolute inset-12 rounded-full bg-[#96ed08]/10 blur-[120px]" />
-
-              <div className="relative overflow-hidden rounded-[2rem] border border-white/[0.09] bg-[linear-gradient(145deg,#0d0f0c_0%,#070707_68%)] p-7 shadow-[0_30px_100px_rgba(0,0,0,.58)]">
-                <div className="pointer-events-none absolute right-[-6rem] top-[-6rem] size-72 rounded-full bg-[#96ed08]/[0.08] blur-[100px]" />
-
-                <div className="relative">
-                  <div className="flex items-start justify-between gap-4">
-                    <div>
-                      <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-[#96ed08]">
-                        Cookie overview
-                      </p>
-                      <h2 className="font-display mt-2 text-3xl font-bold">
-                        Clear choices for website technologies.
-                      </h2>
-                    </div>
-
-                    <div className="grid size-13 shrink-0 place-items-center rounded-full bg-[#96ed08] text-black">
-                      <Cookie size={25} />
-                    </div>
-                  </div>
-
-                  <div className="mt-6 grid gap-3 sm:grid-cols-2">
-                    {[
-                      { icon: LockKeyhole, label: "Essential" },
-                      { icon: SlidersHorizontal, label: "Preferences" },
-                      { icon: Gauge, label: "Performance" },
-                      { icon: BarChart3, label: "Analytics" },
-                      { icon: ShieldCheck, label: "Security" },
-                      { icon: Settings2, label: "User controls" },
-                    ].map(({ icon: Icon, label }) => (
-                      <div
-                        key={label}
-                        className="flex items-center gap-3 rounded-2xl border border-white/[0.08] bg-black/50 p-4"
-                      >
-                        <div className="grid size-10 place-items-center rounded-xl bg-[#96ed08]/10 text-[#96ed08]">
-                          <Icon size={20} />
-                        </div>
-                        <span className="font-semibold text-white/68">
-                          {label}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="mt-4 flex items-start gap-3 rounded-2xl border border-[#96ed08]/18 bg-[#96ed08]/[0.05] p-4">
-                    <AlertTriangle
-                      className="mt-0.5 shrink-0 text-[#96ed08]"
-                      size={19}
-                    />
-                    <p className="text-sm leading-6 text-white/55">
-                      This Policy must be updated to match the exact cookies,
-                      analytics providers, embedded services, consent banner,
-                      retention periods, and advertising tools active on the
-                      production website.
-                    </p>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
         </section>
 
+        <section className="border-b border-[#96ed08]/15 bg-[#101710] py-6">
+          <div className="site-container flex items-start gap-4 rounded-2xl border border-[#96ed08]/25 bg-[#96ed08]/[0.05] p-5">
+            <AlertTriangle className="mt-1 shrink-0 text-[#96ed08]" size={22} />
+            <p className="text-sm leading-7 text-white/75">
+              This Policy must be updated to match the exact cookies, analytics providers,
+              embedded services, consent banner, retention periods, and advertising tools
+              active on the production website.
+            </p>
+          </div>
+        </section>
+
         {/* CATEGORY CARDS */}
-        <section className="border-t border-white/[0.06] py-20 sm:py-24">
+        <section className="border-t border-white/[0.06] bg-[#080b08] py-20 sm:py-24">
           <div className="site-container">
             <div className="mx-auto max-w-3xl text-center">
               <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#96ed08]">
@@ -315,7 +285,7 @@ export default function CookiePolicyPage() {
               {cookieCategories.map(({ icon: Icon, title, status, text }) => (
                 <article
                   key={title}
-                  className="relative overflow-hidden rounded-[1.65rem] border border-white/[0.09] bg-[#0b0b0b] p-7"
+                  className="group relative overflow-hidden rounded-[1.65rem] border border-[#96ed08]/15 bg-[linear-gradient(150deg,#151a13,#0b0d0b)] p-7 shadow-[0_18px_44px_rgba(0,0,0,.2)] transition hover:-translate-y-1 hover:border-[#96ed08]/45"
                 >
                   <div className="pointer-events-none absolute right-[-4rem] top-[-4rem] size-40 rounded-full bg-[#96ed08]/[0.045] blur-[70px]" />
 
@@ -334,7 +304,7 @@ export default function CookiePolicyPage() {
                       {title}
                     </h3>
 
-                    <p className="mt-3 leading-7 text-white/50">{text}</p>
+                    <p className="mt-3 leading-7 text-white/65">{text}</p>
                   </div>
                 </article>
               ))}
@@ -343,10 +313,10 @@ export default function CookiePolicyPage() {
         </section>
 
         {/* POLICY CONTENT */}
-        <section className="border-t border-white/[0.06] py-16 sm:py-20">
+        <section className="border-t border-white/[0.06] bg-[#070807] py-16 sm:py-20">
           <div className="site-container grid items-start gap-10 lg:grid-cols-[300px_minmax(0,1fr)]">
             <aside className="lg:sticky lg:top-28">
-              <div className="rounded-[1.5rem] border border-white/[0.09] bg-[#0b0b0b] p-5">
+              <div className="rounded-[1.5rem] border border-[#96ed08]/15 bg-[#101410] p-5">
                 <div className="flex items-center gap-3">
                   <div className="grid size-10 place-items-center rounded-xl bg-[#96ed08]/10 text-[#96ed08]">
                     <FileText size={20} />
@@ -392,7 +362,7 @@ export default function CookiePolicyPage() {
               </div>
             </aside>
 
-            <article className="rounded-[1.8rem] border border-white/[0.09] bg-[#090909] px-6 py-8 sm:px-10 sm:py-10">
+            <article className="rounded-[1.8rem] border border-white/[0.09] bg-[#111411] px-6 py-8 shadow-[0_24px_60px_rgba(0,0,0,.18)] sm:px-10 sm:py-10">
               <div className="mb-10 rounded-2xl border border-[#96ed08]/18 bg-[#96ed08]/[0.05] p-5">
                 <p className="text-sm leading-7 text-white/62">
                   A cookie is a small piece of information stored by a web

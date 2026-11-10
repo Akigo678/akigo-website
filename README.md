@@ -1,36 +1,94 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AkiGO Website
 
-## Getting Started
+Public Next.js website for AkiGO rides, deliveries, driver interest, partners,
+support, company information, and legal disclosures. This project is separate
+from the Rider and Driver apps and the operations/admin application.
 
-First, run the development server:
+## Stack
+
+- Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS
+- Firebase Admin (server-side Firestore) and Firebase client integration
+- Resend for transactional inquiry and launch-list messages
+
+## Local setup
+
+Use Node.js 24 or another version compatible with the lockfile and Next.js 16.
 
 ```bash
+npm ci
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The development server normally starts on port 3000. Open the URL printed in
+the terminal. Environment values belong in a private `.env.local`; never
+commit service-account secrets.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Environment configuration
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Variable | Purpose |
+| --- | --- |
+| `NEXT_PUBLIC_SITE_URL` | **Required in production:** `https://akigo.org` (used for confirmation email links). |
+| `FIREBASE_ADMIN_PROJECT_ID` | Required Firebase project ID: `akigo-9ad3b`. |
+| `FIREBASE_ADMIN_CLIENT_EMAIL` | Firebase service account email when using key-based credentials. |
+| `FIREBASE_ADMIN_PRIVATE_KEY` | Firebase service account private key when using key-based credentials. |
+| `RESEND_API_KEY` | Resend API key for outgoing mail. |
+| `CONTACT_FROM_EMAIL` | Verified sender address for outgoing mail. |
+| `CONTACT_ADMIN_EMAIL` | Default destination for website inquiries. |
+| `CAREERS_ADMIN_EMAIL` | Optional destination for career interest notifications. |
+| `DRIVER_ADMIN_EMAIL` | Optional destination for driver interest notifications. |
+| `NEWSLETTER_ADMIN_EMAIL` | Optional destination for launch-list notifications. |
 
-## Learn More
+The Firebase Admin module can use application-default credentials if configured
+for the hosting environment. The client Firebase configuration and any other
+variables used by specific routes should also be supplied in hosting settings.
+Check the source before configuring a new environment.
 
-To learn more about Next.js, take a look at the following resources:
+The production URL helper deliberately fails if `NEXT_PUBLIC_SITE_URL` is
+missing or differs from `https://akigo.org`; localhost is only a development
+fallback. Set the variable before rolling out.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Quality checks
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm test
+npm run lint
+npx tsc --noEmit
+npm run build
+```
 
-## Deploy on Vercel
+The test command currently covers site URL validation. It is a baseline,
+**not** an end-to-end test suite. Before public launch, manually verify forms,
+email confirmation, admin notifications, app download links, mobile layout,
+accessibility, and real integrations in a staging environment.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Website routes
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Main pages: `/`, `/ride`, `/drive`, `/deliver`, `/business`,
+  `/partners`, `/download`
+- Company and support: `/about`, `/careers`, `/press`, `/newsroom`,
+  `/help`, `/contact`, `/safety`
+- Public SEO: `/sitemap.xml`, `/robots.txt`
+- Career interest: `POST /api/career-interest`; records are stored in
+  `websiteCareerInterest` with a corresponding `adminNotifications` event.
+
+Career interest is not a live job board and must not be described as an
+application to a specific open job. Forms request consent and discourage
+submission of sensitive identity or banking documents.
+
+## Deployment checklist
+
+1. Configure the project on its intended Firebase/Next.js-compatible hosting
+   service. Verify that server-side Node routes and runtime environment
+   variables are supported.
+2. Configure the production domain `akigo.org`, HTTPS, DNS, and any redirect
+   from `www.akigo.org` to the canonical domain (or vice versa).
+3. Set all required secrets and `NEXT_PUBLIC_SITE_URL=https://akigo.org`.
+4. Run quality checks, deploy to a staging environment, and submit test forms.
+5. Verify Firestore writes, staff notifications, Resend delivery, confirmation
+   links, and access to private submissions by authorized operators only.
+6. Verify `/robots.txt` and `/sitemap.xml`; submit the sitemap to Google
+   Search Console after the site is live.
+7. Deploy to production, check that all primary pages, mobile navigation,
+   downloads, and support features work, and monitor server logs.
+
+**This README is a deployment checklist, not evidence of a completed deployment.**

@@ -7,6 +7,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 
 import { getAdminDb } from "@/lib/server/firebase-admin";
+import { getPublicSiteUrl } from "@/lib/site-url";
 
 export const runtime = "nodejs";
 
@@ -108,6 +109,9 @@ export async function POST(request: NextRequest) {
         { status: 400 },
       );
     }
+
+    // Validate the production origin before creating a pending subscription.
+    const siteUrl = getPublicSiteUrl();
 
     const db = getAdminDb();
     const now = new Date();
@@ -224,8 +228,6 @@ export async function POST(request: NextRequest) {
       { merge: true },
     );
 
-    const siteUrl =
-      process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
     const confirmationUrl = new URL(
       "/api/launch-list/confirm",
       siteUrl,

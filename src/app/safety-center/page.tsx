@@ -179,20 +179,27 @@ export default function SafetyCenterPage() {
       <main className="bg-[#050505]">
         {/* HERO */}
         <section className="relative overflow-hidden pt-[88px]">
+          <div className="relative h-[960px] w-full overflow-hidden sm:h-[900px] lg:h-[900px]">
+            <img
+              src="/images/safety-center/akigo-safety-verification.png"
+              alt="AkiGO rider verifying vehicle details beside a branded car, with a courier confirming a delivery and a safety support representative nearby"
+              className="h-full w-full object-cover object-center"
+            />
+          </div>
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_73%_23%,rgba(150,237,8,0.11),transparent_34%)]" />
           <div className="pointer-events-none absolute left-[-15rem] top-16 h-[34rem] w-[34rem] rounded-full bg-[#96ed08]/[0.04] blur-[145px]" />
 
-          <div className="site-container relative z-10 grid min-h-[700px] items-center gap-14 py-14 lg:grid-cols-[1.02fr_0.98fr]">
-            <div>
+          <div className="site-container relative z-10 -mt-[960px] grid min-h-[960px] items-center gap-14 py-12 sm:-mt-[900px] sm:min-h-[900px] lg:-mt-[900px] lg:min-h-[900px] lg:grid-cols-[1.02fr_0.98fr] lg:py-16">
+            <div className="max-w-[720px] [text-shadow:0_2px_14px_rgba(0,0,0,.8)]">
               <div className="inline-flex items-center gap-2 rounded-full border border-white/[0.12] bg-white/[0.025] px-4 py-2 text-xs font-bold uppercase tracking-[0.08em] text-[#96ed08]">
                 <span className="size-2 rounded-full bg-[#96ed08] shadow-[0_0_14px_rgba(150,237,8,.9)]" />
                 AkiGO Safety Center
               </div>
 
               <h1 className="font-display mt-6 max-w-[760px] text-5xl font-extrabold leading-[0.95] tracking-[-0.06em] sm:text-6xl lg:text-[5.1rem]">
-                Safety tools and guidance for
+                Your safety. Our priority.
                 <br />
-                <span className="text-[#96ed08]">every journey.</span>
+                <span className="text-[#96ed08]">Every journey.</span>
               </h1>
 
               <p className="mt-6 max-w-[620px] text-lg leading-8 text-white/60">
@@ -224,7 +231,7 @@ export default function SafetyCenterPage() {
                 ].map(({ icon: Icon, label }) => (
                   <div
                     key={label}
-                    className="rounded-2xl border border-white/[0.08] bg-white/[0.025] p-4 transition hover:border-[#96ed08]/25 hover:bg-white/[0.035]"
+                    className="rounded-2xl border border-white/20 bg-black/80 p-4 shadow-[0_10px_24px_rgba(0,0,0,.24)] transition hover:border-[#96ed08]/50 hover:bg-black/90"
                   >
                     <Icon className="text-[#96ed08]" size={21} />
                     <p className="mt-3 text-sm font-semibold text-white/72">
@@ -236,7 +243,7 @@ export default function SafetyCenterPage() {
             </div>
 
             {/* SAFETY DASHBOARD */}
-            <div className="relative mx-auto w-full max-w-[540px]">
+            <div className="hidden">
               <div className="pointer-events-none absolute inset-12 rounded-full bg-[#96ed08]/10 blur-[120px]" />
 
               <div className="relative overflow-hidden rounded-[2rem] border border-white/[0.09] bg-[linear-gradient(145deg,#0d0f0c_0%,#070707_68%)] p-6 shadow-[0_30px_100px_rgba(0,0,0,.58)]">

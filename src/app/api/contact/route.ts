@@ -15,6 +15,7 @@ const ALLOWED_INQUIRY_TYPES = new Set([
   "Delivery support",
   "Business partnership",
   "Safety support",
+  "Privacy Request",
   "Media or press",
   "Careers",
   "Other",

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import {
   ArrowRight,
   Building2,
@@ -23,27 +24,23 @@ import {
   secondaryButton,
 } from "@/components/marketing";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://akigo.app";
-
 export const metadata: Metadata = {
   title: "Business FAQ | AkiGO Help",
   description:
     "Find answers about AkiGO partnerships, business account setup, delivery requests, scheduled transportation, billing, team access, and support.",
   alternates: {
-    canonical: `${siteUrl}/faq/business`,
+    canonical: "/faq/business",
   },
   openGraph: {
     title: "AkiGO Business FAQ",
     description:
       "Answers for organizations about partnerships, account setup, transportation, delivery, billing, team access, and support.",
-    url: `${siteUrl}/faq/business`,
+    url: "/faq/business",
     siteName: "AkiGO",
     type: "website",
     images: [
       {
-        url: `${siteUrl}/images/social/akigo-business-faq.png`,
-        width: 1200,
-        height: 630,
+        url: "/images/faq/akigo-business-faq-hero.png",
         alt: "AkiGO business frequently asked questions",
       },
     ],
@@ -53,7 +50,7 @@ export const metadata: Metadata = {
     title: "AkiGO Business FAQ",
     description:
       "Answers for organizations about partnerships, account setup, transportation, delivery, billing, team access, and support.",
-    images: [`${siteUrl}/images/social/akigo-business-faq.png`],
+    images: ["/images/faq/akigo-business-faq-hero.png"],
   },
 };
 
@@ -380,12 +377,11 @@ export default function BusinessFaqPage() {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
 
-        <section className="relative overflow-hidden pt-[88px]">
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_73%_23%,rgba(150,237,8,0.10),transparent_34%)]" />
-          <div className="pointer-events-none absolute left-[-15rem] top-16 h-[34rem] w-[34rem] rounded-full bg-[#96ed08]/[0.04] blur-[145px]" />
-
-          <div className="site-container relative z-10 grid min-h-[650px] items-center gap-14 py-16 lg:grid-cols-[1.02fr_0.98fr]">
-            <div>
+        <section className="relative isolate overflow-hidden pt-[88px]">
+          <Image src="/images/faq/akigo-business-faq-hero.png" alt="AkiGO representative helping a local restaurant owner with business delivery services" fill priority sizes="100vw" className="-z-20 object-cover object-[62%_center]" />
+          <div className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(0,0,0,.76)_0%,rgba(0,0,0,.58)_35%,rgba(0,0,0,.13)_68%,rgba(0,0,0,0)_100%)]" />
+          <div className="site-container relative z-10 flex min-h-[650px] items-center py-16">
+            <div className="max-w-[720px]">
               <div className="inline-flex items-center gap-2 rounded-full border border-white/[0.12] bg-white/[0.025] px-4 py-2 text-xs font-bold uppercase tracking-[0.08em] text-[#96ed08]">
                 <span className="size-2 rounded-full bg-[#96ed08] shadow-[0_0_14px_rgba(150,237,8,.9)]" />
                 Business FAQ
@@ -397,7 +393,7 @@ export default function BusinessFaqPage() {
                 <span className="text-[#96ed08]">business forward.</span>
               </h1>
 
-              <p className="mt-6 max-w-[650px] text-lg leading-8 text-white/60">
+              <p className="mt-6 max-w-[650px] text-lg font-medium leading-8 text-white drop-shadow-[0_2px_8px_rgba(0,0,0,.9)]">
                 Find guidance about partnerships, account setup, delivery
                 requests, scheduled transportation, billing, team access, and
                 business support.
@@ -415,10 +411,11 @@ export default function BusinessFaqPage() {
                 </Link>
               </div>
             </div>
+          </div>
+        </section>
 
-            <div className="relative">
-              <div className="pointer-events-none absolute inset-10 rounded-full bg-[#96ed08]/[0.08] blur-[120px]" />
-
+        <section className="border-t border-white/[0.06] bg-[#080c06] py-12 sm:py-16">
+          <div className="site-container">
               <div className="relative overflow-hidden rounded-[2rem] border border-white/[0.10] bg-[#0a0a0a] p-7 shadow-[0_30px_90px_rgba(0,0,0,.45)] sm:p-9">
                 <div className="flex items-start justify-between gap-6">
                   <div>
@@ -435,7 +432,7 @@ export default function BusinessFaqPage() {
                   </div>
                 </div>
 
-                <div className="mt-7 grid gap-3 sm:grid-cols-2">
+                <div className="mt-7 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
                   {categories.map(({ id, icon: Icon, title }) => (
                     <a
                       key={id}
@@ -455,7 +452,6 @@ export default function BusinessFaqPage() {
                   </p>
                 </div>
               </div>
-            </div>
           </div>
         </section>
 
@@ -541,7 +537,7 @@ export default function BusinessFaqPage() {
                 </p>
 
                 <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
-                  <Link href="/contact" className={primaryButton}>
+                  <Link href="/contact#contact-form" className={primaryButton}>
                     Contact AkiGO
                     <ArrowRight size={18} />
                   </Link>

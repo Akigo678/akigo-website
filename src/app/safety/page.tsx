@@ -28,6 +28,7 @@ import {
   secondaryButton,
 } from "@/components/marketing";
 import { SafetyConcernForm } from "./SafetyConcernForm";
+import { SafetyHero } from "./SafetyHero";
 
 const safetyPillars = [
   {
@@ -152,8 +153,9 @@ export default function SafetyPage() {
   return (
     <MarketingLayout>
       <main className="bg-[#050505]">
+        <SafetyHero />
         {/* HERO */}
-        <section className="relative overflow-hidden pt-[88px]">
+        <section className="hidden">
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_73%_23%,rgba(150,237,8,0.10),transparent_34%)]" />
           <div className="pointer-events-none absolute left-[-15rem] top-16 h-[34rem] w-[34rem] rounded-full bg-[#96ed08]/[0.04] blur-[145px]" />
 
@@ -296,7 +298,7 @@ export default function SafetyPage() {
         </section>
 
         {/* SAFETY PILLARS */}
-        <section className="border-t border-white/[0.06] py-20 sm:py-24">
+        <section id="safety-pillars" className="border-t border-white/[0.06] py-20 sm:py-24">
           <div className="site-container">
             <div className="mx-auto max-w-3xl text-center">
               <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#96ed08]">

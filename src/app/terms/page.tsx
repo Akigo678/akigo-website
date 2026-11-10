@@ -1,18 +1,8 @@
 import Link from "next/link";
 import {
   ArrowRight,
-  Building2,
-  CarFront,
   Check,
-  CreditCard,
   FileText,
-  Gavel,
-  LockKeyhole,
-  PackageCheck,
-  Scale,
-  ShieldCheck,
-  UserCheck,
-  WalletCards,
 } from "lucide-react";
 
 import {
@@ -120,12 +110,19 @@ export default function TermsPage() {
       <main className="bg-[#050505]">
         {/* HERO */}
         <section className="relative overflow-hidden pt-[88px]">
+          <div className="relative h-[690px] w-full overflow-hidden sm:h-[650px] lg:h-[660px]">
+            <img
+              src="/images/terms/akigo-terms-agreement-v2.png"
+              alt="AkiGO team member explaining a digital service agreement to a driver and business partner in a bright office"
+              className="h-full w-full object-cover object-[65%_center] lg:object-center"
+            />
+          </div>
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_74%_22%,rgba(150,237,8,0.10),transparent_34%)]" />
           <div className="pointer-events-none absolute left-[-15rem] top-16 h-[34rem] w-[34rem] rounded-full bg-[#96ed08]/[0.04] blur-[145px]" />
 
-          <div className="site-container relative z-10 grid min-h-[610px] items-center gap-14 py-14 lg:grid-cols-[1.02fr_0.98fr]">
-            <div>
-              <div className="inline-flex items-center gap-2 rounded-full border border-white/[0.12] bg-white/[0.025] px-4 py-2 text-xs font-bold uppercase tracking-[0.08em] text-[#96ed08]">
+          <div className="site-container relative z-10 -mt-[690px] grid min-h-[690px] items-center py-12 sm:-mt-[650px] sm:min-h-[650px] lg:-mt-[660px] lg:min-h-[660px]">
+            <div className="max-w-[690px] text-black [text-shadow:0_2px_14px_rgba(255,255,255,.6)]">
+              <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/85 px-4 py-2 text-xs font-bold uppercase tracking-[0.08em] text-[#96ed08]">
                 <span className="size-2 rounded-full bg-[#96ed08] shadow-[0_0_14px_rgba(150,237,8,.9)]" />
                 AkiGO legal
               </div>
@@ -133,10 +130,10 @@ export default function TermsPage() {
               <h1 className="font-display mt-6 max-w-[760px] text-5xl font-extrabold leading-[0.95] tracking-[-0.06em] sm:text-6xl lg:text-[5.05rem]">
                 Terms of
                 <br />
-                <span className="text-[#96ed08]">Service.</span>
+                <span className="text-[#518500]">Service.</span>
               </h1>
 
-              <p className="mt-6 max-w-[620px] text-lg leading-8 text-white/60">
+              <p className="mt-6 max-w-[620px] text-lg font-semibold leading-8 text-black/85">
                 These Terms govern access to and use of AkiGO websites, mobile
                 applications, ride services, delivery services, driver tools,
                 business services, and related platform features.
@@ -153,64 +150,16 @@ export default function TermsPage() {
                 </Link>
               </div>
 
-              <div className="mt-10 flex flex-wrap gap-3 text-sm text-white/48">
-                <span className="rounded-full border border-white/[0.09] bg-white/[0.025] px-4 py-2">
+              <div className="mt-7 flex flex-wrap gap-3 text-sm text-white/70">
+                <span className="rounded-full border border-white/20 bg-black/80 px-4 py-2">
                   Effective: {EFFECTIVE_DATE}
                 </span>
-                <span className="rounded-full border border-white/[0.09] bg-white/[0.025] px-4 py-2">
+                <span className="rounded-full border border-white/20 bg-black/80 px-4 py-2">
                   Last updated: {LAST_UPDATED}
                 </span>
               </div>
             </div>
 
-            <div className="relative mx-auto w-full max-w-[520px]">
-              <div className="pointer-events-none absolute inset-12 rounded-full bg-[#96ed08]/10 blur-[120px]" />
-
-              <div className="relative overflow-hidden rounded-[2rem] border border-white/[0.09] bg-[linear-gradient(145deg,#0d0f0c_0%,#070707_68%)] p-7 shadow-[0_30px_100px_rgba(0,0,0,.58)]">
-                <div className="pointer-events-none absolute right-[-6rem] top-[-6rem] size-72 rounded-full bg-[#96ed08]/[0.08] blur-[100px]" />
-
-                <div className="relative">
-                  <div className="flex items-start justify-between gap-4">
-                    <div>
-                      <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-[#96ed08]">
-                        Agreement overview
-                      </p>
-                      <h2 className="font-display mt-2 text-3xl font-bold">
-                        One agreement across the AkiGO platform.
-                      </h2>
-                    </div>
-
-                    <div className="grid size-13 shrink-0 place-items-center rounded-full bg-[#96ed08] text-black">
-                      <Scale size={25} />
-                    </div>
-                  </div>
-
-                  <div className="mt-6 grid gap-3 sm:grid-cols-2">
-                    {[
-                      { icon: CarFront, label: "Rides" },
-                      { icon: UserCheck, label: "Drivers" },
-                      { icon: PackageCheck, label: "Deliveries" },
-                      { icon: Building2, label: "Businesses" },
-                      { icon: CreditCard, label: "Payments" },
-                      { icon: ShieldCheck, label: "Safety" },
-                    ].map(({ icon: Icon, label }) => (
-                      <div
-                        key={label}
-                        className="flex items-center gap-3 rounded-2xl border border-white/[0.08] bg-black/50 p-4"
-                      >
-                        <div className="grid size-10 place-items-center rounded-xl bg-[#96ed08]/10 text-[#96ed08]">
-                          <Icon size={20} />
-                        </div>
-                        <span className="font-semibold text-white/68">
-                          {label}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-
-                </div>
-              </div>
-            </div>
           </div>
         </section>
 
@@ -249,32 +198,9 @@ export default function TermsPage() {
                 </nav>
               </div>
 
-              <div className="mt-4 rounded-2xl border border-white/[0.08] bg-white/[0.025] p-4">
-                <div className="flex items-start gap-3">
-                  <Gavel
-                    size={18}
-                    className="mt-0.5 shrink-0 text-[#96ed08]"
-                  />
-                  <p className="text-xs leading-5 text-white/42">
-                    These Terms are written for AkiGO’s current platform model.
-                    They should be updated as services, markets, insurance,
-                    payment flows, and legal requirements change.
-                  </p>
-                </div>
-              </div>
             </aside>
 
             <article className="rounded-[1.8rem] border border-white/[0.09] bg-[#090909] px-6 py-8 sm:px-10 sm:py-10">
-              <div className="mb-10 rounded-2xl border border-[#96ed08]/18 bg-[#96ed08]/[0.05] p-5">
-                <p className="text-sm leading-7 text-white/62">
-                  Please read these Terms carefully. By accessing or using the
-                  AkiGO platform, creating an account, requesting or providing a
-                  ride or delivery, using a business account, or otherwise
-                  interacting with AkiGO services, you agree to be bound by
-                  these Terms and all policies incorporated by reference.
-                </p>
-              </div>
-
               <LegalSection
                 id="acceptance"
                 number="1"
@@ -1120,13 +1046,6 @@ export default function TermsPage() {
                   claims court.
                 </p>
 
-                <p>
-                  AkiGO has intentionally not included a mandatory arbitration
-                  clause or class-action waiver in this draft. Any future
-                  addition of those provisions should be reviewed and approved
-                  by qualified legal counsel and presented with legally required
-                  notice and consent.
-                </p>
               </LegalSection>
 
               <LegalSection
@@ -1201,36 +1120,6 @@ export default function TermsPage() {
           </div>
         </section>
 
-        {/* FINAL CTA */}
-        <section className="border-t border-white/[0.06] py-16 sm:py-20">
-          <div className="site-container">
-            <div className="relative overflow-hidden rounded-[1.5rem] border border-[#96ed08]/25 bg-[#050505] px-7 py-9 shadow-[0_0_70px_rgba(150,237,8,0.04)] sm:px-10">
-              <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(135deg,#050505_0%,#091103_50%,#050505_100%)]" />
-
-              <div className="relative z-10 flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
-                <div>
-                  <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-[#96ed08]">
-                    Legal questions
-                  </p>
-
-                  <h2 className="font-display mt-2 text-3xl font-bold">
-                    Need clarification about these Terms?
-                  </h2>
-
-                  <p className="mt-3 max-w-2xl text-sm leading-6 text-white/48">
-                    Contact AkiGO for general questions. Obtain independent legal
-                    advice for questions about your own rights or obligations.
-                  </p>
-                </div>
-
-                <Link href="/contact" className={`${primaryButton} shrink-0`}>
-                  Contact AkiGO
-                  <ArrowRight size={18} />
-                </Link>
-              </div>
-            </div>
-          </div>
-        </section>
       </main>
     </MarketingLayout>
   );

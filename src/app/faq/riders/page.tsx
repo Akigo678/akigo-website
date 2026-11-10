@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import {
   Accessibility,
   ArrowRight,
@@ -7,6 +8,7 @@ import {
   CircleHelp,
   CreditCard,
   LifeBuoy,
+  CarFront,
   MapPinned,
   ReceiptText,
   Route,
@@ -22,27 +24,23 @@ import {
   secondaryButton,
 } from "@/components/marketing";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://akigo.app";
-
 export const metadata: Metadata = {
   title: "Rider FAQ | AkiGO Help",
   description:
     "Find answers about booking rides, pricing, payments, cancellations, safety, accessibility, and rider support with AkiGO.",
   alternates: {
-    canonical: `${siteUrl}/faq/riders`,
+    canonical: "/faq/riders",
   },
   openGraph: {
     title: "AkiGO Rider FAQ",
     description:
       "Answers for riders about booking, pricing, payments, cancellations, safety, accessibility, and support.",
-    url: `${siteUrl}/faq/riders`,
+    url: "/faq/riders",
     siteName: "AkiGO",
     type: "website",
     images: [
       {
-        url: `${siteUrl}/images/social/akigo-rider-faq.png`,
-        width: 1200,
-        height: 630,
+        url: "/images/home/ride.jpg",
         alt: "AkiGO rider frequently asked questions",
       },
     ],
@@ -52,7 +50,7 @@ export const metadata: Metadata = {
     title: "AkiGO Rider FAQ",
     description:
       "Answers for riders about booking, pricing, payments, cancellations, safety, accessibility, and support.",
-    images: [`${siteUrl}/images/social/akigo-rider-faq.png`],
+    images: ["/images/home/ride.jpg"],
   },
 };
 
@@ -92,6 +90,12 @@ const categories = [
     icon: Accessibility,
     title: "Accessibility",
     text: "Ride needs, service animals, mobility devices, and feedback.",
+  },
+  {
+    id: "long-distance",
+    icon: CarFront,
+    title: "Long-distance rides",
+    text: "Personalized quote requests for longer journeys.",
   },
   {
     id: "support",
@@ -311,6 +315,30 @@ const faqSections = [
     ],
   },
   {
+    id: "long-distance",
+    eyebrow: "Long-distance rides",
+    title: "Planning a longer trip",
+    icon: CarFront,
+    items: [
+      {
+        question: "Can I request a long-distance ride with AkiGO?",
+        answer: "Yes. You can submit a long-distance quote inquiry with your route and preferred travel date. Our team can review the request based on service area, trip costs, and driver availability. Submitting a request does not guarantee a ride.",
+      },
+      {
+        question: "How do I request a personalized long-distance fare?",
+        answer: "Visit the AkiGO Long-Distance Quotes page, enter your pickup, destination, travel schedule, passenger count, and contact details, then submit the request for review.",
+      },
+      {
+        question: "Does requesting a quote automatically book or charge me?",
+        answer: "No. The quote request is an inquiry, not a confirmed booking. The form does not collect payment. You can review any quote offered before deciding whether to proceed through an authorized booking process.",
+      },
+      {
+        question: "Can I request a return trip or travel with luggage?",
+        answer: "Include return-trip plans, the number of travelers, luggage needs, and any vehicle preference in your inquiry so AkiGO can assess whether a suitable option may be available.",
+      },
+    ],
+  },
+  {
     id: "support",
     eyebrow: "Support",
     title: "Getting help with your rider experience",
@@ -339,7 +367,7 @@ const faqSections = [
       {
         question: "Is support available 24/7?",
         answer:
-          "AkiGO should not claim continuous support coverage unless that service is operational. Available support channels and response expectations will be shown in the applicable experience.",
+          "Support channels and response times depend on current staffing and availability. For immediate danger, contact local emergency services rather than waiting for a support response.",
       },
     ],
   },
@@ -369,12 +397,11 @@ export default function RiderFaqPage() {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
 
-        <section className="relative overflow-hidden pt-[88px]">
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_73%_23%,rgba(150,237,8,0.10),transparent_34%)]" />
-          <div className="pointer-events-none absolute left-[-15rem] top-16 h-[34rem] w-[34rem] rounded-full bg-[#96ed08]/[0.04] blur-[145px]" />
-
-          <div className="site-container relative z-10 grid min-h-[650px] items-center gap-14 py-16 lg:grid-cols-[1.02fr_0.98fr]">
-            <div>
+        <section className="relative isolate overflow-hidden pt-[88px]">
+          <Image src="/images/faq/akigo-rider-faq-hero.png" alt="AkiGO driver helping a rider with questions beside a branded SUV in Orlando" fill priority sizes="100vw" className="-z-20 object-cover object-[62%_center]" />
+          <div className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(0,0,0,.76)_0%,rgba(0,0,0,.58)_35%,rgba(0,0,0,.13)_68%,rgba(0,0,0,0)_100%)]" />
+          <div className="site-container relative z-10 flex min-h-[650px] items-center py-16">
+            <div className="max-w-[720px]">
               <div className="inline-flex items-center gap-2 rounded-full border border-white/[0.12] bg-white/[0.025] px-4 py-2 text-xs font-bold uppercase tracking-[0.08em] text-[#96ed08]">
                 <span className="size-2 rounded-full bg-[#96ed08] shadow-[0_0_14px_rgba(150,237,8,.9)]" />
                 Rider FAQ
@@ -386,7 +413,7 @@ export default function RiderFaqPage() {
                 <span className="text-[#96ed08]">part of your ride.</span>
               </h1>
 
-              <p className="mt-6 max-w-[650px] text-lg leading-8 text-white/60">
+              <p className="mt-6 max-w-[650px] text-lg font-medium leading-8 text-white drop-shadow-[0_2px_8px_rgba(0,0,0,.9)]">
                 Find guidance about booking, pricing, payments, cancellations,
                 safety, accessibility, and rider support.
               </p>
@@ -402,11 +429,15 @@ export default function RiderFaqPage() {
                   <ArrowRight size={18} />
                 </Link>
               </div>
+              <Link href="/long-distance-quote" className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-[#96ed08] underline decoration-[#96ed08]/40 underline-offset-4 transition hover:text-white">
+                Traveling farther? Request a long-distance quote <ArrowRight size={16} />
+              </Link>
             </div>
+          </div>
+        </section>
 
-            <div className="relative">
-              <div className="pointer-events-none absolute inset-10 rounded-full bg-[#96ed08]/[0.08] blur-[120px]" />
-
+        <section className="border-t border-white/[0.06] bg-[#080c06] py-12 sm:py-16">
+          <div className="site-container">
               <div className="relative overflow-hidden rounded-[2rem] border border-white/[0.10] bg-[#0a0a0a] p-7 shadow-[0_30px_90px_rgba(0,0,0,.45)] sm:p-9">
                 <div className="flex items-start justify-between gap-6">
                   <div>
@@ -423,7 +454,7 @@ export default function RiderFaqPage() {
                   </div>
                 </div>
 
-                <div className="mt-7 grid gap-3 sm:grid-cols-2">
+                <div className="mt-7 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
                   {categories.map(({ id, icon: Icon, title }) => (
                     <a
                       key={id}
@@ -443,7 +474,6 @@ export default function RiderFaqPage() {
                   </p>
                 </div>
               </div>
-            </div>
           </div>
         </section>
 
@@ -461,6 +491,14 @@ export default function RiderFaqPage() {
                   <p className="mt-3 leading-7 text-white/50">{text}</p>
                 </a>
               ))}
+            </div>
+            <div className="mt-6 flex flex-col items-start justify-between gap-5 rounded-[1.6rem] border border-[#96ed08]/25 bg-[#10190b] p-6 sm:flex-row sm:items-center sm:p-8">
+              <div>
+                <p className="text-xs font-extrabold uppercase tracking-[.16em] text-[#96ed08]">Long-distance ride inquiries</p>
+                <h2 className="mt-2 text-2xl font-extrabold text-white">Going beyond your city?</h2>
+                <p className="mt-2 max-w-2xl text-sm leading-6 text-white/65">Tell AkiGO your route and travel plans to request a personalized fare review. Availability and confirmation are not guaranteed.</p>
+              </div>
+              <Link href="/long-distance-quote" className={`${primaryButton} shrink-0`}>Request a quote <ArrowRight size={18} /></Link>
             </div>
           </div>
         </section>
@@ -529,7 +567,7 @@ export default function RiderFaqPage() {
                 </p>
 
                 <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
-                  <Link href="/contact" className={primaryButton}>
+                  <Link href="/contact#contact-form" className={primaryButton}>
                     Contact AkiGO
                     <ArrowRight size={18} />
                   </Link>
