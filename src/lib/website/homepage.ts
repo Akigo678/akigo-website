@@ -1,8 +1,9 @@
 import {getAdminDb} from "@/lib/server/firebase-admin";
 
 export type WebsiteService = {title:string;description:string;href:string;image:string;enabled:boolean};
+export type WebsiteAnnouncement = {text:string;href:string;enabled:boolean;startDate?:string;endDate?:string};
 export type WebsiteRiderJourneyStep = {title:string;description:string;image:string};
-export type WebsiteHomepage = {eyebrow:string;headline1:string;headline2:string;headline3:string;description:string;heroImage:string;heroImages:string[];heroIntervalSeconds:number;technologyImages:string[];technologyIntervalSeconds:number;downloadImages:string[];downloadIntervalSeconds:number;rideImages:string[];rideIntervalSeconds:number;rideBackgroundImage:string;rideBackgroundDarkness:number;rideBackgroundPosition:string;liveTripPhoneImage:string;ridePricingPhoneImage:string;ridePaymentPhoneImage:string;driveHeroPhoneImage:string;driveEarningsPhoneImage:string;driveHeroBackgroundImage:string;deliverHeroPhoneImage:string;deliverHeroBackgroundImage:string;deliverHandoffImage:string;businessHeroImage:string;businessManagementImage:string;riderJourneySteps:WebsiteRiderJourneyStep[];riderJourneyIntervalSeconds:number;primaryButton:string;secondaryButton:string;services:WebsiteService[]};
+export type WebsiteHomepage = {eyebrow:string;headline1:string;headline2:string;headline3:string;description:string;heroImage:string;heroImages:string[];heroIntervalSeconds:number;announcementsEnabled:boolean;announcements:WebsiteAnnouncement[];announcementDurationSeconds:number;holidayEffect?:"off"|"auto"|"snow"|"fireworks";technologyImages:string[];technologyIntervalSeconds:number;downloadImages:string[];downloadIntervalSeconds:number;rideImages:string[];rideIntervalSeconds:number;rideBackgroundImage:string;rideBackgroundDarkness:number;rideBackgroundPosition:string;liveTripPhoneImage:string;ridePricingPhoneImage:string;ridePaymentPhoneImage:string;driveHeroPhoneImage:string;driveEarningsPhoneImage:string;driveHeroBackgroundImage:string;deliverHeroPhoneImage:string;deliverHeroBackgroundImage:string;deliverHandoffImage:string;businessHeroImage:string;businessManagementImage:string;riderJourneySteps:WebsiteRiderJourneyStep[];riderJourneyIntervalSeconds:number;primaryButton:string;secondaryButton:string;services:WebsiteService[]};
 
 /** Only published website content is visible to public visitors. */
 export async function getPublishedHomepage():Promise<Partial<WebsiteHomepage>>{
@@ -11,6 +12,19 @@ export async function getPublishedHomepage():Promise<Partial<WebsiteHomepage>>{
   if(!doc.exists)return {};
   const d=doc.data()||{};
   const str=(key:string)=>typeof d[key]==="string"?(d[key] as string):undefined;
+  const todayParts=new Intl.DateTimeFormat("en-US",{timeZone:"America/New_York",year:"numeric",month:"2-digit",day:"2-digit"}).formatToParts(new Date());
+  const part=(name:string)=>todayParts.find(p=>p.type===name)?.value??"";
+  const today=`${part("year")}-${part("month")}-${part("day")}`;
+  const validDate=(date:unknown)=>typeof date==="string"&&/^\d{4}-\d{2}-\d{2}$/.test(date)&&!Number.isNaN(Date.parse(date))&&new Date(date).toISOString().slice(0,10)===date;
+  const holidayEffect=["off","auto","snow","fireworks"].includes(String(d.holidayEffect))?d.holidayEffect as WebsiteHomepage["holidayEffect"]:"off";
+  const announcementsEnabled=d.announcementsEnabled===true;
+  const announcementDurationSeconds=typeof d.announcementDurationSeconds==="number"&&Number.isInteger(d.announcementDurationSeconds)&&d.announcementDurationSeconds>=15&&d.announcementDurationSeconds<=90?d.announcementDurationSeconds:30;
+  const announcements=Array.isArray(d.announcements)?d.announcements.filter((item:unknown)=>{
+   if(!item||typeof item!=="object")return false;
+   const a=item as Record<string,unknown>;
+   const start=a.startDate??"";const end=a.endDate??"";
+   return typeof a.text==="string"&&a.text.trim().length>0&&a.text.length<=160&&typeof a.href==="string"&&a.href.length<=500&&(a.href===""||a.href.startsWith("/")&&!a.href.startsWith("//")&&!a.href.includes("\\"))&&typeof a.enabled==="boolean"&&(start===""||validDate(start))&&(end===""||validDate(end))&&(!start||!end||String(start)<=String(end));
+  }).slice(0,8).filter((item:WebsiteAnnouncement)=>(!item.startDate||item.startDate<=today)&&(!item.endDate||item.endDate>=today)) as WebsiteAnnouncement[]:[];
   const services=Array.isArray(d.services)?d.services.filter((s:unknown)=>{
    if(!s||typeof s!=="object")return false;
    const v=s as Record<string,unknown>;
@@ -44,6 +58,6 @@ export async function getPublishedHomepage():Promise<Partial<WebsiteHomepage>>{
   const journeyImageValid=(url:string)=>url===""||url.startsWith("https://")||(url.startsWith("/")&&!url.startsWith("//"));
   const riderJourneySteps=Array.isArray(d.riderJourneySteps)&&d.riderJourneySteps.length===5&&d.riderJourneySteps.every((step:unknown)=>{if(!step||typeof step!=="object")return false;const s=step as Record<string,unknown>;return typeof s.title==="string"&&s.title.length<=80&&typeof s.description==="string"&&s.description.length<=300&&typeof s.image==="string"&&s.image.length<=2000&&journeyImageValid(s.image);})?d.riderJourneySteps as WebsiteRiderJourneyStep[]:undefined;
   const riderJourneyIntervalSeconds=typeof d.riderJourneyIntervalSeconds==="number"&&d.riderJourneyIntervalSeconds>=3&&d.riderJourneyIntervalSeconds<=15?d.riderJourneyIntervalSeconds:5;
-  return {eyebrow:str("eyebrow"),headline1:str("headline1"),headline2:str("headline2"),headline3:str("headline3"),description:str("description"),heroImage:str("heroImage"),heroImages,heroIntervalSeconds,technologyImages,technologyIntervalSeconds,downloadImages,downloadIntervalSeconds,rideImages,rideIntervalSeconds,rideBackgroundImage,rideBackgroundDarkness,rideBackgroundPosition,liveTripPhoneImage,ridePricingPhoneImage,ridePaymentPhoneImage,driveHeroPhoneImage,driveEarningsPhoneImage,driveHeroBackgroundImage,deliverHeroPhoneImage,deliverHeroBackgroundImage,deliverHandoffImage,businessHeroImage,businessManagementImage,riderJourneySteps,riderJourneyIntervalSeconds,primaryButton:str("primaryButton"),secondaryButton:str("secondaryButton"),services};
+  return {eyebrow:str("eyebrow"),headline1:str("headline1"),headline2:str("headline2"),headline3:str("headline3"),description:str("description"),heroImage:str("heroImage"),heroImages,heroIntervalSeconds,announcementsEnabled,announcements,announcementDurationSeconds,holidayEffect,technologyImages,technologyIntervalSeconds,downloadImages,downloadIntervalSeconds,rideImages,rideIntervalSeconds,rideBackgroundImage,rideBackgroundDarkness,rideBackgroundPosition,liveTripPhoneImage,ridePricingPhoneImage,driveHeroPhoneImage,driveEarningsPhoneImage,driveHeroBackgroundImage,deliverHeroPhoneImage,deliverHeroBackgroundImage,deliverHandoffImage,businessHeroImage,businessManagementImage,riderJourneySteps,riderJourneyIntervalSeconds,primaryButton:str("primaryButton"),secondaryButton:str("secondaryButton"),services};
  }catch(e){console.error("Published website content unavailable; using built-in fallback",e);return {};}
 }

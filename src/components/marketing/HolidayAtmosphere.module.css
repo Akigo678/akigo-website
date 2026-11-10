@@ -1,0 +1,30 @@
+.layer{position:absolute;inset:88px 0 0;z-index:2;pointer-events:none;overflow:hidden}
+.withTicker{top:133px}
+.edge{position:absolute;display:flex;align-items:center;justify-content:space-around;gap:4px;pointer-events:none;z-index:3}
+.top,.bottom{height:25px;left:0;right:0;background:linear-gradient(90deg,rgba(8,29,12,.7),rgba(19,62,21,.4),rgba(8,29,12,.7));border-top:2px solid rgba(150,237,8,.4);border-bottom:2px solid rgba(150,237,8,.3)}
+.top{top:0}.bottom{bottom:0}
+.left,.right{width:25px;top:0;bottom:0;flex-direction:column;background:linear-gradient(180deg,rgba(8,29,12,.7),rgba(19,62,21,.4),rgba(8,29,12,.7));border-left:2px solid rgba(150,237,8,.4);border-right:2px solid rgba(150,237,8,.3)}
+.left{left:0}.right{right:0}
+.bulb{width:9px;height:13px;flex:none;border-radius:48% 48% 55% 55%;background:#96ed08;box-shadow:0 0 7px currentColor,0 0 16px currentColor;animation:twinkle 2.5s ease-in-out infinite;transform:rotate(-10deg)}
+.bulb:nth-child(3n){background:#ffd76e;color:#ffe6a5}.bulb:nth-child(3n + 1){background:#f45e57;color:#ff9494}.bulb:nth-child(3n + 2){background:#9dea36;color:#a7f944}
+.corner{position:absolute;z-index:4;font-size:23px;line-height:1;color:#ffd76e;text-shadow:0 0 9px currentColor;animation:twinkle 3s ease-in-out infinite}
+.topLeft{top:3px;left:3px}.topRight{top:3px;right:3px}.bottomLeft{bottom:3px;left:3px}.bottomRight{bottom:3px;right:3px}
+.newYear .top,.newYear .bottom,.newYear .left,.newYear .right{background:linear-gradient(90deg,rgba(9,8,33,.74),rgba(32,19,53,.5),rgba(9,8,33,.74));border-color:rgba(246,218,132,.45)}
+.newYear .bulb{width:7px;height:7px;border-radius:50%;background:#ffe89a;color:#ffe89a;transform:none}
+.newYear .bulb:nth-child(3n){background:#96ed08;color:#96ed08}.newYear .bulb:nth-child(3n + 1){background:#b5a7ff;color:#b5a7ff}
+.newYear .corner{color:#ffe89a}
+.christmas .ornament{position:absolute;z-index:5;width:38px;height:38px;border-radius:50%;background:radial-gradient(circle at 30% 28%,#fff6d4 0 4%,#ee4743 10%,#a51123 52%,#650d12 85%);border:2px solid #f5cf76;box-shadow:0 0 12px rgba(255,208,99,.55),0 0 0 11px rgba(22,79,29,.23)}
+.christmas .ornament::before{content:"";position:absolute;width:14px;height:8px;border-radius:3px 3px 0 0;background:#eac66e;top:-9px;left:10px;border:1px solid #fff0b8}
+.christmas .ornament::after{content:"";position:absolute;inset:-18px;background:radial-gradient(ellipse at 15% 25%,#27753e 0 9%,transparent 11%),radial-gradient(ellipse at 80% 75%,#236a38 0 9%,transparent 11%),radial-gradient(ellipse at 72% 15%,#398e49 0 8%,transparent 10%),radial-gradient(ellipse at 18% 80%,#1e6332 0 9%,transparent 11%);z-index:-1}
+.ornamentTL{top:22px;left:24px}.ornamentTR{top:22px;right:24px}.ornamentBL{bottom:22px;left:24px}.ornamentBR{bottom:22px;right:24px}
+@keyframes twinkle{0%,100%{opacity:.6;filter:brightness(.75)}50%{opacity:1;filter:brightness(1.3)}}
+.snow{position:absolute;top:-20px;color:#fff;opacity:0;text-shadow:0 0 8px #fff,0 0 2px #fff;filter:drop-shadow(0 1px 4px rgba(255,255,255,.6));animation:float-down 13s linear infinite}
+@keyframes float-down{0%{transform:translate3d(0,-30px,0) rotate(0);opacity:0}10%{opacity:.78}85%{opacity:.78}100%{transform:translate3d(60px,95vh,0) rotate(260deg);opacity:0}}
+.firework{position:absolute;width:3px;height:3px;animation:burst 5s ease-out infinite;opacity:0}
+.firework span{position:absolute;left:0;top:0;width:2px;height:42px;transform-origin:50% 0}
+.firework span::after{content:"";display:block;width:3px;height:13px;background:linear-gradient(#96ed08,#ffdb80,transparent);border-radius:4px;box-shadow:0 0 8px #d1ff77;animation:spark 5s ease-out infinite}
+@keyframes burst{0%,16%,100%{opacity:0}20%{opacity:.85}42%{opacity:0}}
+@keyframes spark{0%,18%{transform:translateY(0) scaleY(0)}25%{transform:translateY(-38px) scaleY(1)}45%,100%{transform:translateY(-90px) scaleY(.2)}}
+@media(prefers-reduced-motion:reduce){.layer{display:none}}
+@media(max-width:640px){.top,.bottom{height:15px}.left,.right{width:15px}.bulb{width:5px;height:8px}.newYear .bulb{width:5px;height:5px}.corner{font-size:13px}.edge{gap:2px}}
+@media(max-width:640px){.christmas .ornament{width:21px;height:21px}.christmas .ornament::before{width:9px;height:5px;top:-6px;left:5px}.ornamentTL{top:15px;left:14px}.ornamentTR{top:15px;right:14px}.ornamentBL{bottom:15px;left:14px}.ornamentBR{bottom:15px;right:14px}}

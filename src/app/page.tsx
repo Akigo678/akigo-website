@@ -21,6 +21,8 @@ import {
 } from "@/components/marketing";
 import {getPublishedHomepage} from "@/lib/website/homepage";
 import HeroSlideshow from "@/components/marketing/HeroSlideshow";
+import AnnouncementTicker from "@/components/marketing/AnnouncementTicker";
+import HolidayAtmosphere from "@/components/marketing/HolidayAtmosphere";
 import TechnologyGallery from "@/components/marketing/TechnologyGallery";
 
 // Refresh published Website Studio content without requiring a new deployment.
@@ -120,6 +122,10 @@ export default async function Home() {
     <MarketingLayout>
       <main className="bg-[#050505]">
         <section className="relative isolate min-h-[760px] overflow-hidden pt-[88px]">
+          <HolidayAtmosphere effect={published.holidayEffect??"off"} withTicker={Boolean(published.announcementsEnabled && published.announcements?.some(message=>message.enabled))}/>
+          {published.announcementsEnabled && published.announcements?.some(message=>message.enabled) ? (
+            <AnnouncementTicker announcements={published.announcements} durationSeconds={published.announcementDurationSeconds ?? 30}/>
+          ) : null}
           <HeroSlideshow
             images={published.heroImages?.length ? published.heroImages : [published.heroImage || "/images/home/hero-akigo.png"]}
             intervalSeconds={published.heroIntervalSeconds || 5}
@@ -234,6 +240,21 @@ export default async function Home() {
                   </Link>
                 ),
               )}
+            </div>
+          </div>
+        </section>
+
+        <section className="border-t border-white/[0.06] bg-[#080d06] py-12 sm:py-16">
+          <div className="site-container">
+            <div className="flex flex-col gap-6 rounded-[1.8rem] border border-[#96ed08]/30 bg-[radial-gradient(circle_at_92%_22%,rgba(150,237,8,.15),transparent_46%),#10180d] p-7 sm:p-10 lg:flex-row lg:items-center lg:justify-between">
+              <div className="max-w-2xl">
+                <p className="text-xs font-extrabold uppercase tracking-[.18em] text-[#96ed08]">Planning a longer trip?</p>
+                <h2 className="font-display mt-3 text-3xl font-extrabold tracking-[-.05em] text-white sm:text-4xl">Long-distance rides, <span className="text-[#96ed08]">fair fares.</span></h2>
+                <p className="mt-3 text-base leading-7 text-white/65">Going beyond the city? Tell AkiGO your pickup, destination, and travel date to request a personalized quote for review.</p>
+              </div>
+              <Link href="/long-distance-quote" className={`${primaryButton} shrink-0`}>
+                Get a Long-Distance Quote <ArrowRight size={18} />
+              </Link>
             </div>
           </div>
         </section>

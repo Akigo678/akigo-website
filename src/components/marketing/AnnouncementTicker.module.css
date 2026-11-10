@@ -1,0 +1,13 @@
+.banner{position:absolute;top:88px;left:0;right:0;z-index:25;display:flex;align-items:center;height:45px;background:rgba(6,11,3,.86);border-top:1px solid rgba(150,237,8,.26);border-bottom:1px solid rgba(150,237,8,.40);box-shadow:0 8px 22px rgba(0,0,0,.25);backdrop-filter:blur(12px);color:#f7ffe8}
+.label{z-index:1;flex:none;height:100%;display:flex;align-items:center;padding:0 19px 0 max(20px,calc((100vw - 1400px)/2));background:#96ed08;color:#090c05;font-weight:900;letter-spacing:.11em;font-size:11px;white-space:nowrap}
+.viewport{overflow:hidden;flex:1;min-width:0;mask-image:linear-gradient(to right,transparent,black 2%,black 98%,transparent)}
+.track{width:max-content;display:flex;animation:scroll-left 30s linear infinite;will-change:transform}
+.group{display:flex;align-items:center;flex:none;min-width:100%;justify-content:space-around}
+.message{display:inline-flex;align-items:center;gap:11px;padding:0 38px;white-space:nowrap;font-size:14px;font-weight:700;line-height:44px}
+.sparkle{color:#96ed08;font-size:13px}
+.arrow{color:#96ed08}
+.message a:hover,.message a:focus-visible{color:#96ed08;text-decoration:underline;text-underline-offset:4px}
+.banner:hover .track,.banner:focus-within .track{animation-play-state:paused}
+@keyframes scroll-left{to{transform:translateX(-50%)}}
+@media (max-width:640px){.label{padding:0 11px;font-size:9px}.message{padding:0 24px;font-size:12px}}
+@media (prefers-reduced-motion:reduce){.track{animation:none!important}.viewport{overflow-x:auto}.group[aria-hidden="true"]{display:none}}
