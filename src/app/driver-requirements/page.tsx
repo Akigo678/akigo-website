@@ -232,101 +232,47 @@ export default function DriverRequirementsPage() {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
 
-        <section className="relative overflow-hidden pt-[88px]">
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_73%_23%,rgba(150,237,8,0.10),transparent_34%)]" />
-          <div className="pointer-events-none absolute left-[-15rem] top-16 h-[34rem] w-[34rem] rounded-full bg-[#96ed08]/[0.04] blur-[145px]" />
-
-          <div className="site-container relative z-10 grid min-h-[680px] items-center gap-14 py-16 lg:grid-cols-[1.02fr_0.98fr]">
-            <div>
-              <div className="inline-flex items-center gap-2 rounded-full border border-white/[0.12] bg-white/[0.025] px-4 py-2 text-xs font-bold uppercase tracking-[0.08em] text-[#96ed08]">
-                <span className="size-2 rounded-full bg-[#96ed08] shadow-[0_0_14px_rgba(150,237,8,.9)]" />
-                Driver requirements
-              </div>
-
-              <h1 className="font-display mt-6 max-w-[760px] text-5xl font-extrabold leading-[0.95] tracking-[-0.06em] sm:text-6xl lg:text-[5.15rem]">
-                What you need to
-                <br />
-                <span className="text-[#96ed08]">drive with AkiGO.</span>
+        
+        <section className="relative isolate overflow-hidden border-b border-white/10 bg-[#080a06]">
+          <div className="pointer-events-none absolute inset-0 bg-[url('/images/driver-requirements/akigo-driver-hero.png')] bg-cover bg-[62%_center] lg:bg-center" />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#050705] via-[#050705]/95 to-[#050705]/25 lg:via-[#050705]/80 lg:to-[#050705]/5" />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#050705] via-transparent to-black/20" />
+          <div className="site-container relative z-10 flex min-h-[790px] flex-col justify-center py-24 sm:min-h-[830px] lg:min-h-[760px]">
+            <div className="max-w-[690px]">
+              <span className="inline-flex items-center gap-2 rounded-full border border-[#96ed08]/35 bg-black/55 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.15em] text-[#96ed08] backdrop-blur">
+                <span className="size-2 rounded-full bg-[#96ed08] shadow-[0_0_12px_#96ed08]" />
+                AkiGO driver requirements
+              </span>
+              <h1 className="font-display mt-7 text-[clamp(3.3rem,6.2vw,6.8rem)] font-extrabold leading-[0.95] tracking-[-0.065em] text-white">
+                Ready to drive <span className="text-[#96ed08]">with AkiGO?</span>
               </h1>
-
-              <p className="mt-6 max-w-[650px] text-lg leading-8 text-white/60">
-                Review the general eligibility, vehicle, document, screening, and
-                approval requirements for prospective AkiGO drivers.
+              <p className="mt-7 max-w-[570px] text-base leading-8 text-white/85 sm:text-lg">
+                Your next opportunity starts here. Explore the eligibility, vehicle, documents, and screening requirements before applying to drive.
               </p>
-
-              <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
+              <div className="mt-9 flex flex-wrap gap-3">
                 <a href="#driver-interest" className={primaryButton}>
-                  Register Driver Interest
-                  <ArrowRight size={18} />
+                  Register Driver Interest <ArrowRight size={18} />
                 </a>
-
                 <Link href="/drive" className={secondaryButton}>
-                  Start with the Driver page
-                  <ArrowRight size={18} />
-                </Link>
-
-                <Link href="/launch-markets" className={secondaryButton}>
-                  Check launch markets
-                  <ArrowRight size={18} />
+                  Explore driving <ArrowRight size={18} />
                 </Link>
               </div>
-
-              <p className="mt-6 max-w-[620px] text-sm leading-6 text-white/42">
-                Requirements and onboarding availability vary by market and
-                service type. Meeting the general standards does not guarantee
-                approval.
+              <p className="mt-5 max-w-[560px] text-sm leading-6 text-white/70">
+                Requirements and onboarding availability vary by market and service type. Meeting general standards does not guarantee approval.
               </p>
             </div>
-
-            <div className="relative">
-              <div className="pointer-events-none absolute inset-10 rounded-full bg-[#96ed08]/[0.08] blur-[120px]" />
-
-              <div className="relative overflow-hidden rounded-[2rem] border border-white/[0.10] bg-[#0a0a0a] p-7 shadow-[0_30px_90px_rgba(0,0,0,.45)] sm:p-9">
-                <div className="flex items-start justify-between gap-6">
-                  <div>
-                    <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-[#96ed08]">
-                      General checklist
-                    </p>
-                    <h2 className="font-display mt-3 text-3xl font-bold tracking-[-0.04em]">
-                      Driver readiness starts here
-                    </h2>
-                  </div>
-
-                  <div className="grid size-14 shrink-0 place-items-center rounded-2xl bg-[#96ed08]/10 text-[#96ed08]">
-                    <ClipboardCheck size={27} />
-                  </div>
+            <div className="mt-16 grid max-w-[940px] gap-3 sm:grid-cols-2 lg:grid-cols-4">
+              {[
+                { icon: UserCheck, text: "Eligible driver" },
+                { icon: CarFront, text: "Qualified vehicle" },
+                { icon: FileCheck2, text: "Valid documents" },
+                { icon: ShieldCheck, text: "Safety screening" },
+              ].map(({ icon: Icon, text }) => (
+                <div key={text} className="flex items-center gap-3 rounded-2xl border border-white/15 bg-black/60 px-4 py-4 backdrop-blur-md">
+                  <Icon className="shrink-0 text-[#96ed08]" size={21} />
+                  <span className="text-sm font-semibold text-white">{text}</span>
                 </div>
-
-                <div className="mt-7 space-y-3">
-                  {[
-                    "Eligible driver account",
-                    "Qualified vehicle",
-                    "Current required documents",
-                    "Completed screening and review",
-                  ].map((item) => (
-                    <div key={item} className="flex items-center gap-3">
-                      <span className="grid size-6 place-items-center rounded-full border border-[#96ed08]/45 text-[#96ed08]">
-                        <Check size={14} strokeWidth={2.5} />
-                      </span>
-                      <span className="text-sm font-medium text-white/68">{item}</span>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="mt-7 rounded-2xl border border-[#96ed08]/20 bg-[#96ed08]/[0.045] p-5">
-                  <div className="flex items-start gap-3">
-                    <MapPinned
-                      className="mt-0.5 shrink-0 text-[#96ed08]"
-                      size={20}
-                    />
-                    <p className="text-sm leading-6 text-white/52">
-                      Final requirements are shown during onboarding for the
-                      driver’s selected market, vehicle, and requested service
-                      categories.
-                    </p>
-                  </div>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </section>
