@@ -159,7 +159,7 @@ export default function AboutPage() {
         <section className="hidden pt-[88px] xl:block" aria-label="About AkiGO introduction">
           <div className="relative aspect-[1560/913] w-full overflow-hidden bg-[#050505] [container-type:inline-size]">
             <Image
-              src="/images/about/about-reference.png"
+              src="/images/about/akigo-about-hero.png"
               alt=""
               width={1560}
               height={1008}
@@ -169,7 +169,7 @@ export default function AboutPage() {
               className="pointer-events-none absolute left-0 top-[-10.405%] h-auto w-full max-w-none select-none"
             />
             {/* Cover the rasterized copy; all visible copy below is real HTML text. */}
-            <div className="pointer-events-none absolute inset-y-0 left-0 w-[43%] bg-[linear-gradient(90deg,#030904_0%,#030904_82%,rgba(3,9,4,.95)_87%,transparent_100%)]" />
+            <div className="pointer-events-none absolute inset-0 bg-black/20" />
 
             <div className="absolute left-[3.9%] top-[6.2%] flex items-center gap-[1cqw] text-[1.1cqw] font-bold uppercase tracking-[.26em] text-[#96ed08]">
               <span className="size-[.8cqw] rounded-full bg-[#96ed08]" />
