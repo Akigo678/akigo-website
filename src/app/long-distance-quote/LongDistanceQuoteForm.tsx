@@ -4,7 +4,7 @@ import { useState, type FormEvent } from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
-const field = "mt-2 min-h-12 w-full rounded-xl border border-white/15 bg-black/50 px-4 text-white outline-none focus:border-[#96ed08]";
+const field = "mt-2 block h-12 min-h-12 min-w-0 w-full rounded-xl border border-white/15 bg-black/50 px-4 text-base text-white [color-scheme:dark] appearance-auto outline-none focus:border-[#96ed08]";
 
 export default function LongDistanceQuoteForm() {
   const [busy, setBusy] = useState(false);
