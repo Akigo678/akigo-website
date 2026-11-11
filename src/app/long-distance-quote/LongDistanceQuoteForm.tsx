@@ -3,8 +3,9 @@
 import { useState, type FormEvent } from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import LongDistanceLocationFields from "@/components/marketing/LongDistanceLocationFields";
 
-const field = "mt-2 block h-12 min-h-12 min-w-0 w-full rounded-xl border border-white/15 bg-black/50 px-4 text-base text-white [color-scheme:dark] appearance-auto outline-none focus:border-[#96ed08]";
+const field = "mt-2 block box-border h-12 min-h-12 min-w-0 w-full max-w-full rounded-xl border border-white/15 bg-black/50 px-4 text-base text-white [color-scheme:dark] appearance-auto outline-none focus:border-[#96ed08]";
 
 export default function LongDistanceQuoteForm() {
   const [busy, setBusy] = useState(false);
@@ -46,15 +47,15 @@ export default function LongDistanceQuoteForm() {
       <h2 className="font-display text-3xl font-extrabold tracking-[-0.04em]">Tell us about your trip</h2>
       <p className="mt-3 text-sm leading-6 text-white/65">Fields marked * are required. We will review your trip before providing any price.</p>
       <div className="mt-7 grid gap-5 sm:grid-cols-2">
-        <label className="text-sm font-semibold">Full name *<input name="name" required autoComplete="name" maxLength={120} className={field} /></label>
-        <label className="text-sm font-semibold">Email address *<input type="email" name="email" required autoComplete="email" maxLength={254} className={field} /></label>
-        <label className="text-sm font-semibold">Phone number (optional)<input type="tel" name="phone" maxLength={32} autoComplete="tel" className={field} /></label>
-        <label className="text-sm font-semibold">Passengers *<input type="number" name="passengers" min={1} max={20} defaultValue={1} required className={field} /></label>
-        <label className="text-sm font-semibold sm:col-span-2">Pickup address or location *<input name="pickup" required minLength={5} maxLength={250} placeholder="City, state, or full pickup address" className={field} /></label>
-        <label className="text-sm font-semibold sm:col-span-2">Destination address or location *<input name="destination" required minLength={5} maxLength={250} placeholder="Where are you going?" className={field} /></label>
-        <label className="text-sm font-semibold">Travel date *<input type="date" name="departureDate" required className={field} /></label>
-        <label className="text-sm font-semibold">Pickup time (at pickup location) *<input type="time" name="departureTime" required className={field} /></label>
-        <label className="text-sm font-semibold">Trip type *
+        <label className="block min-w-0 text-sm font-semibold">Full name *<input name="name" required autoComplete="name" maxLength={120} className={field} /></label>
+        <label className="block min-w-0 text-sm font-semibold">Email address *<input type="email" name="email" required autoComplete="email" maxLength={254} className={field} /></label>
+        <label className="block min-w-0 text-sm font-semibold">Phone number (optional)<input type="tel" name="phone" maxLength={32} autoComplete="tel" className={field} /></label>
+        <label className="block min-w-0 text-sm font-semibold">Passengers *<input type="number" name="passengers" min={1} max={20} defaultValue={1} required className={field} /></label>
+        <LongDistanceLocationFields name="pickup" title="Pickup location" />
+        <LongDistanceLocationFields name="destination" title="Destination location" />
+        <label className="block min-w-0 text-sm font-semibold">Travel date *<input type="date" name="departureDate" required className={field} /></label>
+        <label className="block min-w-0 text-sm font-semibold">Pickup time (at pickup location) *<input type="time" name="departureTime" required className={field} /></label>
+        <label className="block min-w-0 text-sm font-semibold">Trip type *
           <select name="tripType" className={field} required value={tripType} onChange={(event) => setTripType(event.target.value)}>
             <option value="one_way">One-way trip</option>
             <option value="round_trip">Round trip</option>
@@ -62,11 +63,11 @@ export default function LongDistanceQuoteForm() {
         </label>
         {tripType === "round_trip" && (
           <>
-            <label className="text-sm font-semibold">Return date *<input type="date" name="returnDate" required className={field} /></label>
-            <label className="text-sm font-semibold">Return pickup time *<input type="time" name="returnTime" required className={field} /></label>
+            <label className="block min-w-0 text-sm font-semibold">Return date *<input type="date" name="returnDate" required className={field} /></label>
+            <label className="block min-w-0 text-sm font-semibold">Return pickup time *<input type="time" name="returnTime" required className={field} /></label>
           </>
         )}
-        <label className="text-sm font-semibold">Preferred vehicle *
+        <label className="block min-w-0 text-sm font-semibold">Preferred vehicle *
           <select name="vehicleType" className={field} required defaultValue="Any suitable vehicle">
             {["Any suitable vehicle", "Basic", "Comfort", "XL", "XXL", "Executive", "Executive SUV"].map((type) => (
               <option key={type} value={type}>{type}</option>

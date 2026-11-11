@@ -36,7 +36,7 @@ export async function GET(request: NextRequest) {
       ).includes(query);
     })
     .sort((a, b) => a.city.localeCompare(b.city))
-    .slice(0, 2000)
+    
     .map((record) => ({
       city: record.city,
       state: record.state,
