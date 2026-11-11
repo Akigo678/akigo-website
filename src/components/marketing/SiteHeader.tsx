@@ -1,10 +1,18 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { ArrowRight, ChevronDown, ChevronRight, Menu, X } from "lucide-react";
 
 import { primaryNavigation } from "@/data/navigation";
 import { primaryButton } from "./buttons";
 
 export function SiteHeader() {
+  const isDriverPage = usePathname() === "/drive";
+  const downloadUrl = isDriverPage
+    ? "https://apps.apple.com/us/app/akigo-driver/id6802773874"
+    : "https://apps.apple.com/us/app/akigo/id6802560351";
+  const downloadLabel = isDriverPage ? "Download AkiGO Driver" : "Download AkiGO";
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-white/[0.08] bg-black/78 backdrop-blur-2xl supports-[backdrop-filter]:bg-black/68">
       <div className="site-container flex h-[88px] items-center justify-between gap-6 xl:gap-10">
@@ -54,12 +62,12 @@ export function SiteHeader() {
           </Link>
 
           <a
-            href="https://apps.apple.com/us/app/akigo/id6802560351"
+            href={downloadUrl}
             target="_blank"
             rel="noopener noreferrer"
             className={`${primaryButton} hidden min-h-0 px-6 py-3 text-sm sm:inline-flex`}
           >
-            Download AkiGO
+            {downloadLabel}
             <ArrowRight size={16} strokeWidth={2.5} />
           </a>
 
@@ -98,12 +106,12 @@ export function SiteHeader() {
               </Link>
 
               <a
-                href="https://apps.apple.com/us/app/akigo/id6802560351"
+                href={downloadUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-2 flex items-center justify-between rounded-2xl bg-[#96ed08] px-4 py-3.5 font-extrabold text-black transition hover:bg-[#a7ff22] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#96ed08] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
               >
-                Download AkiGO
+                {downloadLabel}
                 <ArrowRight size={17} />
               </a>
             </nav>
