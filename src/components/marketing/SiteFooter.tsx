@@ -102,11 +102,11 @@ export function SiteFooter() {
             <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#96ed08]">Stay connected with AkiGO</p>
             <h2 className="mt-2 text-xl font-extrabold tracking-tight text-white sm:text-2xl">Ride smarter. Earn better.</h2>
           </div>
-          <div className="flex flex-wrap gap-3">
-            <a href={RIDER_IOS_URL} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center gap-2 rounded-xl bg-[#96ed08] px-5 text-sm font-bold text-black transition hover:bg-[#b1ff39] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">
+          <div className="flex flex-col gap-3 min-[400px]:flex-row min-[400px]:flex-wrap">
+            <a href={RIDER_IOS_URL} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-[#96ed08] px-5 text-sm font-bold text-black transition hover:bg-[#b1ff39] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">
               <Apple size={18} /> AkiGO Rider <Download size={15} />
             </a>
-            <a href="https://apps.apple.com/us/app/akigo-driver/id6802773874" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center gap-2 rounded-xl border border-white/20 bg-white/[0.05] px-5 text-sm font-bold text-white transition hover:border-[#96ed08]/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#96ed08]">
+            <a href="https://apps.apple.com/us/app/akigo-driver/id6802773874" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/[0.05] px-5 text-sm font-bold text-white transition hover:border-[#96ed08]/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#96ed08]">
               <Smartphone size={18} /> AkiGO Driver <ArrowRight size={15} />
             </a>
           </div>

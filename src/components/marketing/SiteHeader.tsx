@@ -18,7 +18,7 @@ export function SiteHeader() {
 
         <nav
           aria-label="Primary navigation"
-          className="hidden items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.025] px-3 py-2 text-sm font-semibold text-white/70 lg:flex xl:gap-3"
+          className="hidden items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.025] px-3 py-2 text-sm font-semibold text-white/70 xl:flex xl:gap-3"
         >
           {primaryNavigation.map((item) => (
             item.label === "Ride" ? (
@@ -63,7 +63,7 @@ export function SiteHeader() {
             <ArrowRight size={16} strokeWidth={2.5} />
           </a>
 
-          <details className="group relative lg:hidden">
+          <details className="group relative xl:hidden">
             <summary className="grid size-11 cursor-pointer list-none place-items-center rounded-full border border-white/12 bg-white/[0.04] text-white transition hover:border-[#96ed08]/45 hover:bg-white/[0.08] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#96ed08] [&::-webkit-details-marker]:hidden">
               <Menu size={20} className="group-open:hidden" />
               <X size={20} className="hidden group-open:block" />

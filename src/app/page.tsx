@@ -121,26 +121,28 @@ export default async function Home() {
   return (
     <MarketingLayout>
       <main className="bg-[#050505]">
-        <section className="relative isolate min-h-[760px] overflow-hidden pt-[88px]">
+        <section className="relative isolate min-h-[760px] overflow-hidden bg-[#050505] pt-[88px]">
           <HolidayAtmosphere effect={published.holidayEffect??"off"} withTicker={Boolean(published.announcementsEnabled && published.announcements?.some(message=>message.enabled))}/>
           {published.announcementsEnabled && published.announcements?.some(message=>message.enabled) ? (
             <AnnouncementTicker announcements={published.announcements} durationSeconds={published.announcementDurationSeconds ?? 30}/>
           ) : null}
-          <HeroSlideshow
-            images={published.heroImages?.length ? published.heroImages : [published.heroImage || "/images/home/hero-akigo.png"]}
-            intervalSeconds={published.heroIntervalSeconds || 5}
-          />
-          <div className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-r from-black/50 via-black/20 to-transparent" />
-          <div className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-t from-black/45 via-transparent to-black/10" />
+          <div className="absolute inset-x-0 top-0 h-[440px] overflow-hidden sm:h-[560px] lg:inset-0 lg:h-full">
+            <HeroSlideshow
+              images={published.heroImages?.length ? published.heroImages : [published.heroImage || "/images/home/hero-akigo.png"]}
+              intervalSeconds={published.heroIntervalSeconds || 5}
+            />
+          </div>
+          <div className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-[520px] bg-gradient-to-b from-black/55 via-black/40 to-[#050505] sm:h-[640px] lg:inset-0 lg:h-auto lg:bg-gradient-to-r lg:from-black/50 lg:via-black/20 lg:to-transparent" />
+          <div className="pointer-events-none absolute inset-0 z-[1] hidden bg-gradient-to-t from-black/45 via-transparent to-black/10 lg:block" />
 
-          <div className="site-container relative z-[2] flex min-h-[760px] items-center py-12 lg:py-14">
+          <div className="site-container relative z-[2] flex min-h-0 items-center py-10 sm:py-12 lg:min-h-[760px] lg:py-14">
             <div className="relative z-20 w-full max-w-[760px]">
               <div className="inline-flex items-center gap-2 rounded-full border border-white/[0.12] bg-white/[0.025] px-4 py-2 text-xs font-semibold text-white/65 backdrop-blur-md">
                 <span className="size-2 rounded-full bg-[#96ed08] shadow-[0_0_14px_rgba(150,237,8,.9)]" />
                 {published.eyebrow || "One platform. Many ways forward."}
               </div>
 
-              <h1 className="font-display mt-7 max-w-[760px] text-5xl font-extrabold leading-[0.95] tracking-[-0.06em] [text-shadow:0_3px_22px_rgba(0,0,0,0.9)] sm:text-6xl lg:text-[5.45rem]">
+              <h1 className="font-display mt-7 max-w-[760px] text-[clamp(2.6rem,11.4vw,3rem)] font-extrabold leading-[1.01] tracking-[-0.06em] [text-shadow:0_3px_22px_rgba(0,0,0,0.9)] sm:text-6xl lg:text-[5.45rem]">
                 {published.headline1 || "Move smarter."}
                 <br />
                 {published.headline2 || "Deliver faster."}
@@ -148,18 +150,18 @@ export default async function Home() {
                 <span className="text-[#96ed08]">{published.headline3 || "Earn your way."}</span>
               </h1>
 
-              <p className="mt-7 max-w-[560px] text-lg leading-8 text-white/90 [text-shadow:0_2px_12px_rgba(0,0,0,0.95)]">
+              <p className="mt-6 max-w-[560px] text-base leading-7 text-white/90 [text-shadow:0_2px_12px_rgba(0,0,0,0.95)] sm:mt-7 sm:text-lg sm:leading-8">
                 {published.description || "AkiGO is building a connected mobility and local delivery platform for riders, drivers, businesses, and communities through a controlled market-by-market rollout."}
               </p>
 
-              <div className="mt-8 grid max-w-[650px] grid-cols-2 gap-x-7 gap-y-6 sm:grid-cols-4">
+              <div className="mt-8 grid max-w-[650px] grid-cols-2 gap-x-5 gap-y-6 sm:grid-cols-4 sm:gap-x-7">
                 {trustItems.map(({ icon: Icon, title, description }) => (
                   <div key={title}>
                     <div className="grid size-10 place-items-center text-[#96ed08]">
                       <Icon size={24} strokeWidth={1.9} />
                     </div>
                     <h2 className="mt-3 text-sm font-bold text-white">{title}</h2>
-                    <p className="mt-2 max-w-[135px] text-xs leading-5 text-white/45">
+                    <p className="mt-2 max-w-[135px] text-xs leading-5 text-white/70 sm:text-white/45">
                       {description}
                     </p>
                   </div>
