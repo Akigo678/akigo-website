@@ -2,6 +2,7 @@ import { createHash, randomUUID } from "node:crypto";
 
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
+import { FieldValue, Timestamp } from "firebase-admin/firestore";
 
 import { getAdminDb } from "@/lib/server/firebase-admin";
 
@@ -135,9 +136,9 @@ export async function POST(request: NextRequest) {
         {
           windowStartedAt: withinWindow
             ? data?.windowStartedAt
-            : FirebaseFirestore.Timestamp.fromDate(now),
+            : Timestamp.fromDate(now),
           count: currentCount + 1,
-          updatedAt: FirebaseFirestore.FieldValue.serverTimestamp(),
+          updatedAt: FieldValue.serverTimestamp(),
         },
         { merge: true },
       );
@@ -163,8 +164,8 @@ export async function POST(request: NextRequest) {
       source: "contact_page",
       ipHash,
       userAgent: request.headers.get("user-agent") ?? null,
-      createdAt: FirebaseFirestore.FieldValue.serverTimestamp(),
-      updatedAt: FirebaseFirestore.FieldValue.serverTimestamp(),
+      createdAt: FieldValue.serverTimestamp(),
+      updatedAt: FieldValue.serverTimestamp(),
     });
 
     await db.collection("adminNotifications").add({
@@ -174,7 +175,7 @@ export async function POST(request: NextRequest) {
       referenceId,
       submissionId: submissionRef.id,
       status: "unread",
-      createdAt: FirebaseFirestore.FieldValue.serverTimestamp(),
+      createdAt: FieldValue.serverTimestamp(),
     });
 
     const resendApiKey = process.env.RESEND_API_KEY;
