@@ -113,6 +113,12 @@ export function MarketInterestForm() {
       return;
     }
 
+    if (form.needs.trim().length < 15) {
+      setStatus("error");
+      setMessage("Please explain how AkiGO can help you in at least 15 characters.");
+      return;
+    }
+
     setStatus("submitting");
     setMessage("");
     setReferenceId("");
@@ -409,17 +415,19 @@ export function MarketInterestForm() {
 
         <label className="block sm:col-span-2">
           <span className="text-sm font-bold text-white/72">
-            Tell us about local needs
+            Tell us exactly how AkiGO can help you <span className="text-[#96ed08]">*</span>
           </span>
           <textarea
+            required
             rows={6}
+            minLength={15}
             maxLength={4000}
             value={form.needs}
             onChange={(event) =>
               updateField("needs", event.target.value)
             }
             className="mt-2 w-full resize-y rounded-2xl border border-white/[0.10] bg-black/50 px-4 py-4 text-sm leading-6 text-white outline-none transition placeholder:text-white/25 focus:border-[#96ed08]/55 focus:ring-2 focus:ring-[#96ed08]/10"
-            placeholder="Optional details about transportation gaps, delivery demand, driver interest, business needs, or community mobility."
+            placeholder="Example: I own a business in Fort Worth and need daily deliveries to my customers. Tell us what you need, where, and how often."
           />
         </label>
 

@@ -6,7 +6,7 @@ export const dynamic = "force-dynamic";
 
 const MARKET_INTEREST_FUNCTION_URL =
   process.env.MARKET_INTEREST_FUNCTION_URL ||
-  "https://us-central1-akigo-9ad3b.cloudfunctions.net/submitWebsiteMarketInterest";
+  "https://us-central1-akigo-9ad3b.cloudfunctions.net/submitWebsiteMarketInterestV2";
 
 type MarketInterestPayload = {
   name?: unknown;
@@ -137,6 +137,13 @@ export async function GET() {
 export async function POST(request: NextRequest) {
   try {
     const payload = (await request.json()) as MarketInterestPayload;
+
+    if (normalizeText(payload.needs, 4000).length < 15) {
+      return NextResponse.json(
+        { ok: false, message: "Please explain how AkiGO can help you in at least 15 characters." },
+        { status: 400 },
+      );
+    }
     const functionResponse = await fetch(MARKET_INTEREST_FUNCTION_URL, {
       method: "POST",
       headers: {
